@@ -108,10 +108,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Saraff.Twain\Saraff.Twain.csproj">
-      <Project>{658F9851-4D1C-4D57-904E-F9D7DA7F24FC}</Project>
-      <Name>Saraff.Twain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DocScanner.LibCommon\DocScanner.LibCommon.csproj">
       <Project>{D4DE7B10-3DFE-4966-8B45-595CC06DEB18}</Project>
       <Name>DocScanner.LibCommon</Name>
