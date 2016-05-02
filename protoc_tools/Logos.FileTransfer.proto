@@ -1,0 +1,164 @@
+
+syntax = "proto2";
+/*message ProtoBuff Definition 网络传输结构体定义*/
+
+
+
+/*package tutorial;
+option java_package = "com.protobuftest.protobuf"; (生成Java类时包名；C#类的命名空间)
+option java_outer_classname = "PersonProbuf"; (生成Java、C#类的类名)
+*/
+
+package com.logos.documents.definition;
+option java_package = "cn.net.sinodata.cm.pb";
+
+
+/*后面需要修改默认值,对于这个的opetype，最好的还是非常明确的确定都是哪些的操作，不要过多的进行合并*/
+enum EOperType
+{
+	ADD=0;	
+	DEL=1;
+	UPD=2;
+	UPDNOTE=3;					/*只修改文件的批注信息，则客户端并不需要重新上传文件，服务器也可以精确的知道客户端修改了哪些内容*/
+	FROM_SERVER_NOTCHANGE=4;	/*从服务器下载下来的文件状态*/
+}
+
+enum EResultStatus
+{
+	Success=0;
+	Failed = 1;
+}
+
+message MsgResultInfo
+{
+	required EResultStatus Status=1;
+	 
+	required string     Msg = 2;
+
+	optional string BatchNO =5;
+}
+
+/*通用的文件定义，这个是文件内容的定义*/
+
+//message MsgRawData
+//{
+//	required string Author=1;
+//	required string Version = 2;
+//	required int32  CreateDate=3;
+//	required int32  CreateTime=4;
+//	optional  string  Remark = 5;  /*附注*/
+
+//	required string DataName = 8; /*在文件里这个是文件名*/
+//	required string RawDataMD5  = 10	;   
+//	required int32  RawDataLength = 12;
+//	required  bytes Data = 14;  /*在系统中FileName是会不断的变化的，但FileMD5是不变的*/
+	
+//}
+
+
+/*批注定义*/
+message MsgNoteInfo
+{
+	
+	required string Author=1;
+	required string Version = 2;
+	//required int32  CreateDate=3;
+	required string  CreateTime=4;
+	optional  string  Remark = 5;  /*附注*/
+
+
+	required string NoteName = 8;
+	required string NoteMsg = 10;
+	required string FileLink = 12;		/**/
+	required string FileMD5Link = 14;	/*如果修改了图片文件，则原来的批注都无效，否则容易出现批注位置错误的情况*/
+	required EOperType Operation = 16;
+	
+
+	required int32 RegionX = 20;
+	required int32 RegionY = 21;
+	required int32 RegionWidth = 22;
+	required int32 RegionHeight = 23;	
+
+}
+
+
+
+message MsgFileInfo
+{
+	required string BatchId=1;
+	required string FileId=2;	/*文件编号*/
+	required string Creator=3;
+	//required string Author=1;
+	//required int32  CreateDate=4;
+	required string  CreateTime=4;
+	optional  string  Remark = 5;  /*附注*/
+	//required string Version = 6;
+
+	required string FileName = 8; /*不包含文件路径*/
+	optional string FileURL = 9;  /*上传的时候，这个字段为空，下载的时候， 如果是分文件下载的方式，则服务器填充这个字段,由于fileurl可能不包含文件名的任何信息，因此这个字段保留*/
+	//required string FileNO = 10;  /*文件编号*/
+	required string FileMD5 = 12;
+	required int32 FileSize = 14;
+	optional  bytes Data = 16;  /*在系统中FileName是会不断的变化的，但FileMD5是不变的*/
+	
+	required EOperType Operation = 18;
+	
+	repeated MsgNoteInfo Notes= 26;
+
+
+
+
+}
+/*查询批次*/
+message MsgQueryBatchInfo
+{
+	required string User = 1;
+	
+	required string Password =2; 
+	required string OrgId = 3;
+	required int32 QueryDate = 4;
+	required int32 QueryTime = 5;
+
+	required string BatchNO = 6;
+
+	optional string SourceIP = 42 ;/*来源IP-邮政集团*/
+	optional string MachineID = 44; /*客户端ID*/
+}
+
+message MsgBatchInfo
+{
+	required string BatchId=1;
+	required string  CreateTime=2;
+	required string Creator=3;
+	optional string Version = 4;
+	required string LastModified=5;
+	//required int32  CreateDate=3;
+	
+	optional  string  Remark = 6;  /*附注*/
+
+	//required string BatchNO = 8;
+
+
+	//required int32  FileCount = 18;
+	required EOperType Operation = 20;
+	repeated MsgFileInfo FileInfos = 22;
+
+
+/*业务数据字段编号在30后*/
+	optional string ProvinceCode = 31;
+	optional string OrgId = 30;
+	optional string SysId = 34;
+	//optional string TellerNO = 38 ;/*操作员-邮政集团*/
+	optional string BarCode = 40 ;/*条形码-邮政集团*/
+	optional string SourceIP = 42 ;/*来源IP-邮政集团*/
+
+	optional MsgResultInfo ResultInfo = 50; /*客户端请求批次,服务器可以在次字段段直接填写错误内容*/
+
+	optional string Password = 51; /*使用的帐号密码, 对于上传，是需要传送用户密码进行授权的*/
+	
+}
+
+message MsgResponsInfo
+{
+	optional MsgResultInfo ResultInfo = 1; /*服务器往客户端返回错误的信息,也采用probuff进行*/
+}

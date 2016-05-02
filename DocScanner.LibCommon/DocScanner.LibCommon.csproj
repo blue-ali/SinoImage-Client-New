@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4DE7B10-3DFE-4966-8B45-595CC06DEB18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DocScanner.LibCommon</RootNamespace>
+    <AssemblyName>DocScanner.LibCommon</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.ProtocolBuffers">
+      <HintPath>..\dependency\Google.ProtocolBuffers.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\imgbuilder\imgbuilder\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=bf4391287131aaeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dependency\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2010.1.10.409, Culture=neutral, PublicKeyToken=bf4391287131aaeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dependency\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractSetting.cs" />
+    <Compile Include="AppContext.cs" />
+    <Compile Include="AppContextMgr.cs" />
+    <Compile Include="BaseListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BeanUtil.cs" />
+    <Compile Include="Bean\Batch2HtmlTree.cs" />
+    <Compile Include="Bean\EImgType.cs" />
+    <Compile Include="Bean\EImgType2ImageFormat.cs" />
+    <Compile Include="Bean\ENBatchNodeTitleType.cs" />
+    <Compile Include="Bean\ENFileNodeTitleType.cs" />
+    <Compile Include="Bean\ExShenheHelper.cs" />
+    <Compile Include="Bean\IAcquirerParam.cs" />
+    <Compile Include="Bean\IFileAcquirer.cs" />
+    <Compile Include="Bean\IHasIPropertiesSetting.cs" />
+    <Compile Include="Bean\IMyOpe-T-.cs" />
+    <Compile Include="Bean\IPropertiesSetting.cs" />
+    <Compile Include="Bean\IUCView.cs" />
+    <Compile Include="Bean\NBatchHisQry.cs" />
+    <Compile Include="Bean\NBatchHisRsp.cs" />
+    <Compile Include="Bean\NBatchInfo.cs" />
+    <Compile Include="Bean\NBatchTask.cs" />
+    <Compile Include="Bean\NBatchTaskStatus.cs" />
+    <Compile Include="Bean\NCategoryInfo.cs" />
+    <Compile Include="Bean\FileInfo.cs" />
+    <Compile Include="Bean\NNoteInfo.cs" />
+    <Compile Include="Bean\NodeTitleTypeSetting.cs" />
+    <Compile Include="Bean\NQueryBatchInfo.cs" />
+    <Compile Include="Bean\NResultInfo.cs" />
+    <Compile Include="Bean\TEventArg-T-.cs" />
+    <Compile Include="Bean\UCViewCMD.cs" />
+    <Compile Include="IStructuralEquatable.cs" />
+    <Compile Include="ProtoBuf\EPrivilege.cs" />
+    <Compile Include="ProtoBuf\PbInfo.cs" />
+    <Compile Include="TreeHelper.cs" />
+    <Compile Include="UCMultiObjPropertyInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TrayCtrl.cs" />
+    <Compile Include="TouchSupport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TmpGC.cs" />
+    <Compile Include="TmpFileMgr.cs" />
+    <Compile Include="TmpDirMgr.cs" />
+    <Compile Include="TableLayoutPanelEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StringTypeConverter.cs" />
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="RichBoxHelper.cs" />
+    <Compile Include="RecycleBin.cs" />
+    <Compile Include="OcxRegister.cs" />
+    <Compile Include="InvoiceChecker.cs" />
+    <Compile Include="MessageEventArgs.cs" />
+    <Compile Include="IniConfigSettingExt.cs" />
+    <Compile Include="Int2DateConverter.cs" />
+    <Compile Include="FormContainerHelper.cs" />
+    <Compile Include="FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExceptionHelper.cs" />
+    <Compile Include="EMostImageType.cs" />
+    <Compile Include="EControlMode.cs" />
+    <Compile Include="ConstString.cs" />
+    <Compile Include="ConvertHelper.cs" />
+    <Compile Include="EMessageType.cs" />
+    <Compile Include="EventCleaner.cs" />
+    <Compile Include="FileHelper.cs" />
+    <Compile Include="FileLogger.cs" />
+    <Compile Include="ForEach.cs" />
+    <Compile Include="FormContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContainer.Designer.cs">
+      <DependentUpon>FormContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHelper.cs" />
+    <Compile Include="IniConfigSetting.cs" />
+    <Compile Include="IntTimeProperGrid.cs" />
+    <Compile Include="MessageService.cs" />
+    <Compile Include="NetHelper.cs" />
+    <Compile Include="PathTypePropertyGrid.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectHelper.cs" />
+    <Compile Include="SerializeHelper.cs" />
+    <Compile Include="SystemHelper.cs" />
+    <Compile Include="TimeHelper.cs" />
+    <Compile Include="Tuple.cs" />
+    <Compile Include="XmlFiles.cs" />
+    <EmbeddedResource Include="FormContainer.resx">
+      <DependentUpon>FormContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DocScaner.CodeUtils\DocScanner.CodeUtils.csproj">
+      <Project>{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}</Project>
+      <Name>DocScanner.CodeUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
