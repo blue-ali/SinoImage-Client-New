@@ -112,6 +112,10 @@
       <Project>{D4DE7B10-3DFE-4966-8B45-595CC06DEB18}</Project>
       <Name>DocScanner.LibCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Saraff.Twain\Saraff.Twain.csproj">
+      <Project>{658f9851-4d1c-4d57-904e-f9d7da7f24fc}</Project>
+      <Name>Saraff.Twain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

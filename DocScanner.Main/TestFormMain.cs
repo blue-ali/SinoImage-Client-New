@@ -17,7 +17,7 @@ namespace DocScanner.Main
         {
             //DocTestClass test = new TestClass();
             DocScanner.OCR.TestClass test = new OCR.TestClass();
-            test.Main();
+            //test.Main();
             this.InitializeComponent();
             this.Text = "影像文档客户端";
             base.Load += new EventHandler(this.TestFormMain_Load);

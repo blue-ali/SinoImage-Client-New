@@ -43,7 +43,7 @@
       <HintPath>..\dependency\Google.ProtocolBuffers.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\imgbuilder\imgbuilder\log4net.dll</HintPath>
+      <HintPath>..\dependency\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -191,6 +191,9 @@
       <Project>{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}</Project>
       <Name>DocScanner.CodeUtils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\dependency\log4net.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
