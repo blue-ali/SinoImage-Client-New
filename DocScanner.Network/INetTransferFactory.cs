@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public static class INetTransferFactory
 	{
@@ -11,7 +11,7 @@ namespace DocScaner.Network
 
 		public static INetTransfer GetNetTransfer()
 		{
-			string configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "NetTransferType");
+			string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "NetTransferType");
 			bool flag = string.IsNullOrEmpty(configParamValue);
 			INetTransfer result;
 			if (flag)

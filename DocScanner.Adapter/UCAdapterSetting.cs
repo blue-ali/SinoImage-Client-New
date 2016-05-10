@@ -48,7 +48,7 @@ namespace DocScanner.AdapterFactory
 
             this.comboBox1.DisplayMember = "CnName";
 			this.comboBox1.ValueMember = "Name";
-			string configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("AdapterSetting", "DefaultAdapter");
+			string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("AdapterSetting", "DefaultAdapter");
 			bool flag = !string.IsNullOrEmpty(configParamValue);
 			if (flag)
 			{
@@ -66,7 +66,7 @@ namespace DocScanner.AdapterFactory
 
 		private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
 		{
-			AppContext.Cur.Cfg.SetConfigParamValue("AdapterSetting", "DefaultAdapter", this.comboBox1.SelectedValue.ToString());
+			AppContext.GetInstance().Config.SetConfigParamValue("AdapterSetting", "DefaultAdapter", this.comboBox1.SelectedValue.ToString());
 			bool flag = this.AdaptsFactory != null;
 			if (flag)
 			{

@@ -68,7 +68,7 @@ namespace DocScanner.Main
             insureUserInfo.Name = this.txtbox_Name.Text;
             insureUserInfo.IDNO = this.txtBox_IDNO.Text;
             insureUserInfo.SignatureImgName = "sig" + DateTime.Now.ToString("HHmmssffff");
-            this.pictureBox1.Image.Save(LibCommon.AppContext.Cur.GetVal<AppSetting>(typeof(AppSetting)).TmpFileDir + insureUserInfo.SignatureImgName);
+            this.pictureBox1.Image.Save(LibCommon.AppContext.GetInstance().GetVal<AppSetting>(typeof(AppSetting)).TmpFileDir + insureUserInfo.SignatureImgName);
             insureUserInfo.Comment = this.textBox_Comment.Text;
             InsureUserInfoMgr.Instance.AddUser(insureUserInfo);
             MessageBox.Show("保存成功");

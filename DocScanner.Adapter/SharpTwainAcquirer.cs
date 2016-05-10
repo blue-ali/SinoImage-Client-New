@@ -31,7 +31,7 @@ namespace DocScanner.Adapter.SharpTwain
 			{
 				get
 				{
-					string configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("SharpTwainSetting", "SaveImageType");
+					string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("SharpTwainSetting", "SaveImageType");
 					bool flag = string.IsNullOrEmpty(configParamValue);
 					EImgType result;
 					if (flag)
@@ -54,7 +54,7 @@ namespace DocScanner.Adapter.SharpTwain
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpTwainSetting", "SaveImageType", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpTwainSetting", "SaveImageType", value.ToString());
 				}
 			}
 
@@ -76,17 +76,17 @@ namespace DocScanner.Adapter.SharpTwain
 			{
 				get
 				{
-					string configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("SharpTwainSetting", "ImageDir");
+					string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("SharpTwainSetting", "ImageDir");
 					bool flag = string.IsNullOrEmpty(configParamValue);
 					if (flag)
 					{
-						configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("AppSetting", "TmpFileDir");
+						configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("AppSetting", "TmpFileDir");
 					}
 					return configParamValue;
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpTwainSetting", "ImageDir", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpTwainSetting", "ImageDir", value.ToString());
 				}
 			}
 
@@ -95,7 +95,7 @@ namespace DocScanner.Adapter.SharpTwain
 			{
 				get
 				{
-					long num = (long)AppContext.Cur.Cfg.GetConfigParamValue("SharpTwainSetting", "ImgRatio").ToInt();
+					long num = (long)AppContext.GetInstance().Config.GetConfigParamValue("SharpTwainSetting", "ImgRatio").ToInt();
 					bool flag = num == 0L;
 					if (flag)
 					{
@@ -105,7 +105,7 @@ namespace DocScanner.Adapter.SharpTwain
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpTwainSetting", "ImgRatio", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpTwainSetting", "ImgRatio", value.ToString());
 				}
 			}
 
@@ -154,7 +154,7 @@ namespace DocScanner.Adapter.SharpTwain
 		public bool Initialize(IAcquirerParam initparam)
 		{
 			this._param = initparam;
-			this.GetSetting().ImageDir = AppContext.Cur.Cfg.GetConfigParamValue("AppSetting", "TmpFileDir");
+			this.GetSetting().ImageDir = AppContext.GetInstance().Config.GetConfigParamValue("AppSetting", "TmpFileDir");
 			return true;
 		}
 
@@ -209,7 +209,7 @@ namespace DocScanner.Adapter.SharpTwain
 			}
 			catch (Exception ex)
 			{
-				AppContext.Cur.MS.LogError(ex.ToString());
+				AppContext.GetInstance().MS.LogError(ex.ToString());
 				MessageBox.Show(ex.Message, ex.GetType().Name, MessageBoxButtons.OK, MessageBoxIcon.Hand);
 			}
 		}

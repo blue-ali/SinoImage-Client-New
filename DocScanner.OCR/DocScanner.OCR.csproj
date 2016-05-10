@@ -105,10 +105,6 @@
       <Project>{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}</Project>
       <Name>DocScanner.CodeUtils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DocScanner.ImgUtils\DocScanner.ImgUtils.csproj">
-      <Project>{40B73C2C-E01B-4634-85C8-8BD6EAEE887C}</Project>
-      <Name>DocScanner.ImgUtils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DocScanner.LibCommon\DocScanner.LibCommon.csproj">
       <Project>{D4DE7B10-3DFE-4966-8B45-595CC06DEB18}</Project>
       <Name>DocScanner.LibCommon</Name>

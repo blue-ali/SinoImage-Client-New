@@ -64,7 +64,7 @@ namespace DocScanner.Main
                 bool flag2 = batchTemplatedef != null;
                 if (flag2)
                 {
-                    LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("", null);
+                    LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("", null);
                 }
             }
         }

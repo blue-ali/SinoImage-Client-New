@@ -1,6 +1,6 @@
 using DocScanner.LibCommon;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public class SupportTransfType : StringTypeConverter
 	{

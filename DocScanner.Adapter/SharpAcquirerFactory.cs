@@ -36,7 +36,7 @@ namespace DocScanner.AdapterFactory
 			bool flag2 = string.IsNullOrEmpty(name);
 			if (flag2)
 			{
-				name = AppContext.Cur.Cfg.GetConfigParamValue("AdapterSetting", "DefaultAdapter");
+				name = AppContext.GetInstance().Config.GetConfigParamValue("AdapterSetting", "DefaultAdapter");
 			}
 			bool flag3 = string.IsNullOrEmpty(name);
 			IFileAcquirer result;

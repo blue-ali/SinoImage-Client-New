@@ -1,6 +1,5 @@
-﻿using DocScaner.Common;
-using DocScanner.Bean;
-using DocScanner.ImgUtils;
+﻿using DocScanner.Bean;
+using DocScanner.LibCommon.Util;
 using DocScanner.Main.UC;
 using DocScanner.OCR;
 using System;
@@ -118,9 +117,9 @@ namespace DocScanner.Main
                     bool flag3 = this._curinfo != null && this._curinfo.LocalPath != null && FileHelper.IsImageExt(this._curinfo.LocalPath);
                     if (flag3)
                     {
-                        if (LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).GetUCCenterView().Realview is UCPictureView)
+                        if (LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).GetUCCenterView().Realview is UCPictureView)
                         {
-                            UCPictureView pictureView = LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).GetUCCenterView().Realview as UCPictureView;
+                            UCPictureView pictureView = LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).GetUCCenterView().Realview as UCPictureView;
                             //pictureView.getImage();
                             Rectangle rec = pictureView.GetSelectedRectangle();
                             string text = OCRMgr.Parse(type, new Bitmap(pictureView.getImage()), rec);

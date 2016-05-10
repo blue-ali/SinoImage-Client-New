@@ -1,4 +1,5 @@
 ﻿using DocScanner.Bean;
+using DocScanner.LibCommon.Util;
 using DocScanner.Main;
 using DocScanner.Main.UC;
 using System;
@@ -57,7 +58,7 @@ namespace DocScanner.Main
                 }
                 catch (Exception ex)
                 {
-                    LibCommon.AppContext.Cur.MS.LogError(ex.ToString());
+                    LibCommon.AppContext.GetInstance().MS.LogError(ex.ToString());
                 }
             }
             UCPictureView uCPictureView = new UCPictureView();
@@ -71,27 +72,28 @@ namespace DocScanner.Main
 
         }
 
-        public static IUCView GetCustomView(string ext)
+        public static IUCView GetCustomView(string filePath)
         {
-            bool flag = string.IsNullOrEmpty(ext);
-            IUCView result;
-            if (flag)
-            {
-                result = null;
-            }
-            else
-            {
-                ext = ext.ToLower();
-                foreach (KeyValuePair<string, IUCView> current in ExtAssociation._ext2UC)
+            IUCView result = null;
+            if (!string.IsNullOrEmpty(filePath))
+            { 
+                string extName = FileHelper.GetFileExt(filePath);
+                //ext = ext.ToLower();
+                if (ExtAssociation._ext2UC.ContainsKey(extName))
                 {
-                    bool flag2 = ext.Contains(current.Key);
-                    if (flag2)
-                    {
-                        result = current.Value;
-                        return result;
-                    }
+                    result = ExtAssociation._ext2UC[extName];
                 }
-                result = null;
+
+                //foreach (KeyValuePair<string, IUCView> current in ExtAssociation._ext2UC)
+                //{
+                //    bool flag2 = ext.Contains(current.Key);
+                //    if (flag2)
+                //    {
+                //        result = current.Value;
+                //        return result;
+                //    }
+                //}
+                //result = null;
             }
             return result;
         }

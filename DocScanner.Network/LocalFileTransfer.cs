@@ -4,7 +4,7 @@ using DocScanner.Bean;
 using DocScanner.LibCommon;
 using DocScanner.Bean.pb;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public class LocalFileTransfer : INetTransfer, IDisposable
 	{
@@ -18,7 +18,7 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "LocalmodeServerDir");
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "LocalmodeServerDir");
 			}
 		}
 
@@ -52,17 +52,17 @@ namespace DocScaner.Network
 			return nBatchInfo;
 		}
 
-		NResultInfo INetTransfer.UploadBatch(NBatchInfo info)
+		void INetTransfer.UploadBatch(NBatchInfo info)
 		{
 			this.ReportMsg(ENetTransferStatus.Start, info.BatchNO, "", 0.0, 0.0);
 			string fileName = this.GetFileName(info.BatchNO);
-			info.ToPBFile(fileName, true);
-			AppContext.Cur.MS.LogDebug("localserver mode save to " + fileName);
+			info.ToPBFile(fileName, AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "TransModel"));
+			AppContext.GetInstance().MS.LogDebug("localserver mode save to " + fileName);
 			this.ReportMsg(ENetTransferStatus.Success, info.BatchNO, "", 0.0, 0.0);
 			NResultInfo nResultInfo = new NResultInfo();
 			nResultInfo.Status = EResultStatus.eSuccess;
 			this._uploadresult = nResultInfo;
-			return nResultInfo;
+			//return nResultInfo;
 		}
 
 		public string GetFileName(string batchno)

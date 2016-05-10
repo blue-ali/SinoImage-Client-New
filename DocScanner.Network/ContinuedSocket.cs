@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
 	internal class ContinuedSocket
 	{

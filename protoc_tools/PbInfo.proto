@@ -29,6 +29,16 @@ enum EOperType
 	
 }
 
+/*传输模式*/
+
+enum EBatchStatus
+{
+/** 新批次*/
+	NEW=1;		
+	/** 处理中批次，断点续传模式在提交文件内容时设置 */
+	PROCESSING=2;	
+}
+
 
 /*权限设置*/
 enum EPrivilege
@@ -55,6 +65,9 @@ message MsgResultInfo
 	optional string BatchNO =5;
 	optional  int32 CurFileIndex=6;
 	optional  string  CurFileName=7;
+	repeated string ProcessingFileIds = 8;	/* 已提交文件，用于断点续传模式 */
+	
+	optional MsgBatchInfo BatchInfo=9;
 }
 
 
@@ -195,6 +208,8 @@ message MsgBatchInfo
 	optional  bool Editable18 = 18;
 	optional int32 exShenheResult19=19;	/*审核阶段，审核意见*/
 	optional string exShenheRemark20=20;	/*审核阶段，审核备注*/
+	optional EBatchStatus status=21;
+	//optional ETransMode TransMode=21;
 }
 
 

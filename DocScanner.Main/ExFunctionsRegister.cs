@@ -39,7 +39,7 @@ namespace DocScanner.Main
 
         public static void AutoRegisterProcessCmd()
         {
-            CmdDispatcher val = LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher));
+            CmdDispatcher val = LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher));
             val.RegisterCMD("testRegisterOcx", new Action<object>(ExFunctionsRegister.testRegisterOcx));
             val.RegisterCMD("testtwain", new Action<object>(ExFunctionsRegister.testtwain));
             val.RegisterCMD("TestNetFunction", new Action<object>(ExFunctionsRegister.TestNetFunction));
@@ -47,7 +47,7 @@ namespace DocScanner.Main
 
         public static void TestNetFunction(object param)
         {
-            Process.Start("Test.DocScaner.Network.exe");
+            Process.Start("Test.DocScanner.Network.exe");
         }
 
         private static void StartProcess(string ppath)

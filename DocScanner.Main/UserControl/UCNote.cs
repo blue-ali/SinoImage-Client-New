@@ -116,7 +116,7 @@ namespace DocScanner.Main
         public UCNote()
         {
             this.InitializeComponent();
-            this.txtUser.Text = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AccountSetting", "AccountName");
+            this.txtUser.Text = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AccountSetting", "AccountName");
             this._listnote.MouseDoubleClick += new MouseEventHandler(this._listnot_MouseDoubleClick);
             this._listnote.MouseClick += new MouseEventHandler(this._listnot_MouseClick);
             this.CombSelectOCRLan.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -209,7 +209,7 @@ namespace DocScanner.Main
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(new ShowRegionUserCMD());
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(new ShowRegionUserCMD());
             Form form = base.Parent as Form;
             bool flag = form != null;
             if (flag)
@@ -249,12 +249,12 @@ namespace DocScanner.Main
             showRegionUserCMD.Note.NoteMsg = this.txtMsg.Text;
             showRegionUserCMD.Note.SetRegion(this.SelectRegion);
             showRegionUserCMD.Note.NoteName = this.txtUser.Text;
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(showRegionUserCMD);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(showRegionUserCMD);
         }
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("ShowAllNotes", null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("ShowAllNotes", null);
         }
 
         protected override void Dispose(bool disposing)

@@ -33,6 +33,18 @@ namespace DocScanner.LibCommon
         {
             return (SystemHelper.GetAssemblesDirectory() + @"exception\");
         }
+
+        public static Exception GetFirstException(Exception e)
+        {
+            if(e.InnerException != null)
+            {
+                return GetFirstException(e.InnerException);
+            }
+            else
+            {
+                return e;
+            }
+        }
     }
 
 

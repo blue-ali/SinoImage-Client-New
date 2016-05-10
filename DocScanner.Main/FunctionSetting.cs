@@ -25,11 +25,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "ReserveFile").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "ReserveFile").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "ReserveFile", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "ReserveFile", value.ToString());
             }
         }
 
@@ -37,11 +37,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "AllowRightPanePropertyGrid").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "AllowRightPanePropertyGrid").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "AllowRightPanePropertyGrid", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "AllowRightPanePropertyGrid", value.ToString());
             }
         }
 
@@ -50,11 +50,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "FuncAllowOCR").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "FuncAllowOCR").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "FuncAllowOCR", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "FuncAllowOCR", value.ToString());
             }
         }
 
@@ -63,11 +63,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "AllowLogUploaded").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "AllowLogUploaded").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "AllowLogUploaded", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "AllowLogUploaded", value.ToString());
             }
         }
 
@@ -76,11 +76,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "FuncAllowTempalte").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "FuncAllowTempalte").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "FuncAllowTempalte", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "FuncAllowTempalte", value.ToString());
             }
         }
 
@@ -89,11 +89,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "FuncAllowShenhe").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "FuncAllowShenhe").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "FuncAllowShenhe", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "FuncAllowShenhe", value.ToString());
             }
         }
 
@@ -102,11 +102,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "FuncAllowFaPiaoCheck").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "FuncAllowFaPiaoCheck").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "FuncAllowFaPiaoCheck", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "FuncAllowFaPiaoCheck", value.ToString());
             }
         }
 
@@ -115,11 +115,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("FunctionSetting", "FuncAllowMasaic").ToBool();
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("FunctionSetting", "FuncAllowMasaic").ToBool();
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("FunctionSetting", "FuncAllowMasaic", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("FunctionSetting", "FuncAllowMasaic", value.ToString());
             }
         }
 

@@ -75,9 +75,9 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
 
     private void AfterUILoad(object sender, EventArgs e)
     {
-        DocScanner.LibCommon.AppContext.Cur.SetVal(typeof(UCBench), this);
-        DocScanner.LibCommon.AppContext.Cur.MS.OnMessage += (senderx, arg) => this.ucbottomStatusBar1.OnMessage(senderx, arg);
-        CmdDispatcher val = DocScanner.LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher));
+        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(UCBench), this);
+        DocScanner.LibCommon.AppContext.GetInstance().MS.OnMessage += (senderx, arg) => this.ucbottomStatusBar1.OnMessage(senderx, arg);
+        CmdDispatcher val = DocScanner.LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher));
         val.SetDispatchObj(this.ucCenterview);
         val.SetDispatchObj(this.ucLeftPane.GetBar());
         val.SetDispatchObj(this.ucTopMenuBubbleBar1);
@@ -91,10 +91,10 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
 
     private void BeforeUILoad(object sender, EventArgs e)
     {
-        DocScanner.LibCommon.AppContext.Cur.SetVal(typeof(CmdDispatcher), new CmdDispatcher());
-        DocScanner.LibCommon.AppContext.Cur.SetVal(typeof(AppSetting), AbstractSetting<AppSetting>.CurSetting);
-        DocScanner.LibCommon.AppContext.Cur.SetVal(typeof(NoteSetting), AbstractSetting<NoteSetting>.CurSetting);
-        DocScanner.LibCommon.AppContext.Cur.SetVal(typeof(SharpAcquirerFactory), new SharpAcquirerFactory());
+        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(CmdDispatcher), new CmdDispatcher());
+        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(AppSetting), AbstractSetting<AppSetting>.CurSetting);
+        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(NoteSetting), AbstractSetting<NoteSetting>.CurSetting);
+        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(SharpAcquirerFactory), new SharpAcquirerFactory());
     }
 
     protected override void Dispose(bool disposing)
@@ -315,7 +315,7 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
         if (parser.GetKey("mode") == "update")
         {
             string key = parser.GetKey("barno");
-            DocScanner.LibCommon.AppContext.Cur.GetVal<UCBench>(typeof(UCBench)).QueryMode(key.ToUpper());
+            DocScanner.LibCommon.AppContext.GetInstance().GetVal<UCBench>(typeof(UCBench)).QueryMode(key.ToUpper());
         }
         return true;
     }
@@ -383,7 +383,7 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
 
     private void UCBench_HandleDestroyed(object sender, EventArgs e)
     {
-        DocScanner.LibCommon.AppContext.Cur.Dispose();
+        //DocScanner.LibCommon.AppContext.GetInstance().Dispose();
     }
 
     // Nested Types
@@ -413,7 +413,7 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
         {
             get
             {
-                int num = DocScanner.LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("UCBench", "RightPaneWidth").ToInt();
+                int num = DocScanner.LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("UCBench", "RightPaneWidth").ToInt();
                 if (num == 0)
                 {
                     num = 0x110;
@@ -422,7 +422,7 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
             }
             set
             {
-                DocScanner.LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("UCBench", "RightPaneWidth", value.ToString());
+                DocScanner.LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UCBench", "RightPaneWidth", value.ToString());
             }
         }
 
@@ -431,11 +431,11 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
         {
             get
             {
-                return (float)DocScanner.LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("UCBench", "TopPaneHeight").ToInt();
+                return (float)DocScanner.LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("UCBench", "TopPaneHeight").ToInt();
             }
             set
             {
-                DocScanner.LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("UCBench", "TopPaneHeight", value.ToString());
+                DocScanner.LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UCBench", "TopPaneHeight", value.ToString());
             }
         }
     }

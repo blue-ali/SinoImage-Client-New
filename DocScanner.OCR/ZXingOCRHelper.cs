@@ -1,5 +1,4 @@
-using DocScaner.Common;
-using Logos.DocScaner.Common;
+using DocScanner.LibCommon.Util;
 using System;
 using System.Drawing;
 using System.IO;

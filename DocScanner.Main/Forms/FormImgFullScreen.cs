@@ -55,28 +55,28 @@ namespace DocScanner.Main
                 bool flag2 = e.KeyCode == Keys.Right || e.KeyCode == Keys.Down || e.KeyCode == Keys.Space || e.KeyCode == Keys.Next;
                 if (flag2)
                 {
-                    LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigateNextItem", null);
+                    LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigateNextItem", null);
                 }
                 else
                 {
                     bool flag3 = e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Prior;
                     if (flag3)
                     {
-                        LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigatePrevItem", null);
+                        LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigatePrevItem", null);
                     }
                     else
                     {
                         bool flag4 = e.KeyCode == Keys.Home;
                         if (flag4)
                         {
-                            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigateFirstItem", null);
+                            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigateFirstItem", null);
                         }
                         else
                         {
                             bool flag5 = e.KeyCode == Keys.End;
                             if (flag5)
                             {
-                                LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigateLastItem", null);
+                                LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NavigateLastItem", null);
                             }
                         }
                     }

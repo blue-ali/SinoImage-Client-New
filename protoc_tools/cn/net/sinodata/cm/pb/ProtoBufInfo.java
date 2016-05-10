@@ -172,6 +172,104 @@ public final class ProtoBufInfo {
   }
 
   /**
+   * Protobuf enum {@code DocScanner.Bean.pb.EBatchStatus}
+   */
+  public enum EBatchStatus
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>NEW = 1;</code>
+     *
+     * <pre>
+     ** 新批次
+     * </pre>
+     */
+    NEW(0, 1),
+    /**
+     * <code>PROCESSING = 2;</code>
+     *
+     * <pre>
+     ** 处理中批次，断点续传模式在提交文件内容时设置 
+     * </pre>
+     */
+    PROCESSING(1, 2),
+    ;
+
+    /**
+     * <code>NEW = 1;</code>
+     *
+     * <pre>
+     ** 新批次
+     * </pre>
+     */
+    public static final int NEW_VALUE = 1;
+    /**
+     * <code>PROCESSING = 2;</code>
+     *
+     * <pre>
+     ** 处理中批次，断点续传模式在提交文件内容时设置 
+     * </pre>
+     */
+    public static final int PROCESSING_VALUE = 2;
+
+
+    public final int getNumber() { return value; }
+
+    public static EBatchStatus valueOf(int value) {
+      switch (value) {
+        case 1: return NEW;
+        case 2: return PROCESSING;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<EBatchStatus>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<EBatchStatus>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<EBatchStatus>() {
+            public EBatchStatus findValueByNumber(int number) {
+              return EBatchStatus.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return cn.net.sinodata.cm.pb.ProtoBufInfo.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final EBatchStatus[] VALUES = values();
+
+    public static EBatchStatus valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private EBatchStatus(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:DocScanner.Bean.pb.EBatchStatus)
+  }
+
+  /**
    * Protobuf enum {@code DocScanner.Bean.pb.EPrivilege}
    *
    * <pre>
@@ -250,7 +348,7 @@ public final class ProtoBufInfo {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return cn.net.sinodata.cm.pb.ProtoBufInfo.getDescriptor().getEnumTypes().get(1);
+      return cn.net.sinodata.cm.pb.ProtoBufInfo.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final EPrivilege[] VALUES = values();
@@ -349,7 +447,7 @@ public final class ProtoBufInfo {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return cn.net.sinodata.cm.pb.ProtoBufInfo.getDescriptor().getEnumTypes().get(2);
+      return cn.net.sinodata.cm.pb.ProtoBufInfo.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final EResultStatus[] VALUES = values();
@@ -441,6 +539,56 @@ public final class ProtoBufInfo {
      */
     com.google.protobuf.ByteString
         getCurFileNameBytes();
+
+    // repeated string ProcessingFileIds = 8;
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    java.util.List<java.lang.String>
+    getProcessingFileIdsList();
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    int getProcessingFileIdsCount();
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    java.lang.String getProcessingFileIds(int index);
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    com.google.protobuf.ByteString
+        getProcessingFileIdsBytes(int index);
+
+    // optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;
+    /**
+     * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+     */
+    boolean hasBatchInfo();
+    /**
+     * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+     */
+    cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo getBatchInfo();
+    /**
+     * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+     */
+    cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfoOrBuilder getBatchInfoOrBuilder();
   }
   /**
    * Protobuf type {@code DocScanner.Bean.pb.MsgResultInfo}
@@ -524,6 +672,27 @@ public final class ProtoBufInfo {
               curFileName_ = input.readBytes();
               break;
             }
+            case 66: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                processingFileIds_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              processingFileIds_.add(input.readBytes());
+              break;
+            }
+            case 74: {
+              cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000020) == 0x00000020)) {
+                subBuilder = batchInfo_.toBuilder();
+              }
+              batchInfo_ = input.readMessage(cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(batchInfo_);
+                batchInfo_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000020;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -532,6 +701,9 @@ public final class ProtoBufInfo {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          processingFileIds_ = new com.google.protobuf.UnmodifiableLazyStringList(processingFileIds_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -725,12 +897,82 @@ public final class ProtoBufInfo {
       }
     }
 
+    // repeated string ProcessingFileIds = 8;
+    public static final int PROCESSINGFILEIDS_FIELD_NUMBER = 8;
+    private com.google.protobuf.LazyStringList processingFileIds_;
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    public java.util.List<java.lang.String>
+        getProcessingFileIdsList() {
+      return processingFileIds_;
+    }
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    public int getProcessingFileIdsCount() {
+      return processingFileIds_.size();
+    }
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    public java.lang.String getProcessingFileIds(int index) {
+      return processingFileIds_.get(index);
+    }
+    /**
+     * <code>repeated string ProcessingFileIds = 8;</code>
+     *
+     * <pre>
+     * 已提交文件，用于断点续传模式 
+     * </pre>
+     */
+    public com.google.protobuf.ByteString
+        getProcessingFileIdsBytes(int index) {
+      return processingFileIds_.getByteString(index);
+    }
+
+    // optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;
+    public static final int BATCHINFO_FIELD_NUMBER = 9;
+    private cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo batchInfo_;
+    /**
+     * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+     */
+    public boolean hasBatchInfo() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+     */
+    public cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo getBatchInfo() {
+      return batchInfo_;
+    }
+    /**
+     * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+     */
+    public cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfoOrBuilder getBatchInfoOrBuilder() {
+      return batchInfo_;
+    }
+
     private void initFields() {
       status_ = cn.net.sinodata.cm.pb.ProtoBufInfo.EResultStatus.eSuccess;
       msg_ = "";
       batchNO_ = "";
       curFileIndex_ = 0;
       curFileName_ = "";
+      processingFileIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      batchInfo_ = cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -744,6 +986,12 @@ public final class ProtoBufInfo {
       if (!hasMsg()) {
         memoizedIsInitialized = 0;
         return false;
+      }
+      if (hasBatchInfo()) {
+        if (!getBatchInfo().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -766,6 +1014,12 @@ public final class ProtoBufInfo {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(7, getCurFileNameBytes());
+      }
+      for (int i = 0; i < processingFileIds_.size(); i++) {
+        output.writeBytes(8, processingFileIds_.getByteString(i));
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeMessage(9, batchInfo_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -795,6 +1049,19 @@ public final class ProtoBufInfo {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(7, getCurFileNameBytes());
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < processingFileIds_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(processingFileIds_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getProcessingFileIdsList().size();
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, batchInfo_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -904,6 +1171,7 @@ public final class ProtoBufInfo {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getBatchInfoFieldBuilder();
         }
       }
       private static Builder create() {
@@ -922,6 +1190,14 @@ public final class ProtoBufInfo {
         bitField0_ = (bitField0_ & ~0x00000008);
         curFileName_ = "";
         bitField0_ = (bitField0_ & ~0x00000010);
+        processingFileIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (batchInfoBuilder_ == null) {
+          batchInfo_ = cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.getDefaultInstance();
+        } else {
+          batchInfoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
 
@@ -970,6 +1246,20 @@ public final class ProtoBufInfo {
           to_bitField0_ |= 0x00000010;
         }
         result.curFileName_ = curFileName_;
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          processingFileIds_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              processingFileIds_);
+          bitField0_ = (bitField0_ & ~0x00000020);
+        }
+        result.processingFileIds_ = processingFileIds_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        if (batchInfoBuilder_ == null) {
+          result.batchInfo_ = batchInfo_;
+        } else {
+          result.batchInfo_ = batchInfoBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1007,6 +1297,19 @@ public final class ProtoBufInfo {
           curFileName_ = other.curFileName_;
           onChanged();
         }
+        if (!other.processingFileIds_.isEmpty()) {
+          if (processingFileIds_.isEmpty()) {
+            processingFileIds_ = other.processingFileIds_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureProcessingFileIdsIsMutable();
+            processingFileIds_.addAll(other.processingFileIds_);
+          }
+          onChanged();
+        }
+        if (other.hasBatchInfo()) {
+          mergeBatchInfo(other.getBatchInfo());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -1019,6 +1322,12 @@ public final class ProtoBufInfo {
         if (!hasMsg()) {
           
           return false;
+        }
+        if (hasBatchInfo()) {
+          if (!getBatchInfo().isInitialized()) {
+            
+            return false;
+          }
         }
         return true;
       }
@@ -1331,6 +1640,252 @@ public final class ProtoBufInfo {
         curFileName_ = value;
         onChanged();
         return this;
+      }
+
+      // repeated string ProcessingFileIds = 8;
+      private com.google.protobuf.LazyStringList processingFileIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureProcessingFileIdsIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          processingFileIds_ = new com.google.protobuf.LazyStringArrayList(processingFileIds_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public java.util.List<java.lang.String>
+          getProcessingFileIdsList() {
+        return java.util.Collections.unmodifiableList(processingFileIds_);
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public int getProcessingFileIdsCount() {
+        return processingFileIds_.size();
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public java.lang.String getProcessingFileIds(int index) {
+        return processingFileIds_.get(index);
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public com.google.protobuf.ByteString
+          getProcessingFileIdsBytes(int index) {
+        return processingFileIds_.getByteString(index);
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public Builder setProcessingFileIds(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProcessingFileIdsIsMutable();
+        processingFileIds_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public Builder addProcessingFileIds(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProcessingFileIdsIsMutable();
+        processingFileIds_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public Builder addAllProcessingFileIds(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureProcessingFileIdsIsMutable();
+        super.addAll(values, processingFileIds_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public Builder clearProcessingFileIds() {
+        processingFileIds_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string ProcessingFileIds = 8;</code>
+       *
+       * <pre>
+       * 已提交文件，用于断点续传模式 
+       * </pre>
+       */
+      public Builder addProcessingFileIdsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureProcessingFileIdsIsMutable();
+        processingFileIds_.add(value);
+        onChanged();
+        return this;
+      }
+
+      // optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;
+      private cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo batchInfo_ = cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo, cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.Builder, cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfoOrBuilder> batchInfoBuilder_;
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public boolean hasBatchInfo() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo getBatchInfo() {
+        if (batchInfoBuilder_ == null) {
+          return batchInfo_;
+        } else {
+          return batchInfoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public Builder setBatchInfo(cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo value) {
+        if (batchInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          batchInfo_ = value;
+          onChanged();
+        } else {
+          batchInfoBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public Builder setBatchInfo(
+          cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.Builder builderForValue) {
+        if (batchInfoBuilder_ == null) {
+          batchInfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          batchInfoBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public Builder mergeBatchInfo(cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo value) {
+        if (batchInfoBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+              batchInfo_ != cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.getDefaultInstance()) {
+            batchInfo_ =
+              cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.newBuilder(batchInfo_).mergeFrom(value).buildPartial();
+          } else {
+            batchInfo_ = value;
+          }
+          onChanged();
+        } else {
+          batchInfoBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000040;
+        return this;
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public Builder clearBatchInfo() {
+        if (batchInfoBuilder_ == null) {
+          batchInfo_ = cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.getDefaultInstance();
+          onChanged();
+        } else {
+          batchInfoBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000040);
+        return this;
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.Builder getBatchInfoBuilder() {
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return getBatchInfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      public cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfoOrBuilder getBatchInfoOrBuilder() {
+        if (batchInfoBuilder_ != null) {
+          return batchInfoBuilder_.getMessageOrBuilder();
+        } else {
+          return batchInfo_;
+        }
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.MsgBatchInfo BatchInfo = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo, cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.Builder, cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfoOrBuilder> 
+          getBatchInfoFieldBuilder() {
+        if (batchInfoBuilder_ == null) {
+          batchInfoBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo, cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfo.Builder, cn.net.sinodata.cm.pb.ProtoBufInfo.MsgBatchInfoOrBuilder>(
+                  batchInfo_,
+                  getParentForChildren(),
+                  isClean());
+          batchInfo_ = null;
+        }
+        return batchInfoBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:DocScanner.Bean.pb.MsgResultInfo)
@@ -10420,6 +10975,24 @@ public final class ProtoBufInfo {
      */
     com.google.protobuf.ByteString
         getExShenheRemark20Bytes();
+
+    // optional .DocScanner.Bean.pb.EBatchStatus status = 21;
+    /**
+     * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+     *
+     * <pre>
+     *optional ETransMode TransMode=21;
+     * </pre>
+     */
+    boolean hasStatus();
+    /**
+     * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+     *
+     * <pre>
+     *optional ETransMode TransMode=21;
+     * </pre>
+     */
+    cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus getStatus();
   }
   /**
    * Protobuf type {@code DocScanner.Bean.pb.MsgBatchInfo}
@@ -10582,6 +11155,17 @@ public final class ProtoBufInfo {
             case 162: {
               bitField0_ |= 0x00020000;
               exShenheRemark20_ = input.readBytes();
+              break;
+            }
+            case 168: {
+              int rawValue = input.readEnum();
+              cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus value = cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(21, rawValue);
+              } else {
+                bitField0_ |= 0x00040000;
+                status_ = value;
+              }
               break;
             }
           }
@@ -11448,6 +12032,30 @@ public final class ProtoBufInfo {
       }
     }
 
+    // optional .DocScanner.Bean.pb.EBatchStatus status = 21;
+    public static final int STATUS_FIELD_NUMBER = 21;
+    private cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus status_;
+    /**
+     * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+     *
+     * <pre>
+     *optional ETransMode TransMode=21;
+     * </pre>
+     */
+    public boolean hasStatus() {
+      return ((bitField0_ & 0x00040000) == 0x00040000);
+    }
+    /**
+     * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+     *
+     * <pre>
+     *optional ETransMode TransMode=21;
+     * </pre>
+     */
+    public cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus getStatus() {
+      return status_;
+    }
+
     private void initFields() {
       author1_ = "";
       version2_ = 0;
@@ -11468,6 +12076,7 @@ public final class ProtoBufInfo {
       editable18_ = false;
       exShenheResult19_ = 0;
       exShenheRemark20_ = "";
+      status_ = cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus.NEW;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -11574,6 +12183,9 @@ public final class ProtoBufInfo {
       if (((bitField0_ & 0x00020000) == 0x00020000)) {
         output.writeBytes(20, getExShenheRemark20Bytes());
       }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        output.writeEnum(21, status_.getNumber());
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -11658,6 +12270,10 @@ public final class ProtoBufInfo {
       if (((bitField0_ & 0x00020000) == 0x00020000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(20, getExShenheRemark20Bytes());
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(21, status_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -11823,6 +12439,8 @@ public final class ProtoBufInfo {
         bitField0_ = (bitField0_ & ~0x00020000);
         exShenheRemark20_ = "";
         bitField0_ = (bitField0_ & ~0x00040000);
+        status_ = cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus.NEW;
+        bitField0_ = (bitField0_ & ~0x00080000);
         return this;
       }
 
@@ -11936,6 +12554,10 @@ public final class ProtoBufInfo {
           to_bitField0_ |= 0x00020000;
         }
         result.exShenheRemark20_ = exShenheRemark20_;
+        if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
+          to_bitField0_ |= 0x00040000;
+        }
+        result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -12057,6 +12679,9 @@ public final class ProtoBufInfo {
           bitField0_ |= 0x00040000;
           exShenheRemark20_ = other.exShenheRemark20_;
           onChanged();
+        }
+        if (other.hasStatus()) {
+          setStatus(other.getStatus());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -13863,6 +14488,58 @@ public final class ProtoBufInfo {
   }
   bitField0_ |= 0x00040000;
         exShenheRemark20_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .DocScanner.Bean.pb.EBatchStatus status = 21;
+      private cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus status_ = cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus.NEW;
+      /**
+       * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+       *
+       * <pre>
+       *optional ETransMode TransMode=21;
+       * </pre>
+       */
+      public boolean hasStatus() {
+        return ((bitField0_ & 0x00080000) == 0x00080000);
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+       *
+       * <pre>
+       *optional ETransMode TransMode=21;
+       * </pre>
+       */
+      public cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus getStatus() {
+        return status_;
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+       *
+       * <pre>
+       *optional ETransMode TransMode=21;
+       * </pre>
+       */
+      public Builder setStatus(cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00080000;
+        status_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .DocScanner.Bean.pb.EBatchStatus status = 21;</code>
+       *
+       * <pre>
+       *optional ETransMode TransMode=21;
+       * </pre>
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00080000);
+        status_ = cn.net.sinodata.cm.pb.ProtoBufInfo.EBatchStatus.NEW;
         onChanged();
         return this;
       }
@@ -17792,16 +18469,18 @@ public final class ProtoBufInfo {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014PbInfo.proto\022\022DocScanner.Bean.pb\"\213\001\n\rM" +
+      "\n\014PbInfo.proto\022\022DocScanner.Bean.pb\"\333\001\n\rM" +
       "sgResultInfo\0221\n\006Status\030\001 \002(\0162!.DocScanne" +
       "r.Bean.pb.EResultStatus\022\013\n\003Msg\030\002 \002(\t\022\017\n\007" +
       "BatchNO\030\005 \001(\t\022\024\n\014CurFileIndex\030\006 \001(\005\022\023\n\013C" +
-      "urFileName\030\007 \001(\t\"\301\002\n\013MsgNoteInfo\022\017\n\007Auth" +
+      "urFileName\030\007 \001(\t\022\031\n\021ProcessingFileIds\030\010 " +
+      "\003(\t\0223\n\tBatchInfo\030\t \001(\0132 .DocScanner.Bean" +
+      ".pb.MsgBatchInfo\"\301\002\n\013MsgNoteInfo\022\017\n\007Auth" +
       "or1\030\001 \002(\t\022\020\n\010Version2\030\002 \002(\005\022\023\n\013CreateTim" +
       "e4\030\004 \002(\t\022\017\n\007Remark5\030\005 \001(\t\022\021\n\tNoteName6\030\006" +
-      " \002(\t\022\020\n\010NoteMsg7\030\007 \002(\t\022\021\n\tFileLink8\030\010 \002(" +
+      " \002(\t\022\020\n\010NoteMsg7\030\007 \002(\t\022\021\n\tFileLink8\030\010 \002(",
       "\t\022\024\n\014FileMD5Link9\030\t \002(\t\0222\n\013Operation10\030\n" +
-      " \002(\0162\035.DocScanner.Bean.pb.EOperType\022\021\n\tR",
+      " \002(\0162\035.DocScanner.Bean.pb.EOperType\022\021\n\tR" +
       "egionX11\030\013 \002(\005\022\021\n\tRegionY12\030\014 \002(\005\022\025\n\rReg" +
       "ionWidth13\030\r \002(\005\022\026\n\016RegionHeight14\030\016 \002(\005" +
       "\022\022\n\nEditable15\030\017 \001(\010\"\304\003\n\013MsgFileInfo\022\017\n\007" +
@@ -17809,9 +18488,9 @@ public final class ProtoBufInfo {
       "eTime4\030\004 \002(\t\022\017\n\007Remark5\030\005 \001(\t\022\021\n\tFileNam" +
       "e6\030\006 \002(\t\022\020\n\010FileURL7\030\007 \001(\t\022\017\n\007FileNO8\030\010 " +
       "\002(\t\022\020\n\010FileMD59\030\t \002(\t\022\022\n\nFileSize10\030\n \002(" +
-      "\005\022\016\n\006Data11\030\013 \001(\014\0222\n\013Operation12\030\014 \002(\0162\035" +
+      "\005\022\016\n\006Data11\030\013 \001(\014\0222\n\013Operation12\030\014 \002(\0162\035",
       ".DocScanner.Bean.pb.EOperType\022\021\n\tBatchNO" +
-      "13\030\r \002(\t\022\022\n\nCategory14\030\016 \002(\t\0220\n\007Notes15\030",
+      "13\030\r \002(\t\022\022\n\nCategory14\030\016 \002(\t\0220\n\007Notes15\030" +
       "\017 \003(\0132\037.DocScanner.Bean.pb.MsgNoteInfo\022\026" +
       "\n\016exFaPiaoCode16\030\020 \001(\t\022\022\n\nEditable18\030\022 \001" +
       "(\010\022\030\n\020exShenheResult19\030\023 \001(\005\022\030\n\020exShenhe" +
@@ -17819,38 +18498,41 @@ public final class ProtoBufInfo {
       "MsgQueryBatchInfo\022\r\n\005User1\030\001 \002(\t\022\021\n\tPass" +
       "word2\030\002 \002(\t\022\016\n\006OrgID3\030\003 \002(\t\022\022\n\nQueryDate" +
       "4\030\004 \002(\005\022\022\n\nQueryTime5\030\005 \002(\005\022\020\n\010BatchNO6\030" +
-      "\006 \002(\t\022\020\n\010Version7\030\007 \002(\005\022\022\n\nSourceIP42\030* " +
+      "\006 \002(\t\022\020\n\010Version7\030\007 \002(\005\022\022\n\nSourceIP42\030* ",
       "\001(\t\022\023\n\013MachineID44\030, \001(\t\"8\n\024MsgOptionQue" +
-      "ryBatchs\022\r\n\005User1\030\001 \002(\t\022\021\n\tPassword2\030\002 \002",
+      "ryBatchs\022\r\n\005User1\030\001 \002(\t\022\021\n\tPassword2\030\002 \002" +
       "(\t\",\n\027MsgRspOptionQueryBatchs\022\021\n\tBatchNO" +
-      "s2\030\002 \003(\t\"\356\003\n\014MsgBatchInfo\022\017\n\007Author1\030\001 \002" +
+      "s2\030\002 \003(\t\"\240\004\n\014MsgBatchInfo\022\017\n\007Author1\030\001 \002" +
       "(\t\022\020\n\010Version2\030\002 \002(\005\022\023\n\013CreateTime4\030\004 \002(" +
       "\t\022\017\n\007Remark5\030\005 \001(\t\022\020\n\010BatchNO6\030\006 \002(\t\022\016\n\006" +
       "Title7\030\007 \001(\t\0221\n\nOperation8\030\010 \002(\0162\035.DocSc" +
       "anner.Bean.pb.EOperType\0223\n\nFileInfos9\030\t " +
       "\003(\0132\037.DocScanner.Bean.pb.MsgFileInfo\022\017\n\007" +
-      "OrgID10\030\n \001(\t\022\023\n\013BusiSysId11\030\013 \001(\t\022\024\n\014Bu" +
+      "OrgID10\030\n \001(\t\022\023\n\013BusiSysId11\030\013 \001(\t\022\024\n\014Bu",
       "siTypeId12\030\014 \001(\t\022\021\n\tBarCode13\030\r \001(\t\022\022\n\nS" +
-      "ourceIP14\030\016 \001(\t\022\023\n\013MachineID15\030\017 \001(\t\022\022\n\n",
+      "ourceIP14\030\016 \001(\t\022\023\n\013MachineID15\030\017 \001(\t\022\022\n\n" +
       "Password16\030\020 \002(\t\0227\n\014ResultInfo17\030\021 \001(\0132!" +
       ".DocScanner.Bean.pb.MsgResultInfo\022\022\n\nEdi" +
       "table18\030\022 \001(\010\022\030\n\020exShenheResult19\030\023 \001(\005\022" +
-      "\030\n\020exShenheRemark20\030\024 \001(\t\"B\n\016MsgAccountI" +
-      "nfo\022\r\n\005User1\030\001 \002(\t\022\021\n\tPassword2\030\002 \002(\t\022\016\n" +
-      "\006OrgID3\030\003 \002(\t\"D\n\016MsgBatchHisQry\022\r\n\005User1" +
-      "\030\001 \002(\t\022\021\n\tPassword2\030\002 \002(\t\022\020\n\010BatchNO3\030\003 " +
-      "\002(\t\"C\n\016MsgBatchHisRsp\0221\n\007batchs1\030\001 \003(\0132 " +
-      ".DocScanner.Bean.pb.MsgBatchInfo\"\023\n\021MsgS" +
-      "erversListQry\"(\n\021MsgServersListRsp\022\023\n\013se",
-      "rverlist1\030\001 \003(\t\"\022\n\020MsgServerInfoQry\"#\n\020M" +
-      "sgServerInfoRsp\022\017\n\007Burden1\030\001 \002(\005*v\n\tEOpe" +
-      "rType\022\032\n\026eFROM_SERVER_NOTCHANGE\020\000\022\010\n\004eAD" +
-      "D\020\001\022\010\n\004eDEL\020\002\022\010\n\004eUPD\020\004\022\014\n\010eUPDNOTE\020\010\022\020\n" +
-      "\014eUPDATEBASIC\020\020\022\017\n\013eUPDATEFILE\020 *:\n\nEPri" +
-      "vilege\022\t\n\005eNone\020\000\022\t\n\005eView\020\001\022\013\n\007eUpdate\020" +
-      "\002\022\t\n\005eFull\020\004*;\n\rEResultStatus\022\014\n\010eSucces" +
-      "s\020\000\022\013\n\007eFailed\020\001\022\017\n\013eOnProgress\020\002B%\n\025cn." +
-      "net.sinodata.cm.pbB\014ProtoBufInfo"
+      "\030\n\020exShenheRemark20\030\024 \001(\t\0220\n\006status\030\025 \001(" +
+      "\0162 .DocScanner.Bean.pb.EBatchStatus\"B\n\016M" +
+      "sgAccountInfo\022\r\n\005User1\030\001 \002(\t\022\021\n\tPassword" +
+      "2\030\002 \002(\t\022\016\n\006OrgID3\030\003 \002(\t\"D\n\016MsgBatchHisQr" +
+      "y\022\r\n\005User1\030\001 \002(\t\022\021\n\tPassword2\030\002 \002(\t\022\020\n\010B",
+      "atchNO3\030\003 \002(\t\"C\n\016MsgBatchHisRsp\0221\n\007batch" +
+      "s1\030\001 \003(\0132 .DocScanner.Bean.pb.MsgBatchIn" +
+      "fo\"\023\n\021MsgServersListQry\"(\n\021MsgServersLis" +
+      "tRsp\022\023\n\013serverlist1\030\001 \003(\t\"\022\n\020MsgServerIn" +
+      "foQry\"#\n\020MsgServerInfoRsp\022\017\n\007Burden1\030\001 \002" +
+      "(\005*v\n\tEOperType\022\032\n\026eFROM_SERVER_NOTCHANG" +
+      "E\020\000\022\010\n\004eADD\020\001\022\010\n\004eDEL\020\002\022\010\n\004eUPD\020\004\022\014\n\010eUP" +
+      "DNOTE\020\010\022\020\n\014eUPDATEBASIC\020\020\022\017\n\013eUPDATEFILE" +
+      "\020 *\'\n\014EBatchStatus\022\007\n\003NEW\020\001\022\016\n\nPROCESSIN" +
+      "G\020\002*:\n\nEPrivilege\022\t\n\005eNone\020\000\022\t\n\005eView\020\001\022",
+      "\013\n\007eUpdate\020\002\022\t\n\005eFull\020\004*;\n\rEResultStatus" +
+      "\022\014\n\010eSuccess\020\000\022\013\n\007eFailed\020\001\022\017\n\013eOnProgre" +
+      "ss\020\002B%\n\025cn.net.sinodata.cm.pbB\014ProtoBufI" +
+      "nfo"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -17862,7 +18544,7 @@ public final class ProtoBufInfo {
           internal_static_DocScanner_Bean_pb_MsgResultInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_DocScanner_Bean_pb_MsgResultInfo_descriptor,
-              new java.lang.String[] { "Status", "Msg", "BatchNO", "CurFileIndex", "CurFileName", });
+              new java.lang.String[] { "Status", "Msg", "BatchNO", "CurFileIndex", "CurFileName", "ProcessingFileIds", "BatchInfo", });
           internal_static_DocScanner_Bean_pb_MsgNoteInfo_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_DocScanner_Bean_pb_MsgNoteInfo_fieldAccessorTable = new
@@ -17898,7 +18580,7 @@ public final class ProtoBufInfo {
           internal_static_DocScanner_Bean_pb_MsgBatchInfo_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_DocScanner_Bean_pb_MsgBatchInfo_descriptor,
-              new java.lang.String[] { "Author1", "Version2", "CreateTime4", "Remark5", "BatchNO6", "Title7", "Operation8", "FileInfos9", "OrgID10", "BusiSysId11", "BusiTypeId12", "BarCode13", "SourceIP14", "MachineID15", "Password16", "ResultInfo17", "Editable18", "ExShenheResult19", "ExShenheRemark20", });
+              new java.lang.String[] { "Author1", "Version2", "CreateTime4", "Remark5", "BatchNO6", "Title7", "Operation8", "FileInfos9", "OrgID10", "BusiSysId11", "BusiTypeId12", "BarCode13", "SourceIP14", "MachineID15", "Password16", "ResultInfo17", "Editable18", "ExShenheResult19", "ExShenheRemark20", "Status", });
           internal_static_DocScanner_Bean_pb_MsgAccountInfo_descriptor =
             getDescriptor().getMessageTypes().get(7);
           internal_static_DocScanner_Bean_pb_MsgAccountInfo_fieldAccessorTable = new

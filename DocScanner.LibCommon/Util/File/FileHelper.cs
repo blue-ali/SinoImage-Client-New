@@ -2,9 +2,10 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace DocScaner.Common
+namespace DocScanner.LibCommon.Util
 {
     public static class FileHelper
     {
@@ -14,6 +15,8 @@ namespace DocScaner.Common
         private const int FO_MOVE = 1;
         private const ushort FOF_ALLOWUNDO = 0x40;
         private const ushort FOF_NOCONFIRMATION = 0x10;
+
+        public static string[] imgExts = new string[] { "JPG", "GIF", "BMP", "PNG" };
 
         // Methods
         public static bool CopyFile(string srcpath, string destpath)
@@ -115,13 +118,14 @@ namespace DocScaner.Common
             return 0;
         }
 
-        public static string[] GetImageExts()
-        {
-            return new string[] {
-            ".ani", ".anm", ".bmp", ".dib", ".rle", ".cdr", ".cur", ".dcm", ".emf", ".gif", ".hdr", ".ico", ".ics", ".jpg", ".jpeg", ".pcd",
-            ".png", ".tif", ".tiff"
-         };
-        }
+        //public static string[] GetImageExts()
+        //{
+            //return new string[] {
+            //".ani", ".anm", ".bmp", ".dib", ".rle", ".cdr", ".cur", ".dcm", ".emf", ".gif", ".hdr", ".ico", ".ics", ".jpg", ".jpeg", ".pcd",
+            //".png", ".tif", ".tiff"
+
+        // };
+        //}
 
         public static bool HasBacked(string fname)
         {
@@ -138,17 +142,30 @@ namespace DocScaner.Common
             return (fname.StartsWith("http:") || fname.StartsWith("https:"));
         }
 
-        public static bool IsImageExt(string fname)
-        {
-            fname = fname.ToLower();
-            foreach (string str in GetImageExts())
+        /*
+            public static bool IsImageExt(string fname)
             {
-                if (fname.EndsWith(str))
+                fname = fname.ToLower();
+                foreach (string str in GetImageExts())
                 {
-                    return true;
+                    if (fname.EndsWith(str))
+                    {
+                        return true;
+                    }
                 }
+                return false;
+            }*/
+        public static bool IsImageExt(String filePah)
+        {
+            string ext = GetFileExt(filePah);
+            if (imgExts.Contains(ext))
+            {
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         public static string LocalFile2URL(string fpath)
@@ -176,6 +193,37 @@ namespace DocScaner.Common
             }
             object[] objArray2 = new object[] { fname, "[", ver, "]" };
             return string.Concat(objArray2);
+        }
+
+        /// <summary>
+        /// 获取文件真实格式
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetFileExt(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            BinaryReader r = new BinaryReader(fs);
+            string ext = "";
+            byte buffer;
+            try
+            {
+                buffer = r.ReadByte();
+                ext = buffer.ToString();
+                buffer = r.ReadByte();
+                ext += buffer.ToString();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            finally
+            {
+                r.Close();
+                fs.Close();
+            }
+            return FileExtUtil.GetExtName(ext.ToInt());
+        
         }
 
         [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = true)]

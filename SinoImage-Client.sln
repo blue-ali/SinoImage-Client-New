@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocScanner.Main", "DocScanner.Main\DocScanner.Main.csproj", "{85878BDF-8C86-4412-8772-CB99B9858E12}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocScanner.LibCommon", "DocScanner.LibCommon\DocScanner.LibCommon.csproj", "{D4DE7B10-3DFE-4966-8B45-595CC06DEB18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocScanner.CodeUtils", "DocScaner.CodeUtils\DocScanner.CodeUtils.csproj", "{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocScanner.ImgUtils", "DocScanner.ImgUtils\DocScanner.ImgUtils.csproj", "{40B73C2C-E01B-4634-85C8-8BD6EAEE887C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocScanner.Network", "DocScanner.Network\DocScanner.Network.csproj", "{69489ECC-A215-4565-9FE8-C18B93AC7B01}"
 EndProject
@@ -52,10 +50,6 @@ Global
 		{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB4E0ED1-F505-4CC0-BF2D-B0A0BF0E003F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40B73C2C-E01B-4634-85C8-8BD6EAEE887C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40B73C2C-E01B-4634-85C8-8BD6EAEE887C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40B73C2C-E01B-4634-85C8-8BD6EAEE887C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40B73C2C-E01B-4634-85C8-8BD6EAEE887C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69489ECC-A215-4565-9FE8-C18B93AC7B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{69489ECC-A215-4565-9FE8-C18B93AC7B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69489ECC-A215-4565-9FE8-C18B93AC7B01}.Release|Any CPU.ActiveCfg = Release|Any CPU

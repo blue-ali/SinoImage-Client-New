@@ -35,11 +35,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AboutDialog", "LableLinkURL");
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AboutDialog", "LableLinkURL");
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AboutDialog", "LableLinkURL", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AboutDialog", "LableLinkURL", value.ToString());
                 }
             }
 
@@ -48,11 +48,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AboutDialog", "CompanyName");
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AboutDialog", "CompanyName");
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AboutDialog", "CompanyName", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AboutDialog", "CompanyName", value.ToString());
                 }
             }
 
@@ -61,7 +61,7 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    string text = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AboutDialog", "CompanyLogImg");
+                    string text = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AboutDialog", "CompanyLogImg");
                     bool flag = string.IsNullOrEmpty(text);
                     if (flag)
                     {
@@ -77,7 +77,7 @@ namespace DocScanner.Main
                     {
                         value = value.Substring(assemblesDirectory.Length);
                     }
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AboutDialog", "CompanyLogImg", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AboutDialog", "CompanyLogImg", value.ToString());
                 }
             }
 
@@ -86,11 +86,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AboutDialog", "CompanyWords");
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AboutDialog", "CompanyWords");
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AboutDialog", "CompanyWords", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AboutDialog", "CompanyWords", value.ToString());
                 }
             }
 
@@ -99,11 +99,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AboutDialog", "CompanyAddress");
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AboutDialog", "CompanyAddress");
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AboutDialog", "CompanyAddress", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AboutDialog", "CompanyAddress", value.ToString());
                 }
             }
 

@@ -91,7 +91,7 @@ namespace DocScanner.Main
                 foreach (InsureUserInfo current in this.infos)
                 {
                     ListViewItem listViewItem = new ListViewItem();
-                    using (current.SignatureImg = new Bitmap(ImageHelper.LoadLocalImage(LibCommon.AppContext.Cur.GetVal<AppSetting>(typeof(AppSetting)).TmpFileDir + current.SignatureImgName, true)))
+                    using (current.SignatureImg = new Bitmap(ImageHelper.LoadLocalImage(LibCommon.AppContext.GetInstance().GetVal<AppSetting>(typeof(AppSetting)).TmpFileDir + current.SignatureImgName, true)))
                     {
                         Image value = current.SignatureImg.Change2Size(96, 96);
                         this._iconlist.Images.Add(value);

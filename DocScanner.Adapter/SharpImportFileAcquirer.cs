@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using DocScanner.Bean;
 using DocScanner.LibCommon;
-using DocScaner.Common;
+using DocScanner.LibCommon.Util;
 
 namespace DocScanner.Adapter.SharpImportFile
 {
@@ -23,11 +21,11 @@ namespace DocScanner.Adapter.SharpImportFile
 			{
 				get
 				{
-					return AppContext.Cur.Cfg.GetConfigParamValue("SharpImportFileAcquirer", "InitDir");
+					return AppContext.GetInstance().Config.GetConfigParamValue("SharpImportFileAcquirer", "InitDir");
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpImportFileAcquirer", "InitDir", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpImportFileAcquirer", "InitDir", value.ToString());
 				}
 			}
 
@@ -45,7 +43,7 @@ namespace DocScanner.Adapter.SharpImportFile
 			{
 				get
 				{
-					string text = AppContext.Cur.Cfg.GetConfigParamValue("SharpImportFileAcquirer", "MatchedFileExtensions");
+					string text = AppContext.GetInstance().Config.GetConfigParamValue("SharpImportFileAcquirer", "MatchedFileExtensions");
 					bool flag = string.IsNullOrEmpty(text);
 					if (flag)
 					{
@@ -55,7 +53,7 @@ namespace DocScanner.Adapter.SharpImportFile
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpImportFileAcquirer", "MatchedFileExtensions", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpImportFileAcquirer", "MatchedFileExtensions", value.ToString());
 				}
 			}
 
@@ -112,7 +110,7 @@ namespace DocScanner.Adapter.SharpImportFile
 		public bool Acquire()
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.InitialDirectory = AppContext.Cur.Cfg.GetConfigParamValue("UISetting", "LastAccessDir");
+			openFileDialog.InitialDirectory = AppContext.GetInstance().Config.GetConfigParamValue("UISetting", "LastAccessDir");
 			List<string> list = this.GetSetting().MatchedFileExtensions.ToLower().Split(new char[]
 			{
 				';'
@@ -133,11 +131,11 @@ namespace DocScanner.Adapter.SharpImportFile
 			text += "All files(*.*)|*.*";
 			openFileDialog.Filter = text;
 			openFileDialog.Multiselect = true;
-			openFileDialog.InitialDirectory = AppContext.Cur.Cfg.GetConfigParamValue("UISetting", "LastAccessDir");
+			openFileDialog.InitialDirectory = AppContext.GetInstance().Config.GetConfigParamValue("UISetting", "LastAccessDir");
 			bool flag = openFileDialog.ShowDialog() == DialogResult.OK;
 			if (flag)
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("UISetting", "LastAccessDir", FileHelper.GetFileDir(openFileDialog.FileNames[0]));
+				AppContext.GetInstance().Config.SetConfigParamValue("UISetting", "LastAccessDir", FileHelper.GetFileDir(openFileDialog.FileNames[0]));
 				string[] fileNames = openFileDialog.FileNames;
 				bool flag2 = this.OnAcquired != null;
 				if (flag2)

@@ -1,6 +1,6 @@
 using System;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
 	public class ContinuedSocketMsgBody
 	{

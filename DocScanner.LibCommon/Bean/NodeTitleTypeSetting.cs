@@ -9,7 +9,7 @@ namespace DocScanner.Bean
 		{
 			get
 			{
-				string configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("LeftPaneSetting", "FileNodeTitleType");
+				string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "FileNodeTitleType");
 				bool flag = string.IsNullOrEmpty(configParamValue);
 				ENFileNodeTitleType result;
 				if (flag)
@@ -25,7 +25,7 @@ namespace DocScanner.Bean
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("LeftPaneSetting", "FileNodeTitleType", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "FileNodeTitleType", value.ToString());
 			}
 		}
 	}

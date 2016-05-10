@@ -79,6 +79,9 @@ namespace DocScanner.LibCommon
 
         public const string DateFormat = "yyyy-MM-dd HH:mm:ss";
 
+        public const string TRANSMODE_FULL = "FULL";
+        public const string TRANSMODE_BROKE = "BROKE";
+
         // Methods
         public ConstString() { }
     }

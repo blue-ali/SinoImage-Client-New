@@ -31,11 +31,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("RightPropertyPane", "ProperGridVisialbe").ToBool();
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("RightPropertyPane", "ProperGridVisialbe").ToBool();
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("RightPropertyPane", "ProperGridVisialbe", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("RightPropertyPane", "ProperGridVisialbe", value.ToString());
                 }
             }
 

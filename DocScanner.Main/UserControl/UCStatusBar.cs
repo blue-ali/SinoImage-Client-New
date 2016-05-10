@@ -115,7 +115,7 @@ namespace DocScanner.Main
 
         private void UCStatusBar_OnActionClick(object sender, TEventArg<string> e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(e.Arg, null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(e.Arg, null);
         }
 
         private void radButtonElementBottom_Click(object sender, EventArgs e)

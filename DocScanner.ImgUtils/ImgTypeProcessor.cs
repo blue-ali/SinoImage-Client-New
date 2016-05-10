@@ -85,7 +85,7 @@ namespace DocScanner.ImgUtils
 				{
 					string imageExt = EMostImageTypeHelper.GetImageExt(ImgTypeProcessor.DestType);
 					string text = FileHelper.GetFileDir(fname) + FileHelper.GetFileNameNoExt(fname) + imageExt;
-					AppContext.Cur.MS.LogInfo("图像格式转换:" + fname + "=>" + text);
+					AppContext.GetInstance().MS.LogInfo("图像格式转换:" + fname + "=>" + text);
 					ImgTypeProcessor.SaveImageType(ImgTypeProcessor.DestType, fname, text);
 					result = text;
 				}

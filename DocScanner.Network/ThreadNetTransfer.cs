@@ -3,7 +3,7 @@ using System.Threading;
 using DocScanner.Bean;
 using DocScanner.LibCommon;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public class ThreadNetTransfer : INetTransfer, IDisposable
 	{
@@ -45,12 +45,12 @@ namespace DocScaner.Network
 			this._realimp.DownloadBatch(pa as NQueryBatchInfo);
 		}
 
-		public NResultInfo UploadBatch(NBatchInfo info)
+		public void UploadBatch(NBatchInfo info)
 		{
 			ParameterizedThreadStart start = new ParameterizedThreadStart(this.ThreadJobUploadImp);
 			Thread thread = new Thread(start);
 			thread.Start(info);
-			return null;
+			//return null;
 		}
 
 		private void ThreadJobUploadImp(object pa)

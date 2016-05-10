@@ -1,4 +1,5 @@
 using AForge.Imaging.Filters;
+using DocScaner.Common;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -105,9 +106,12 @@ namespace DocScanner.ImgUtils
 
 		public static bool IsImgExt(string fname)
 		{
-			bool flag = string.IsNullOrEmpty(fname);
-			bool result;
-			if (flag)
+            String fileExt = FileHelper.GetFileExtension(fname);
+
+            FileExtension.
+
+            bool result;
+			if (string.IsNullOrEmpty(fname))
 			{
 				result = false;
 			}

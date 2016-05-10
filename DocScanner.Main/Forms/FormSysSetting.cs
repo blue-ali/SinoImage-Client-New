@@ -54,8 +54,8 @@ namespace DocScanner.Main
         {
             this.InitializeComponent();
             this.Text += "(测试)";
-            this.txt_Depart.DataBindings.Add("text", LibCommon.AppContext.Cur.GetVal<AccountSetting>(typeof(AccountSetting)), "AccountOrgID").DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            this.txt_Usr.DataBindings.Add("text", LibCommon.AppContext.Cur.GetVal<AccountSetting>(typeof(AccountSetting)), "AccountName").DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            this.txt_Depart.DataBindings.Add("text", LibCommon.AppContext.GetInstance().GetVal<AccountSetting>(typeof(AccountSetting)), "AccountOrgID").DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            this.txt_Usr.DataBindings.Add("text", LibCommon.AppContext.GetInstance().GetVal<AccountSetting>(typeof(AccountSetting)), "AccountName").DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
         }
 
         private void btn_OK_Click(object sender, EventArgs e)

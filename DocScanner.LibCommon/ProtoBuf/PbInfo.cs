@@ -53,65 +53,69 @@ namespace DocScanner.Bean.pb {
     
     static PbInfo() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
-          "CgxQYkluZm8ucHJvdG8SEkRvY1NjYW5uZXIuQmVhbi5wYiKLAQoNTXNnUmVz" + 
+          "CgxQYkluZm8ucHJvdG8SEkRvY1NjYW5uZXIuQmVhbi5wYiLbAQoNTXNnUmVz" + 
           "dWx0SW5mbxIxCgZTdGF0dXMYASACKA4yIS5Eb2NTY2FubmVyLkJlYW4ucGIu" + 
           "RVJlc3VsdFN0YXR1cxILCgNNc2cYAiACKAkSDwoHQmF0Y2hOTxgFIAEoCRIU" + 
-          "CgxDdXJGaWxlSW5kZXgYBiABKAUSEwoLQ3VyRmlsZU5hbWUYByABKAkiwQIK" + 
-          "C01zZ05vdGVJbmZvEg8KB0F1dGhvcjEYASACKAkSEAoIVmVyc2lvbjIYAiAC" + 
-          "KAUSEwoLQ3JlYXRlVGltZTQYBCACKAkSDwoHUmVtYXJrNRgFIAEoCRIRCglO" + 
-          "b3RlTmFtZTYYBiACKAkSEAoITm90ZU1zZzcYByACKAkSEQoJRmlsZUxpbms4" + 
-          "GAggAigJEhQKDEZpbGVNRDVMaW5rORgJIAIoCRIyCgtPcGVyYXRpb24xMBgK" + 
-          "IAIoDjIdLkRvY1NjYW5uZXIuQmVhbi5wYi5FT3BlclR5cGUSEQoJUmVnaW9u" + 
-          "WDExGAsgAigFEhEKCVJlZ2lvblkxMhgMIAIoBRIVCg1SZWdpb25XaWR0aDEz" + 
-          "GA0gAigFEhYKDlJlZ2lvbkhlaWdodDE0GA4gAigFEhIKCkVkaXRhYmxlMTUY" + 
-          "DyABKAgixAMKC01zZ0ZpbGVJbmZvEg8KB0F1dGhvcjEYASACKAkSEAoIVmVy" + 
-          "c2lvbjIYAiACKAUSEwoLQ3JlYXRlVGltZTQYBCACKAkSDwoHUmVtYXJrNRgF" + 
-          "IAEoCRIRCglGaWxlTmFtZTYYBiACKAkSEAoIRmlsZVVSTDcYByABKAkSDwoH" + 
-          "RmlsZU5POBgIIAIoCRIQCghGaWxlTUQ1ORgJIAIoCRISCgpGaWxlU2l6ZTEw" + 
-          "GAogAigFEg4KBkRhdGExMRgLIAEoDBIyCgtPcGVyYXRpb24xMhgMIAIoDjId" + 
-          "LkRvY1NjYW5uZXIuQmVhbi5wYi5FT3BlclR5cGUSEQoJQmF0Y2hOTzEzGA0g" + 
-          "AigJEhIKCkNhdGVnb3J5MTQYDiACKAkSMAoHTm90ZXMxNRgPIAMoCzIfLkRv" + 
-          "Y1NjYW5uZXIuQmVhbi5wYi5Nc2dOb3RlSW5mbxIWCg5leEZhUGlhb0NvZGUx" + 
-          "NhgQIAEoCRISCgpFZGl0YWJsZTE4GBIgASgIEhgKEGV4U2hlbmhlUmVzdWx0" + 
-          "MTkYEyABKAUSGAoQZXhTaGVuaGVSZW1hcmsyMBgUIAEoCRITCgtMb2NhbFBh" + 
-          "dGgyMRgVIAEoCSK6AQoRTXNnUXVlcnlCYXRjaEluZm8SDQoFVXNlcjEYASAC" + 
-          "KAkSEQoJUGFzc3dvcmQyGAIgAigJEg4KBk9yZ0lEMxgDIAIoCRISCgpRdWVy" + 
-          "eURhdGU0GAQgAigFEhIKClF1ZXJ5VGltZTUYBSACKAUSEAoIQmF0Y2hOTzYY" + 
-          "BiACKAkSEAoIVmVyc2lvbjcYByACKAUSEgoKU291cmNlSVA0MhgqIAEoCRIT" + 
-          "CgtNYWNoaW5lSUQ0NBgsIAEoCSI4ChRNc2dPcHRpb25RdWVyeUJhdGNocxIN" + 
-          "CgVVc2VyMRgBIAIoCRIRCglQYXNzd29yZDIYAiACKAkiLAoXTXNnUnNwT3B0" + 
-          "aW9uUXVlcnlCYXRjaHMSEQoJQmF0Y2hOT3MyGAIgAygJIu4DCgxNc2dCYXRj" + 
-          "aEluZm8SDwoHQXV0aG9yMRgBIAIoCRIQCghWZXJzaW9uMhgCIAIoBRITCgtD" + 
-          "cmVhdGVUaW1lNBgEIAIoCRIPCgdSZW1hcms1GAUgASgJEhAKCEJhdGNoTk82" + 
-          "GAYgAigJEg4KBlRpdGxlNxgHIAEoCRIxCgpPcGVyYXRpb244GAggAigOMh0u" + 
-          "RG9jU2Nhbm5lci5CZWFuLnBiLkVPcGVyVHlwZRIzCgpGaWxlSW5mb3M5GAkg" + 
-          "AygLMh8uRG9jU2Nhbm5lci5CZWFuLnBiLk1zZ0ZpbGVJbmZvEg8KB09yZ0lE" + 
-          "MTAYCiABKAkSEwoLQnVzaVN5c0lkMTEYCyABKAkSFAoMQnVzaVR5cGVJZDEy" + 
-          "GAwgASgJEhEKCUJhckNvZGUxMxgNIAEoCRISCgpTb3VyY2VJUDE0GA4gASgJ" + 
-          "EhMKC01hY2hpbmVJRDE1GA8gASgJEhIKClBhc3N3b3JkMTYYECACKAkSNwoM" + 
-          "UmVzdWx0SW5mbzE3GBEgASgLMiEuRG9jU2Nhbm5lci5CZWFuLnBiLk1zZ1Jl" + 
-          "c3VsdEluZm8SEgoKRWRpdGFibGUxOBgSIAEoCBIYChBleFNoZW5oZVJlc3Vs" + 
-          "dDE5GBMgASgFEhgKEGV4U2hlbmhlUmVtYXJrMjAYFCABKAkiQgoOTXNnQWNj" + 
-          "b3VudEluZm8SDQoFVXNlcjEYASACKAkSEQoJUGFzc3dvcmQyGAIgAigJEg4K" + 
-          "Bk9yZ0lEMxgDIAIoCSJECg5Nc2dCYXRjaEhpc1FyeRINCgVVc2VyMRgBIAIo" + 
-          "CRIRCglQYXNzd29yZDIYAiACKAkSEAoIQmF0Y2hOTzMYAyACKAkiQwoOTXNn" + 
-          "QmF0Y2hIaXNSc3ASMQoHYmF0Y2hzMRgBIAMoCzIgLkRvY1NjYW5uZXIuQmVh" + 
-          "bi5wYi5Nc2dCYXRjaEluZm8iEwoRTXNnU2VydmVyc0xpc3RRcnkiKAoRTXNn" + 
-          "U2VydmVyc0xpc3RSc3ASEwoLc2VydmVybGlzdDEYASADKAkiEgoQTXNnU2Vy" + 
-          "dmVySW5mb1FyeSIjChBNc2dTZXJ2ZXJJbmZvUnNwEg8KB0J1cmRlbjEYASAC" + 
-          "KAUqdgoJRU9wZXJUeXBlEhoKFmVGUk9NX1NFUlZFUl9OT1RDSEFOR0UQABII" + 
-          "CgRlQUREEAESCAoEZURFTBACEggKBGVVUEQQBBIMCghlVVBETk9URRAIEhAK" + 
-          "DGVVUERBVEVCQVNJQxAQEg8KC2VVUERBVEVGSUxFECAqOgoKRVByaXZpbGVn" + 
-          "ZRIJCgVlTm9uZRAAEgkKBWVWaWV3EAESCwoHZVVwZGF0ZRACEgkKBWVGdWxs" + 
-          "EAQqOwoNRVJlc3VsdFN0YXR1cxIMCghlU3VjY2VzcxAAEgsKB2VGYWlsZWQQ" + 
-          "ARIPCgtlT25Qcm9ncmVzcxACQiUKFWNuLm5ldC5zaW5vZGF0YS5jbS5wYkIM" + 
-          "UHJvdG9CdWZJbmZv");
+          "CgxDdXJGaWxlSW5kZXgYBiABKAUSEwoLQ3VyRmlsZU5hbWUYByABKAkSGQoR" + 
+          "UHJvY2Vzc2luZ0ZpbGVJZHMYCCADKAkSMwoJQmF0Y2hJbmZvGAkgASgLMiAu" + 
+          "RG9jU2Nhbm5lci5CZWFuLnBiLk1zZ0JhdGNoSW5mbyLBAgoLTXNnTm90ZUlu" + 
+          "Zm8SDwoHQXV0aG9yMRgBIAIoCRIQCghWZXJzaW9uMhgCIAIoBRITCgtDcmVh" + 
+          "dGVUaW1lNBgEIAIoCRIPCgdSZW1hcms1GAUgASgJEhEKCU5vdGVOYW1lNhgG" + 
+          "IAIoCRIQCghOb3RlTXNnNxgHIAIoCRIRCglGaWxlTGluazgYCCACKAkSFAoM" + 
+          "RmlsZU1ENUxpbms5GAkgAigJEjIKC09wZXJhdGlvbjEwGAogAigOMh0uRG9j" + 
+          "U2Nhbm5lci5CZWFuLnBiLkVPcGVyVHlwZRIRCglSZWdpb25YMTEYCyACKAUS" + 
+          "EQoJUmVnaW9uWTEyGAwgAigFEhUKDVJlZ2lvbldpZHRoMTMYDSACKAUSFgoO" + 
+          "UmVnaW9uSGVpZ2h0MTQYDiACKAUSEgoKRWRpdGFibGUxNRgPIAEoCCLEAwoL" + 
+          "TXNnRmlsZUluZm8SDwoHQXV0aG9yMRgBIAIoCRIQCghWZXJzaW9uMhgCIAIo" + 
+          "BRITCgtDcmVhdGVUaW1lNBgEIAIoCRIPCgdSZW1hcms1GAUgASgJEhEKCUZp" + 
+          "bGVOYW1lNhgGIAIoCRIQCghGaWxlVVJMNxgHIAEoCRIPCgdGaWxlTk84GAgg" + 
+          "AigJEhAKCEZpbGVNRDU5GAkgAigJEhIKCkZpbGVTaXplMTAYCiACKAUSDgoG" + 
+          "RGF0YTExGAsgASgMEjIKC09wZXJhdGlvbjEyGAwgAigOMh0uRG9jU2Nhbm5l" + 
+          "ci5CZWFuLnBiLkVPcGVyVHlwZRIRCglCYXRjaE5PMTMYDSACKAkSEgoKQ2F0" + 
+          "ZWdvcnkxNBgOIAIoCRIwCgdOb3RlczE1GA8gAygLMh8uRG9jU2Nhbm5lci5C" + 
+          "ZWFuLnBiLk1zZ05vdGVJbmZvEhYKDmV4RmFQaWFvQ29kZTE2GBAgASgJEhIK" + 
+          "CkVkaXRhYmxlMTgYEiABKAgSGAoQZXhTaGVuaGVSZXN1bHQxORgTIAEoBRIY" + 
+          "ChBleFNoZW5oZVJlbWFyazIwGBQgASgJEhMKC0xvY2FsUGF0aDIxGBUgASgJ" + 
+          "IroBChFNc2dRdWVyeUJhdGNoSW5mbxINCgVVc2VyMRgBIAIoCRIRCglQYXNz" + 
+          "d29yZDIYAiACKAkSDgoGT3JnSUQzGAMgAigJEhIKClF1ZXJ5RGF0ZTQYBCAC" + 
+          "KAUSEgoKUXVlcnlUaW1lNRgFIAIoBRIQCghCYXRjaE5PNhgGIAIoCRIQCghW" + 
+          "ZXJzaW9uNxgHIAIoBRISCgpTb3VyY2VJUDQyGCogASgJEhMKC01hY2hpbmVJ" + 
+          "RDQ0GCwgASgJIjgKFE1zZ09wdGlvblF1ZXJ5QmF0Y2hzEg0KBVVzZXIxGAEg" + 
+          "AigJEhEKCVBhc3N3b3JkMhgCIAIoCSIsChdNc2dSc3BPcHRpb25RdWVyeUJh" + 
+          "dGNocxIRCglCYXRjaE5PczIYAiADKAkioAQKDE1zZ0JhdGNoSW5mbxIPCgdB" + 
+          "dXRob3IxGAEgAigJEhAKCFZlcnNpb24yGAIgAigFEhMKC0NyZWF0ZVRpbWU0" + 
+          "GAQgAigJEg8KB1JlbWFyazUYBSABKAkSEAoIQmF0Y2hOTzYYBiACKAkSDgoG" + 
+          "VGl0bGU3GAcgASgJEjEKCk9wZXJhdGlvbjgYCCACKA4yHS5Eb2NTY2FubmVy" + 
+          "LkJlYW4ucGIuRU9wZXJUeXBlEjMKCkZpbGVJbmZvczkYCSADKAsyHy5Eb2NT" + 
+          "Y2FubmVyLkJlYW4ucGIuTXNnRmlsZUluZm8SDwoHT3JnSUQxMBgKIAEoCRIT" + 
+          "CgtCdXNpU3lzSWQxMRgLIAEoCRIUCgxCdXNpVHlwZUlkMTIYDCABKAkSEQoJ" + 
+          "QmFyQ29kZTEzGA0gASgJEhIKClNvdXJjZUlQMTQYDiABKAkSEwoLTWFjaGlu" + 
+          "ZUlEMTUYDyABKAkSEgoKUGFzc3dvcmQxNhgQIAIoCRI3CgxSZXN1bHRJbmZv" + 
+          "MTcYESABKAsyIS5Eb2NTY2FubmVyLkJlYW4ucGIuTXNnUmVzdWx0SW5mbxIS" + 
+          "CgpFZGl0YWJsZTE4GBIgASgIEhgKEGV4U2hlbmhlUmVzdWx0MTkYEyABKAUS" + 
+          "GAoQZXhTaGVuaGVSZW1hcmsyMBgUIAEoCRIwCgZzdGF0dXMYFSABKA4yIC5E" + 
+          "b2NTY2FubmVyLkJlYW4ucGIuRUJhdGNoU3RhdHVzIkIKDk1zZ0FjY291bnRJ" + 
+          "bmZvEg0KBVVzZXIxGAEgAigJEhEKCVBhc3N3b3JkMhgCIAIoCRIOCgZPcmdJ" + 
+          "RDMYAyACKAkiRAoOTXNnQmF0Y2hIaXNRcnkSDQoFVXNlcjEYASACKAkSEQoJ" + 
+          "UGFzc3dvcmQyGAIgAigJEhAKCEJhdGNoTk8zGAMgAigJIkMKDk1zZ0JhdGNo" + 
+          "SGlzUnNwEjEKB2JhdGNoczEYASADKAsyIC5Eb2NTY2FubmVyLkJlYW4ucGIu" + 
+          "TXNnQmF0Y2hJbmZvIhMKEU1zZ1NlcnZlcnNMaXN0UXJ5IigKEU1zZ1NlcnZl" + 
+          "cnNMaXN0UnNwEhMKC3NlcnZlcmxpc3QxGAEgAygJIhIKEE1zZ1NlcnZlcklu" + 
+          "Zm9RcnkiIwoQTXNnU2VydmVySW5mb1JzcBIPCgdCdXJkZW4xGAEgAigFKnYK" + 
+          "CUVPcGVyVHlwZRIaChZlRlJPTV9TRVJWRVJfTk9UQ0hBTkdFEAASCAoEZUFE" + 
+          "RBABEggKBGVERUwQAhIICgRlVVBEEAQSDAoIZVVQRE5PVEUQCBIQCgxlVVBE" + 
+          "QVRFQkFTSUMQEBIPCgtlVVBEQVRFRklMRRAgKicKDEVCYXRjaFN0YXR1cxIH" + 
+          "CgNORVcQARIOCgpQUk9DRVNTSU5HEAIqOgoKRVByaXZpbGVnZRIJCgVlTm9u" + 
+          "ZRAAEgkKBWVWaWV3EAESCwoHZVVwZGF0ZRACEgkKBWVGdWxsEAQqOwoNRVJl" + 
+          "c3VsdFN0YXR1cxIMCghlU3VjY2VzcxAAEgsKB2VGYWlsZWQQARIPCgtlT25Q" + 
+          "cm9ncmVzcxACQiUKFWNuLm5ldC5zaW5vZGF0YS5jbS5wYkIMUHJvdG9CdWZJ" + 
+          "bmZv");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_DocScanner_Bean_pb_MsgResultInfo__Descriptor = Descriptor.MessageTypes[0];
         internal__static_DocScanner_Bean_pb_MsgResultInfo__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::DocScanner.Bean.pb.MsgResultInfo, global::DocScanner.Bean.pb.MsgResultInfo.Builder>(internal__static_DocScanner_Bean_pb_MsgResultInfo__Descriptor,
-                new string[] { "Status", "Msg", "BatchNO", "CurFileIndex", "CurFileName", });
+                new string[] { "Status", "Msg", "BatchNO", "CurFileIndex", "CurFileName", "ProcessingFileIds", "BatchInfo", });
         internal__static_DocScanner_Bean_pb_MsgNoteInfo__Descriptor = Descriptor.MessageTypes[1];
         internal__static_DocScanner_Bean_pb_MsgNoteInfo__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::DocScanner.Bean.pb.MsgNoteInfo, global::DocScanner.Bean.pb.MsgNoteInfo.Builder>(internal__static_DocScanner_Bean_pb_MsgNoteInfo__Descriptor,
@@ -135,7 +139,7 @@ namespace DocScanner.Bean.pb {
         internal__static_DocScanner_Bean_pb_MsgBatchInfo__Descriptor = Descriptor.MessageTypes[6];
         internal__static_DocScanner_Bean_pb_MsgBatchInfo__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::DocScanner.Bean.pb.MsgBatchInfo, global::DocScanner.Bean.pb.MsgBatchInfo.Builder>(internal__static_DocScanner_Bean_pb_MsgBatchInfo__Descriptor,
-                new string[] { "Author1", "Version2", "CreateTime4", "Remark5", "BatchNO6", "Title7", "Operation8", "FileInfos9", "OrgID10", "BusiSysId11", "BusiTypeId12", "BarCode13", "SourceIP14", "MachineID15", "Password16", "ResultInfo17", "Editable18", "ExShenheResult19", "ExShenheRemark20", });
+                new string[] { "Author1", "Version2", "CreateTime4", "Remark5", "BatchNO6", "Title7", "Operation8", "FileInfos9", "OrgID10", "BusiSysId11", "BusiTypeId12", "BarCode13", "SourceIP14", "MachineID15", "Password16", "ResultInfo17", "Editable18", "ExShenheResult19", "ExShenheRemark20", "Status", });
         internal__static_DocScanner_Bean_pb_MsgAccountInfo__Descriptor = Descriptor.MessageTypes[7];
         internal__static_DocScanner_Bean_pb_MsgAccountInfo__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::DocScanner.Bean.pb.MsgAccountInfo, global::DocScanner.Bean.pb.MsgAccountInfo.Builder>(internal__static_DocScanner_Bean_pb_MsgAccountInfo__Descriptor,
@@ -184,6 +188,11 @@ namespace DocScanner.Bean.pb {
     eUPDATEFILE = 32,
   }
   
+  public enum EBatchStatus {
+    NEW = 1,
+    PROCESSING = 2,
+  }
+  
   public enum EPrivilege {
     eNone = 0,
     eView = 1,
@@ -204,8 +213,8 @@ namespace DocScanner.Bean.pb {
   public sealed partial class MsgResultInfo : pb::GeneratedMessage<MsgResultInfo, MsgResultInfo.Builder> {
     private MsgResultInfo() { }
     private static readonly MsgResultInfo defaultInstance = new MsgResultInfo().MakeReadOnly();
-    private static readonly string[] _msgResultInfoFieldNames = new string[] { "BatchNO", "CurFileIndex", "CurFileName", "Msg", "Status" };
-    private static readonly uint[] _msgResultInfoFieldTags = new uint[] { 42, 48, 58, 18, 8 };
+    private static readonly string[] _msgResultInfoFieldNames = new string[] { "BatchInfo", "BatchNO", "CurFileIndex", "CurFileName", "Msg", "ProcessingFileIds", "Status" };
+    private static readonly uint[] _msgResultInfoFieldTags = new uint[] { 74, 42, 48, 58, 18, 66, 8 };
     public static MsgResultInfo DefaultInstance {
       get { return defaultInstance; }
     }
@@ -276,10 +285,35 @@ namespace DocScanner.Bean.pb {
       get { return curFileName_; }
     }
     
+    public const int ProcessingFileIdsFieldNumber = 8;
+    private pbc::PopsicleList<string> processingFileIds_ = new pbc::PopsicleList<string>();
+    public scg::IList<string> ProcessingFileIdsList {
+      get { return pbc::Lists.AsReadOnly(processingFileIds_); }
+    }
+    public int ProcessingFileIdsCount {
+      get { return processingFileIds_.Count; }
+    }
+    public string GetProcessingFileIds(int index) {
+      return processingFileIds_[index];
+    }
+    
+    public const int BatchInfoFieldNumber = 9;
+    private bool hasBatchInfo;
+    private global::DocScanner.Bean.pb.MsgBatchInfo batchInfo_;
+    public bool HasBatchInfo {
+      get { return hasBatchInfo; }
+    }
+    public global::DocScanner.Bean.pb.MsgBatchInfo BatchInfo {
+      get { return batchInfo_ ?? global::DocScanner.Bean.pb.MsgBatchInfo.DefaultInstance; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasStatus) return false;
         if (!hasMsg) return false;
+        if (HasBatchInfo) {
+          if (!BatchInfo.IsInitialized) return false;
+        }
         return true;
       }
     }
@@ -288,19 +322,25 @@ namespace DocScanner.Bean.pb {
       int size = SerializedSize;
       string[] field_names = _msgResultInfoFieldNames;
       if (hasStatus) {
-        output.WriteEnum(1, field_names[4], (int) Status, Status);
+        output.WriteEnum(1, field_names[6], (int) Status, Status);
       }
       if (hasMsg) {
-        output.WriteString(2, field_names[3], Msg);
+        output.WriteString(2, field_names[4], Msg);
       }
       if (hasBatchNO) {
-        output.WriteString(5, field_names[0], BatchNO);
+        output.WriteString(5, field_names[1], BatchNO);
       }
       if (hasCurFileIndex) {
-        output.WriteInt32(6, field_names[1], CurFileIndex);
+        output.WriteInt32(6, field_names[2], CurFileIndex);
       }
       if (hasCurFileName) {
-        output.WriteString(7, field_names[2], CurFileName);
+        output.WriteString(7, field_names[3], CurFileName);
+      }
+      if (processingFileIds_.Count > 0) {
+        output.WriteStringArray(8, field_names[5], processingFileIds_);
+      }
+      if (hasBatchInfo) {
+        output.WriteMessage(9, field_names[0], BatchInfo);
       }
       UnknownFields.WriteTo(output);
     }
@@ -326,6 +366,17 @@ namespace DocScanner.Bean.pb {
         }
         if (hasCurFileName) {
           size += pb::CodedOutputStream.ComputeStringSize(7, CurFileName);
+        }
+        {
+          int dataSize = 0;
+          foreach (string element in ProcessingFileIdsList) {
+            dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * processingFileIds_.Count;
+        }
+        if (hasBatchInfo) {
+          size += pb::CodedOutputStream.ComputeMessageSize(9, BatchInfo);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -364,6 +415,7 @@ namespace DocScanner.Bean.pb {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private MsgResultInfo MakeReadOnly() {
+      processingFileIds_.MakeReadOnly();
       return this;
     }
     
@@ -466,6 +518,12 @@ namespace DocScanner.Bean.pb {
         if (other.HasCurFileName) {
           CurFileName = other.CurFileName;
         }
+        if (other.processingFileIds_.Count != 0) {
+          result.processingFileIds_.Add(other.processingFileIds_);
+        }
+        if (other.HasBatchInfo) {
+          MergeBatchInfo(other.BatchInfo);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -535,6 +593,19 @@ namespace DocScanner.Bean.pb {
             }
             case 58: {
               result.hasCurFileName = input.ReadString(ref result.curFileName_);
+              break;
+            }
+            case 66: {
+              input.ReadStringArray(tag, field_name, result.processingFileIds_);
+              break;
+            }
+            case 74: {
+              global::DocScanner.Bean.pb.MsgBatchInfo.Builder subBuilder = global::DocScanner.Bean.pb.MsgBatchInfo.CreateBuilder();
+              if (result.hasBatchInfo) {
+                subBuilder.MergeFrom(BatchInfo);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              BatchInfo = subBuilder.BuildPartial();
               break;
             }
           }
@@ -647,6 +718,78 @@ namespace DocScanner.Bean.pb {
         PrepareBuilder();
         result.hasCurFileName = false;
         result.curFileName_ = "";
+        return this;
+      }
+      
+      public pbc::IPopsicleList<string> ProcessingFileIdsList {
+        get { return PrepareBuilder().processingFileIds_; }
+      }
+      public int ProcessingFileIdsCount {
+        get { return result.ProcessingFileIdsCount; }
+      }
+      public string GetProcessingFileIds(int index) {
+        return result.GetProcessingFileIds(index);
+      }
+      public Builder SetProcessingFileIds(int index, string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.processingFileIds_[index] = value;
+        return this;
+      }
+      public Builder AddProcessingFileIds(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.processingFileIds_.Add(value);
+        return this;
+      }
+      public Builder AddRangeProcessingFileIds(scg::IEnumerable<string> values) {
+        PrepareBuilder();
+        result.processingFileIds_.Add(values);
+        return this;
+      }
+      public Builder ClearProcessingFileIds() {
+        PrepareBuilder();
+        result.processingFileIds_.Clear();
+        return this;
+      }
+      
+      public bool HasBatchInfo {
+       get { return result.hasBatchInfo; }
+      }
+      public global::DocScanner.Bean.pb.MsgBatchInfo BatchInfo {
+        get { return result.BatchInfo; }
+        set { SetBatchInfo(value); }
+      }
+      public Builder SetBatchInfo(global::DocScanner.Bean.pb.MsgBatchInfo value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasBatchInfo = true;
+        result.batchInfo_ = value;
+        return this;
+      }
+      public Builder SetBatchInfo(global::DocScanner.Bean.pb.MsgBatchInfo.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        PrepareBuilder();
+        result.hasBatchInfo = true;
+        result.batchInfo_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeBatchInfo(global::DocScanner.Bean.pb.MsgBatchInfo value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        if (result.hasBatchInfo &&
+            result.batchInfo_ != global::DocScanner.Bean.pb.MsgBatchInfo.DefaultInstance) {
+            result.batchInfo_ = global::DocScanner.Bean.pb.MsgBatchInfo.CreateBuilder(result.batchInfo_).MergeFrom(value).BuildPartial();
+        } else {
+          result.batchInfo_ = value;
+        }
+        result.hasBatchInfo = true;
+        return this;
+      }
+      public Builder ClearBatchInfo() {
+        PrepareBuilder();
+        result.hasBatchInfo = false;
+        result.batchInfo_ = null;
         return this;
       }
     }
@@ -3854,8 +3997,8 @@ namespace DocScanner.Bean.pb {
   public sealed partial class MsgBatchInfo : pb::GeneratedMessage<MsgBatchInfo, MsgBatchInfo.Builder> {
     private MsgBatchInfo() { }
     private static readonly MsgBatchInfo defaultInstance = new MsgBatchInfo().MakeReadOnly();
-    private static readonly string[] _msgBatchInfoFieldNames = new string[] { "Author1", "BarCode13", "BatchNO6", "BusiSysId11", "BusiTypeId12", "CreateTime4", "Editable18", "FileInfos9", "MachineID15", "Operation8", "OrgID10", "Password16", "Remark5", "ResultInfo17", "SourceIP14", "Title7", "Version2", "exShenheRemark20", "exShenheResult19" };
-    private static readonly uint[] _msgBatchInfoFieldTags = new uint[] { 10, 106, 50, 90, 98, 34, 144, 74, 122, 64, 82, 130, 42, 138, 114, 58, 16, 162, 152 };
+    private static readonly string[] _msgBatchInfoFieldNames = new string[] { "Author1", "BarCode13", "BatchNO6", "BusiSysId11", "BusiTypeId12", "CreateTime4", "Editable18", "FileInfos9", "MachineID15", "Operation8", "OrgID10", "Password16", "Remark5", "ResultInfo17", "SourceIP14", "Title7", "Version2", "exShenheRemark20", "exShenheResult19", "status" };
+    private static readonly uint[] _msgBatchInfoFieldTags = new uint[] { 10, 106, 50, 90, 98, 34, 144, 74, 122, 64, 82, 130, 42, 138, 114, 58, 16, 162, 152, 168 };
     public static MsgBatchInfo DefaultInstance {
       get { return defaultInstance; }
     }
@@ -4068,6 +4211,16 @@ namespace DocScanner.Bean.pb {
       get { return exShenheRemark20_; }
     }
     
+    public const int StatusFieldNumber = 21;
+    private bool hasStatus;
+    private global::DocScanner.Bean.pb.EBatchStatus status_ = global::DocScanner.Bean.pb.EBatchStatus.NEW;
+    public bool HasStatus {
+      get { return hasStatus; }
+    }
+    public global::DocScanner.Bean.pb.EBatchStatus Status {
+      get { return status_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasAuthor1) return false;
@@ -4146,6 +4299,9 @@ namespace DocScanner.Bean.pb {
       if (hasExShenheRemark20) {
         output.WriteString(20, field_names[17], ExShenheRemark20);
       }
+      if (hasStatus) {
+        output.WriteEnum(21, field_names[19], (int) Status, Status);
+      }
       UnknownFields.WriteTo(output);
     }
     
@@ -4212,6 +4368,9 @@ namespace DocScanner.Bean.pb {
         }
         if (hasExShenheRemark20) {
           size += pb::CodedOutputStream.ComputeStringSize(20, ExShenheRemark20);
+        }
+        if (hasStatus) {
+          size += pb::CodedOutputStream.ComputeEnumSize(21, (int) Status);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -4395,6 +4554,9 @@ namespace DocScanner.Bean.pb {
         if (other.HasExShenheRemark20) {
           ExShenheRemark20 = other.ExShenheRemark20;
         }
+        if (other.HasStatus) {
+          Status = other.Status;
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -4525,6 +4687,18 @@ namespace DocScanner.Bean.pb {
             }
             case 162: {
               result.hasExShenheRemark20 = input.ReadString(ref result.exShenheRemark20_);
+              break;
+            }
+            case 168: {
+              object unknown;
+              if(input.ReadEnum(ref result.status_, out unknown)) {
+                result.hasStatus = true;
+              } else if(unknown is int) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(21, (ulong)(int)unknown);
+              }
               break;
             }
           }
@@ -4971,6 +5145,26 @@ namespace DocScanner.Bean.pb {
         PrepareBuilder();
         result.hasExShenheRemark20 = false;
         result.exShenheRemark20_ = "";
+        return this;
+      }
+      
+      public bool HasStatus {
+       get { return result.hasStatus; }
+      }
+      public global::DocScanner.Bean.pb.EBatchStatus Status {
+        get { return result.Status; }
+        set { SetStatus(value); }
+      }
+      public Builder SetStatus(global::DocScanner.Bean.pb.EBatchStatus value) {
+        PrepareBuilder();
+        result.hasStatus = true;
+        result.status_ = value;
+        return this;
+      }
+      public Builder ClearStatus() {
+        PrepareBuilder();
+        result.hasStatus = false;
+        result.status_ = global::DocScanner.Bean.pb.EBatchStatus.NEW;
         return this;
       }
     }

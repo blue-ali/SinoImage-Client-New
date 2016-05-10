@@ -38,11 +38,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("topPane", "ShowButtonText").ToBool();
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "ShowButtonText").ToBool();
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("topPane", "ShowButtonText", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "ShowButtonText", value.ToString());
                 }
             }
 
@@ -51,11 +51,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("topPane", "BarBackColor").ToColor();
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "BarBackColor").ToColor();
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("topPane", "BarBackColor", value.ToArgb().ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "BarBackColor", value.ToArgb().ToString());
                 }
             }
 
@@ -64,11 +64,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("topPane", "BarBackImage");
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "BarBackImage");
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("topPane", "BarBackImage", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "BarBackImage", value.ToString());
                 }
             }
 
@@ -77,7 +77,7 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    int num = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("topPane", "ButtonSize").ToInt();
+                    int num = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "ButtonSize").ToInt();
                     return (num == 0) ? 96 : num;
                 }
                 set
@@ -85,7 +85,7 @@ namespace DocScanner.Main
                     bool flag = value != this.ButtonSize;
                     if (flag)
                     {
-                        LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("topPane", "ButtonSize", value.ToString());
+                        LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "ButtonSize", value.ToString());
                     }
                 }
             }
@@ -151,7 +151,7 @@ namespace DocScanner.Main
 
         private void UCTopMenuBubbleBar_OnActionClick(object sender, TEventArg<string> e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(e.Arg, null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(e.Arg, null);
         }
 
         public void InitializeChild()

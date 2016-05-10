@@ -7,7 +7,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
 	internal class HttpbrokenUploader
 	{

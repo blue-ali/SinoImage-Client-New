@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,6 +40,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\dependency\AForge.Imaging.dll</HintPath>
+    </Reference>
     <Reference Include="Google.ProtocolBuffers">
       <HintPath>..\dependency\Google.ProtocolBuffers.dll</HintPath>
     </Reference>
@@ -48,6 +52,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,6 +76,7 @@
     <Compile Include="AbstractSetting.cs" />
     <Compile Include="AppContext.cs" />
     <Compile Include="AppContextMgr.cs" />
+    <Compile Include="BaseConfig.cs" />
     <Compile Include="BaseListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -93,13 +99,15 @@
     <Compile Include="Bean\NBatchTask.cs" />
     <Compile Include="Bean\NBatchTaskStatus.cs" />
     <Compile Include="Bean\NCategoryInfo.cs" />
-    <Compile Include="Bean\FileInfo.cs" />
+    <Compile Include="Bean\NFileInfo.cs" />
     <Compile Include="Bean\NNoteInfo.cs" />
     <Compile Include="Bean\NodeTitleTypeSetting.cs" />
     <Compile Include="Bean\NQueryBatchInfo.cs" />
     <Compile Include="Bean\NResultInfo.cs" />
     <Compile Include="Bean\TEventArg-T-.cs" />
     <Compile Include="Bean\UCViewCMD.cs" />
+    <Compile Include="Util\File\EnumFileExt.cs" />
+    <Compile Include="GlobalConfigVars.cs" />
     <Compile Include="IStructuralEquatable.cs" />
     <Compile Include="ProtoBuf\EPrivilege.cs" />
     <Compile Include="ProtoBuf\PbInfo.cs" />
@@ -137,7 +145,8 @@
     <Compile Include="ConvertHelper.cs" />
     <Compile Include="EMessageType.cs" />
     <Compile Include="EventCleaner.cs" />
-    <Compile Include="FileHelper.cs" />
+    <Compile Include="Util\File\FileExtUtil.cs" />
+    <Compile Include="Util\File\FileHelper.cs" />
     <Compile Include="FileLogger.cs" />
     <Compile Include="ForEach.cs" />
     <Compile Include="FormContainer.cs">
@@ -158,6 +167,20 @@
     <Compile Include="SystemHelper.cs" />
     <Compile Include="TimeHelper.cs" />
     <Compile Include="Tuple.cs" />
+    <Compile Include="Util\Image\EMostImageTypeHelper.cs" />
+    <Compile Include="Util\Image\IImgProcessor.cs" />
+    <Compile Include="Util\Image\ImageChainProcessor.cs" />
+    <Compile Include="Util\Image\ImageHelper.cs" />
+    <Compile Include="Util\Image\ImagePreProcess.cs" />
+    <Compile Include="Util\Image\ImgBlankProcessor.cs" />
+    <Compile Include="Util\Image\ImgBWProcessor.cs" />
+    <Compile Include="Util\Image\ImgGrayProcessor.cs" />
+    <Compile Include="Util\Image\ImgRectify.cs" />
+    <Compile Include="Util\Image\ImgRectifyProcessor.cs" />
+    <Compile Include="Util\Image\ImgRmBlackEdgeProcessor.cs" />
+    <Compile Include="Util\Image\ImgSharpProcessor.cs" />
+    <Compile Include="Util\Image\ImgSizeProcessor.cs" />
+    <Compile Include="Util\Image\ImgTypeProcessor.cs" />
     <Compile Include="XmlFiles.cs" />
     <EmbeddedResource Include="FormContainer.resx">
       <DependentUpon>FormContainer.cs</DependentUpon>

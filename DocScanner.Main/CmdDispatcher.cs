@@ -1,4 +1,4 @@
-﻿using DocScaner.Network;
+﻿using DocScanner.Network;
 using DocScanner.Bean;
 using DocScanner.LibCommon;
 using DocScanner.Main.UC;
@@ -110,8 +110,7 @@ namespace DocScanner.Main
 
         private void InitCMDs()
         {
-            bool flag = !this._initedcmds;
-            if (flag)
+            if (!this._initedcmds)
             {
                 this._initedcmds = true;
                 this._stringCMDs["ScanBatchDoc"] = new Action<object>(this._ucnavigatorbar.ScanBatchDoc);
@@ -191,7 +190,7 @@ namespace DocScanner.Main
                     return;
                 }
             }
-            LibCommon.AppContext.Cur.MS.LogError("命令" + cmd + "没有找到");
+            LibCommon.AppContext.GetInstance().MS.LogError("命令" + cmd + "没有找到");
         }
 
         private void ShowAppParams(object param = null)
@@ -211,8 +210,7 @@ namespace DocScanner.Main
             uCMultiObjPropertyInfo.AddObjs(this._ucbench.GetSetting().Name, this._ucbench.GetSetting());
             uCMultiObjPropertyInfo.AddObjs(this._uctopmenububblebar.GetSetting().Name, this._uctopmenububblebar.GetSetting());
             uCMultiObjPropertyInfo.AddObjs(this._ucnavigatorbar.GetSetting().Name, this._ucnavigatorbar.GetSetting());
-            bool flag = this._uccenterview.Realview != null && this._uccenterview.Realview is UCPictureView;
-            if (flag)
+            if (this._uccenterview.Realview != null && this._uccenterview.Realview is UCPictureView)
             {
                 UCPictureView.NestSetting setting = (this._uccenterview.Realview as UCPictureView).GetSetting();
                 uCMultiObjPropertyInfo.AddObjs(setting.Name, setting);

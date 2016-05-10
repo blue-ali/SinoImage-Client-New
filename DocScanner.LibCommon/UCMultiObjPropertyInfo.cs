@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace DocScanner.LibCommon
 {
+    /// <summary>
+    /// 参数--参数设置界面
+    /// </summary>
     public class UCMultiObjPropertyInfo : UserControl
     {
         // Fields

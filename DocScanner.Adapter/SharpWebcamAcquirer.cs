@@ -31,11 +31,11 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					return AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "Resolutions");
+					return AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "Resolutions");
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "Resolutions", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "Resolutions", value.ToString());
 				}
 			}
 
@@ -44,7 +44,7 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					int num = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ImageWidth").ToInt();
+					int num = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ImageWidth").ToInt();
 					bool flag = num == 0;
 					if (flag)
 					{
@@ -54,7 +54,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ImageWidth", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ImageWidth", value.ToString());
 				}
 			}
 
@@ -63,7 +63,7 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					int num = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ImageHeight").ToInt();
+					int num = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ImageHeight").ToInt();
 					bool flag = num == 0;
 					if (flag)
 					{
@@ -73,7 +73,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ImageHeight", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ImageHeight", value.ToString());
 				}
 			}
 
@@ -82,7 +82,7 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					int num = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ThumbHeight").ToInt();
+					int num = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ThumbHeight").ToInt();
 					bool flag = num == 0;
 					if (flag)
 					{
@@ -92,7 +92,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ThumbHeight", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ThumbHeight", value.ToString());
 				}
 			}
 
@@ -101,17 +101,17 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					string configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ImageDir");
+					string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ImageDir");
 					bool flag = string.IsNullOrEmpty(configParamValue);
 					if (flag)
 					{
-						configParamValue = AppContext.Cur.Cfg.GetConfigParamValue("AppSetting", "TmpFileDir");
+						configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("AppSetting", "TmpFileDir");
 					}
 					return configParamValue;
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ImageDir", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ImageDir", value.ToString());
 				}
 			}
 
@@ -120,7 +120,7 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					int num = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ThumbWidth").ToInt();
+					int num = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ThumbWidth").ToInt();
 					bool flag = num == 0;
 					if (flag)
 					{
@@ -130,7 +130,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ThumbWidth", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ThumbWidth", value.ToString());
 				}
 			}
 
@@ -139,7 +139,7 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					long num = (long)AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ImgRatio").ToInt();
+					long num = (long)AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ImgRatio").ToInt();
 					bool flag = num == 0L;
 					if (flag)
 					{
@@ -149,7 +149,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ImgRatio", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ImgRatio", value.ToString());
 				}
 			}
 
@@ -158,7 +158,7 @@ namespace DocScanner.Adapter.SharpWebcam
 			{
 				get
 				{
-					string value = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "ImageType");
+					string value = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "ImageType");
 					bool flag = string.IsNullOrEmpty(value);
 					if (flag)
 					{
@@ -168,7 +168,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "ImageType", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "ImageType", value.ToString());
 				}
 			}
 

@@ -1,9 +1,8 @@
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 using DocScanner.Bean;
 using AxDJVUCONTROLLib;
-using DocScaner.Common;
+using DocScanner.LibCommon.Util;
 
 namespace DocScanner.View.DJVU
 {

@@ -20,14 +20,14 @@ namespace DocScanner.Main
         {
             get
             {
-                return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("UISetting", "CurTheme");
+                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("UISetting", "CurTheme");
             }
             set
             {
                 bool flag = value != this.Theme;
                 if (flag)
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("UISetting", "CurTheme", value);
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UISetting", "CurTheme", value);
                     this.UpdateSkin();
                 }
             }

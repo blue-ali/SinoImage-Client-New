@@ -7,7 +7,7 @@ using System.Drawing.Design;
 using System.Linq;
 using System.Windows.Forms.Design;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public class NetSetting : AbstractSetting<NetSetting>, IPropertiesSetting
 	{
@@ -16,11 +16,11 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "IncludeFileData").ToBool();
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "IncludeFileData").ToBool();
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("NetSetting", "IncludeFileData", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "IncludeFileData", value.ToString());
 			}
 		}
 
@@ -29,11 +29,11 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "NetTransferType");
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "NetTransferType");
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("NetSetting", "NetTransferType", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "NetTransferType", value.ToString());
 			}
 		}
 
@@ -42,11 +42,11 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "LocalmodeServerDir");
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "LocalmodeServerDir");
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("NetSetting", "LocalmodeServerDir", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "LocalmodeServerDir", value.ToString());
 			}
 		}
 
@@ -55,11 +55,11 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "HttpServerHosts");
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "HttpServerHosts");
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("NetSetting", "HttpServerHosts", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "HttpServerHosts", value.ToString());
 			}
 		}
 
@@ -68,11 +68,11 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "NetAllowServerBalance").ToBool();
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "NetAllowServerBalance").ToBool();
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("NetSetting", "NetAllowServerBalance", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "NetAllowServerBalance", value.ToString());
 			}
 		}
 
@@ -81,15 +81,41 @@ namespace DocScaner.Network
 		{
 			get
 			{
-				return AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "AllowUpdateServerAddress").ToBool();
+				return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "AllowUpdateServerAddress").ToBool();
 			}
 			set
 			{
-				AppContext.Cur.Cfg.SetConfigParamValue("NetSetting", "AllowUpdateServerAddress", value.ToString());
+				AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "AllowUpdateServerAddress", value.ToString());
 			}
 		}
 
-		[Browsable(false)]
+        [Category("网络设置"), Description("传输模式")]
+        public string TransMode
+        {
+            get
+            {
+                return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "TransMode");
+            }
+            set
+            {
+                AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "TransMode", value);
+            }
+        }
+
+        [Category("网络设置"), Description("超时时间")]
+        public string Timeout
+        {
+            get
+            {
+                return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "Timeout");
+            }
+            set
+            {
+                AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "Timeout", value);
+            }
+        }
+
+        [Browsable(false)]
 		public override string Name
 		{
 			get

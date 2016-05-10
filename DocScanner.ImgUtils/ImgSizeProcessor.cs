@@ -115,7 +115,7 @@ namespace DocScanner.ImgUtils
 					{
 						int quality = (int)((long)(num * 100) / fileInfo.Length);
 						this.processImp(fname, quality);
-						AppContext.Cur.MS.LogInfo("图像大小转换:" + fname);
+						AppContext.GetInstance().MS.LogInfo("图像大小转换:" + fname);
 						result = fname;
 					}
 				}

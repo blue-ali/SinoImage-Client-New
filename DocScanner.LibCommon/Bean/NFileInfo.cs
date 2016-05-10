@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using DocScaner.Common;
 using DocScanner.LibCommon;
 using DocScanner.CodeUtils;
 using DocScanner.Bean.pb;
+using DocScanner.LibCommon.Util;
 
 namespace DocScanner.Bean
 {
@@ -76,33 +76,28 @@ namespace DocScanner.Bean
 		{
 			get
 			{
-				bool flag = NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.FileName;
 				string result;
-				if (flag)
+				if (NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.FileName)
 				{
 					result = FileHelper.GetFileName(this.FileName);
 				}
 				else
 				{
-					bool flag2 = NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.FullPath;
-					if (flag2)
+					if (NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.FullPath)
 					{
 						result = this.LocalPath;
 					}
 					else
 					{
-						bool flag3 = NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.Serial;
-						if (flag3)
+						if (NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.Serial)
 						{
 							result = this.FileNO;
 						}
 						else
 						{
-							bool flag4 = NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.SerialFileName;
-							if (flag4)
+							if (NodeTitleTypeSetting.FileNodeTitleType == ENFileNodeTitleType.SerialFileName)
 							{
-								bool flag5 = this.FileNO != string.Empty;
-								if (flag5)
+								if (this.FileNO != string.Empty)
 								{
 									result = this.FileNO.ToString() + "-" + this.FileName;
 								}
@@ -332,6 +327,20 @@ namespace DocScanner.Bean
 		public MsgFileInfo ToPBMsg(bool includefiledata = true)
 		{
 			MsgFileInfo.Builder builder = new MsgFileInfo.Builder();
+            //此处必须在前面，在AttatchFileData给MD5等属性赋值
+            if (includefiledata && (this.Operation == EOperType.eADD || this.Operation == EOperType.eUPD))
+			{
+				this.AttatchFileData(this.LocalPath);
+				if (this.Data != null)
+				{
+					builder.Data11 = ByteString.CopyFrom(this.Data);
+				}
+			}
+			else
+			{
+				this.Data = null;
+				builder.Data11 = ByteString.Empty;
+			}
 			builder.Author1 = this.Author;
 			builder.Version2 = this.Version;
 			//builder.CreateDate3 = this.CreateDate;
@@ -342,21 +351,6 @@ namespace DocScanner.Bean
 			builder.FileNO8 = this.FileNO;
 			builder.FileMD59 = this.FileMD5;
 			builder.FileSize10 = this.FileSize;
-			bool flag = includefiledata && (this.Operation == EOperType.eADD || this.Operation == EOperType.eUPD);
-			if (flag)
-			{
-				this.AttatchFileData(this.LocalPath);
-				bool flag2 = this.Data != null;
-				if (flag2)
-				{
-					builder.Data11 = ByteString.CopyFrom(this.Data);
-				}
-			}
-			else
-			{
-				this.Data = null;
-				builder.Data11 = ByteString.Empty;
-			}
 			builder.Operation12 = this.Operation;
 			builder.BatchNO13 = this.BatchNO;
 			builder.Category14 = this.Category;

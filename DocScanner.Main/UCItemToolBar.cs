@@ -165,7 +165,7 @@ namespace DocScanner.Main
 
         public void ShowAdpaterSetting(object param = null)
         {
-            SharpAcquirerFactory.ShowSetting(LibCommon.AppContext.Cur.GetVal<SharpAcquirerFactory>(typeof(SharpAcquirerFactory)));
+            SharpAcquirerFactory.ShowSetting(LibCommon.AppContext.GetInstance().GetVal<SharpAcquirerFactory>(typeof(SharpAcquirerFactory)));
         }
 
         IPropertiesSetting IHasIPropertiesSetting.GetSetting()
@@ -194,7 +194,7 @@ namespace DocScanner.Main
 
         private void UCItemToolBar_OnActionClick(object sender, TEventArg<string> e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(e.Arg, null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD(e.Arg, null);
         }
 
         // Properties
@@ -223,7 +223,7 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    string configParamValue = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("RightPropertyPane", "GroupTitleFontSize");
+                    string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("RightPropertyPane", "GroupTitleFontSize");
                     if (string.IsNullOrEmpty(configParamValue))
                     {
                         return 8f;
@@ -232,7 +232,7 @@ namespace DocScanner.Main
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("RightPropertyPane", "GroupTitleFontSize", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("RightPropertyPane", "GroupTitleFontSize", value.ToString());
                 }
             }
 
@@ -249,11 +249,11 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("RightPropertyPane", "buttonSize").ToInt();
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("RightPropertyPane", "buttonSize").ToInt();
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("RightPropertyPane", "buttonSize", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("RightPropertyPane", "buttonSize", value.ToString());
                 }
             }
 
@@ -261,19 +261,20 @@ namespace DocScanner.Main
             {
                 get
                 {
-                    if (LibCommon.AppContext.Cur == null)
+                    //TODO what is this;
+                    if (LibCommon.AppContext.GetInstance() == null)
                     {
                         MessageBox.Show("cur");
                     }
-                    if (LibCommon.AppContext.Cur.Cfg == null)
+                    if (LibCommon.AppContext.GetInstance().Config == null)
                     {
-                        MessageBox.Show("AppContext.Cur.Cfg");
+                        MessageBox.Show("AppContext.GetInstance().Config");
                     }
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("RightPropertyPane", "ShowGroupTtile").ToBool();
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("RightPropertyPane", "ShowGroupTtile").ToBool();
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("RightPropertyPane", "ShowGroupTtile", value.ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("RightPropertyPane", "ShowGroupTtile", value.ToString());
                 }
             }
         }

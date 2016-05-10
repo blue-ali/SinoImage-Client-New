@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public class HttpbrokenDownloader
 	{

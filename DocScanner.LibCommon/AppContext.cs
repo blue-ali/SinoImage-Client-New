@@ -11,10 +11,11 @@ namespace DocScanner.LibCommon
     /// 对象的状态参数等，以前都是以static方式定义，但在浏览器里，对象的实例个数会多个的（并且对象所在进程、线程的信息也难以判断).
     /// </summary>
 
-    public class AppContext : IDisposable
+    //public class AppContext : IDisposable
+    public class AppContext
     {
         [ThreadStatic]
-        private static AppContext _cur;
+        private static readonly AppContext instanc = new AppContext();
         private ConcurrentDictionary<object, object> _data = new ConcurrentDictionary<object, object>();
         private bool _disposed;
 
@@ -26,39 +27,39 @@ namespace DocScanner.LibCommon
             this._data[typeof(MessageService)] = service;
         }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-        }
+        //public void Dispose()
+        //{
+        //    this.Dispose(true);
+        //}
 
-        private void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    if ((this._data != null) && (this._data.Count > 0))
-                    {
-                        foreach (KeyValuePair<object, object> pair in this._data)
-                        {
-                            IDisposable disposable = pair.Value as IDisposable;
-                            if (disposable != null)
-                            {
-                                disposable.Dispose();
-                            }
-                        }
-                    }
-                    this._data.Clear();
-                }
-                _cur = null;
-                this._disposed = true;
-            }
-        }
+        //private void Dispose(bool disposing)
+        //{
+        //    if (!this._disposed)
+        //    {
+        //        if (disposing)
+        //        {
+        //            if ((this._data != null) && (this._data.Count > 0))
+        //            {
+        //                foreach (KeyValuePair<object, object> pair in this._data)
+        //                {
+        //                    IDisposable disposable = pair.Value as IDisposable;
+        //                    if (disposable != null)
+        //                    {
+        //                        disposable.Dispose();
+        //                    }
+        //                }
+        //            }
+        //            this._data.Clear();
+        //        }
+        //        instance = null;
+        //        this._disposed = true;
+        //    }
+        //}
 
-        ~AppContext()
-        {
-            this.Dispose(false);
-        }
+        //~AppContext()
+        //{
+        //    this.Dispose(false);
+        //}
 
         public T GetVal<T>(object key) where T : class
         {
@@ -75,7 +76,7 @@ namespace DocScanner.LibCommon
         }
 
         // Properties
-        public IniConfigSetting Cfg
+        public IniConfigSetting Config
         {
             get
             {
@@ -83,17 +84,11 @@ namespace DocScanner.LibCommon
             }
         }
 
-        public static AppContext Cur
+        public static AppContext GetInstance()
         {
-            get
-            {
-                if (_cur == null)
-                {
-                    _cur = new AppContext();
-                }
-                return _cur;
-            }
+            return instanc;
         }
+
 
         public MessageService MS
         {

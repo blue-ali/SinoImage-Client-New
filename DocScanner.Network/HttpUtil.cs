@@ -1,9 +1,10 @@
+using DocScanner.Bean.pb;
 using DocScanner.LibCommon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public class HttpUtil
 	{
@@ -46,35 +47,64 @@ namespace DocScaner.Network
 			return result;
 		}
 
-		public static string GetHttpDownloadURL()
-		{
-			string text = GetFastestServer() + AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "HttpDownloadURL");
-			Console.WriteLine("TigEraHttp.GetFastestServer():" + GetFastestServer() + ":");
-			Console.WriteLine("NetHttpDownloadURL:" + AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "HttpDownloadURL") + ":");
-			bool flag = !text.StartsWith("http://");
-			if (flag)
+		public static string GetHttpGetBatchURL(string batchNo)
+        {
+            string url = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts") + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "GetBatchUrl") + "?batchNo=" + batchNo;
+			if (!url.StartsWith("http://"))
 			{
-				text = "http://" + text;
+                url = "http://" + url;
 			}
-			return text;
+			return url;
+		}
+        
+		public static string GetHttpBrokeUploadBatchURL()
+		{
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "SubmitBrokeUrl");
+			if (!url.StartsWith("http://"))
+			{
+                url = "http://" + url;
+			}
+			return url;
 		}
 
-		public static string GetHttpUploadURL()
-		{
-			string text = GetFastestServer() + AppContext.Cur.Cfg.GetConfigParamValue("NetSetting", "HttpUploadURL");
-			bool flag = !text.StartsWith("http://");
-			if (flag)
-			{
-				text = "http://" + text;
-			}
-			return text;
-		}
+        public static string GetHttpBrokeUploadFileURL()
+        {
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "SubmitBrokeFileUrl");
+            if (!url.StartsWith("http://"))
+            {
+                url = "http://" + url;
+            }
+            return url;
+        }
 
-		public static string GetFastestServer()
+        public static string GetHttpFinishBrokeBatchURL(string batchNo)
+        {
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "FinishBrokeBatchUrl") + "?batchNo=" + batchNo;
+            if (!url.StartsWith("http://"))
+            {
+                url = "http://" + url;
+            }
+            return url;
+        }
+
+        public static string GetHttpFullUploadURL()
+        {
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "SubmitFullUrl");
+            if (!url.StartsWith("http://"))
+            {
+                url = "http://" + url;
+            }
+            return url;
+        }
+
+        public static string GetFastestServer()
 		{
-			bool flag = !string.IsNullOrEmpty(_fastestserver);
 			string result;
-			if (flag)
+			if (!string.IsNullOrEmpty(_fastestserver))
 			{
 				result = _fastestserver;
 			}

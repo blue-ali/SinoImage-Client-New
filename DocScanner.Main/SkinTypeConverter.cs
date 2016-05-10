@@ -1,12 +1,7 @@
-﻿using DocScaner.Common;
-using DocScanner.LibCommon;
-using Logos.DocScaner.Common;
-using System;
+﻿using DocScanner.LibCommon;
+using DocScanner.LibCommon.Util;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocScanner.Main
 {

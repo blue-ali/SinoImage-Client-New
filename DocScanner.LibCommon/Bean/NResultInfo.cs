@@ -1,4 +1,6 @@
 using DocScanner.Bean.pb;
+using System;
+using System.Collections.Generic;
 
 namespace DocScanner.Bean
 {
@@ -34,28 +36,54 @@ namespace DocScanner.Bean
 			set;
 		}
 
-		public static NResultInfo FromNetMsg(MsgResultInfo info)
+        public NBatchInfo BatchInfo
+        {
+            get;
+            set;
+        }
+
+        private IList<string> _processingFileIds = new List<string>();
+   
+        public IList<string> ProcessingFileIds
+        {
+            get
+            {
+                return _processingFileIds;
+            }
+            set
+            {
+                this._processingFileIds = value;
+            }
+        }
+
+        public static NResultInfo FromNetMsg(MsgResultInfo info)
 		{
-			return new NResultInfo
-			{
-				Msg = info.Msg,
-				Status = info.Status,
-				BatchNO = info.BatchNO,
-				CurFileIndex = info.CurFileIndex,
-				CurFileName = info.CurFileName
-			};
+            NResultInfo resultInfo = new NResultInfo();
+            resultInfo.Msg = info.Msg;
+            resultInfo.Status = info.Status;
+            resultInfo.BatchNO = info.BatchNO;
+            resultInfo.CurFileIndex = resultInfo.CurFileIndex;
+            resultInfo.CurFileName = resultInfo.CurFileName;
+            resultInfo.ProcessingFileIds = info.ProcessingFileIdsList;
+            resultInfo.BatchInfo = NBatchInfo.FromPBMsg(info.BatchInfo);
+            return resultInfo;
 		}
 
 		public MsgResultInfo ToPBMsg()
 		{
-			return new MsgResultInfo.Builder
-			{
-				Msg = this.Msg,
-				Status = this.Status,
-				BatchNO = this.BatchNO,
-				CurFileIndex = this.CurFileIndex,
-				CurFileName = this.CurFileName
-			}.BuildParsed();
+            MsgResultInfo.Builder builder = new MsgResultInfo.Builder();
+            builder.Msg = this.Msg;
+            builder.Status = this.Status;
+            builder.BatchNO = this.BatchNO;
+            builder.CurFileIndex = this.CurFileIndex;
+            builder.CurFileName = this.CurFileName;
+            return builder.BuildParsed();
 		}
-	}
+
+        public void EnsureResultSuccess()
+        {
+            if (this.Status == EResultStatus.eFailed)
+                throw new Exception(this.Msg);
+        }
+    }
 }

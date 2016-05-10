@@ -1,8 +1,7 @@
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using DocScanner.Bean;
-using Logos.DocScaner.Common;
-using DocScaner.Common;
+using DocScanner.LibCommon.Util;
 
 namespace DocScaner.PDF.Utils
 {

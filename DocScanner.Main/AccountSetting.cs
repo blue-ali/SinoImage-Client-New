@@ -32,7 +32,7 @@ namespace DocScanner.Main
                 bool flag = string.IsNullOrEmpty(this._curuser);
                 if (flag)
                 {
-                    this._curuser = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AccountSetting", "AccountName");
+                    this._curuser = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AccountSetting", "AccountName");
                 }
                 return this._curuser;
             }
@@ -42,7 +42,7 @@ namespace DocScanner.Main
                 if (flag)
                 {
                     this._curuser = value;
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AccountSetting", "AccountName", this._curuser);
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AccountSetting", "AccountName", this._curuser);
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace DocScanner.Main
                 bool flag = string.IsNullOrEmpty(this._curorgid);
                 if (flag)
                 {
-                    this._curorgid = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("AccountSetting", "AccountOrgID");
+                    this._curorgid = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AccountSetting", "AccountOrgID");
                 }
                 return this._curorgid;
             }
@@ -65,7 +65,7 @@ namespace DocScanner.Main
                 if (flag)
                 {
                     this._curorgid = value;
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("AccountSetting", "AccountOrgID", this._curorgid);
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AccountSetting", "AccountOrgID", this._curorgid);
                 }
             }
         }

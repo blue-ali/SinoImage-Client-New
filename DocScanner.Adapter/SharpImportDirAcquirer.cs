@@ -19,11 +19,11 @@ namespace DocScanner.Adapter.SharpImportDir
 			{
 				get
 				{
-					return AppContext.Cur.Cfg.GetConfigParamValue("SharpImportDir", "InitDir");
+					return AppContext.GetInstance().Config.GetConfigParamValue("SharpImportDir", "InitDir");
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpImportDir", "InitDir", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpImportDir", "InitDir", value.ToString());
 				}
 			}
 
@@ -41,7 +41,7 @@ namespace DocScanner.Adapter.SharpImportDir
 			{
 				get
 				{
-					string text = AppContext.Cur.Cfg.GetConfigParamValue("SharpImportDir", "MatchedFileExtensions");
+					string text = AppContext.GetInstance().Config.GetConfigParamValue("SharpImportDir", "MatchedFileExtensions");
 					bool flag = string.IsNullOrEmpty(text);
 					if (flag)
 					{
@@ -51,7 +51,7 @@ namespace DocScanner.Adapter.SharpImportDir
 				}
 				set
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpImportDir", "MatchedFileExtensions", value.ToString());
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpImportDir", "MatchedFileExtensions", value.ToString());
 				}
 			}
 

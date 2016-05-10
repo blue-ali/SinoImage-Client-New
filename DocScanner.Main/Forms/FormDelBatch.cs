@@ -1,4 +1,4 @@
-﻿using DocScaner.Network;
+﻿using DocScanner.Network;
 using DocScanner.Bean;
 using DocScanner.Bean.pb;
 using DocScanner.LibCommon;

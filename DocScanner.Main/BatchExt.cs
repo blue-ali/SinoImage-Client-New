@@ -1,15 +1,10 @@
 ﻿using DocScanner.CodeUtils;
-using DocScaner.Common;
 using DocScanner.Bean;
 using DocScanner.LibCommon;
 using DocScanner.Main;
-using Logos.DocScaner.Common;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DocScanner.LibCommon.Util;
 
 namespace DocScanner.Common
 {
@@ -30,7 +25,7 @@ namespace DocScanner.Common
         {
             finfo.FileMD5 = MD5Helper.GetFileMD5(finfo.LocalPath);
             finfo.FileSize = (int)new FileInfo(finfo.LocalPath).Length;
-            finfo.FileName = FileHelper.GetFileName(finfo.LocalPath);
+            //finfo.FileName = FileHelper.GetFileName(finfo.LocalPath);
         }
     }
 }

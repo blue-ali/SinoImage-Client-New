@@ -129,7 +129,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				string a = "";
 				try
 				{
-					a = AppContext.Cur.Cfg.GetConfigParamValue("SharpWebcamSetting", "default");
+					a = AppContext.GetInstance().Config.GetConfigParamValue("SharpWebcamSetting", "default");
 				}
 				catch
 				{
@@ -151,7 +151,7 @@ namespace DocScanner.Adapter.SharpWebcam
 				this.comboBox_Cams.SelectedIndex = num - 1;
 				this.comboBox_Cams.SelectedIndexChanged += delegate(object sender, EventArgs e)
 				{
-					AppContext.Cur.Cfg.SetConfigParamValue("SharpWebcamSetting", "default", this.comboBox_Cams.Text);
+					AppContext.GetInstance().Config.SetConfigParamValue("SharpWebcamSetting", "default", this.comboBox_Cams.Text);
 					this.Start();
 				};
 			}

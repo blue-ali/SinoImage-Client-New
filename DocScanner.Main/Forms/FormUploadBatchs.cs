@@ -1,4 +1,4 @@
-﻿using DocScaner.Network;
+﻿using DocScanner.Network;
 using DocScanner.Bean;
 using DocScanner.Common;
 using DocScanner.LibCommon;
@@ -216,7 +216,7 @@ namespace DocScanner.Main
                     this._transfer = INetTransferFactory.GetNetTransfer();
                     this._transfer.OnNotify -= new EventHandler<TEventArg<NetTransferNotifyMsg>>(this.OnTransferNotify);
                     this._transfer.OnNotify += new EventHandler<TEventArg<NetTransferNotifyMsg>>(this.OnTransferNotify);
-                    NResultInfo nResultInfo = this._transfer.UploadBatch(current);
+                    this._transfer.UploadBatch(current);
                 }
             }
         }

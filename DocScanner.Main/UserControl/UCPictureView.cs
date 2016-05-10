@@ -1,17 +1,14 @@
-﻿using DocScaner.Common;
-using DocScanner.Bean;
+﻿using DocScanner.Bean;
 using DocScanner.ImgUtils;
 using DocScanner.LibCommon;
+using DocScanner.LibCommon.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DocScanner.Main.UC
@@ -44,7 +41,7 @@ namespace DocScanner.Main.UC
             {
                 get
                 {
-                    return LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("Centerpane", "Scrollable") == "True";
+                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("Centerpane", "Scrollable") == "True";
                 }
                 set
                 {
@@ -52,7 +49,7 @@ namespace DocScanner.Main.UC
                     if (flag)
                     {
                         string text = value.ToString();
-                        LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("Centerpane", "Scrollable", value.ToString());
+                        LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("Centerpane", "Scrollable", value.ToString());
                     }
                     bool flag2 = value;
                     if (flag2)
@@ -76,7 +73,7 @@ namespace DocScanner.Main.UC
             {
                 get
                 {
-                    Color color = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("ImagePane", "SelectPenColor").ToColor();
+                    Color color = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("ImagePane", "SelectPenColor").ToColor();
                     bool flag = color == Color.FromArgb(0, 0, 0, 0);
                     if (flag)
                     {
@@ -86,7 +83,7 @@ namespace DocScanner.Main.UC
                 }
                 set
                 {
-                    LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("ImagePane", "SelectPenColor", value.ToArgb().ToString());
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("ImagePane", "SelectPenColor", value.ToArgb().ToString());
                 }
             }
 
@@ -548,7 +545,7 @@ namespace DocScanner.Main.UC
                 {
                     this.Curratio *= 1.1f;
                     this.pictureBox1.Image = this._zoombefore.ScaleByPercent(this.Curratio);
-                    LibCommon.AppContext.Cur.MS.LogDebug("DoZoomIn");
+                    LibCommon.AppContext.GetInstance().MS.LogDebug("DoZoomIn");
                 }
             }
         }
@@ -563,7 +560,7 @@ namespace DocScanner.Main.UC
                 {
                     this.Curratio = 0.909f * this.Curratio;
                     this.pictureBox1.Image = this._zoombefore.ScaleByPercent(this.Curratio);
-                    LibCommon.AppContext.Cur.MS.LogDebug("DoZoomOut");
+                    LibCommon.AppContext.GetInstance().MS.LogDebug("DoZoomOut");
                 }
             }
         }
@@ -871,7 +868,7 @@ namespace DocScanner.Main.UC
                 }
                 else
                 {
-                    LibCommon.AppContext.Cur.MS.LogError("文件不存在" + this.CurFileInfo.LocalPath);
+                    LibCommon.AppContext.GetInstance().MS.LogError("文件不存在" + this.CurFileInfo.LocalPath);
                 }
             }
         }
@@ -927,7 +924,7 @@ namespace DocScanner.Main.UC
 
         public void UpdateThumbNail()
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("UpdateThumbNail", null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("UpdateThumbNail", null);
         }
 
         public UCPictureView.NestSetting GetSetting()
@@ -1002,7 +999,7 @@ namespace DocScanner.Main.UC
             bool flag = this._supportexts == null;
             if (flag)
             {
-                this._supportexts = FileHelper.GetImageExts();
+                this._supportexts = FileExtUtil.imgExts;
             }
             return this._supportexts;
         }

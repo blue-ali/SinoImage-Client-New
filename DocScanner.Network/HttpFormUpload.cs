@@ -1,11 +1,11 @@
-using DocScaner.Common;
+using DocScanner.LibCommon.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public static class HttpFormUpload
 	{

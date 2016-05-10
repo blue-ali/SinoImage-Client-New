@@ -22,7 +22,7 @@ namespace DocScanner.Main
         {
             get
             {
-                return AppContext.Cur.Cfg.GetConfigParamValue("AppSetting", "TmpFileDir");
+                return AppContext.GetInstance().Config.GetConfigParamValue("AppSetting", "TmpFileDir");
             }
             set
             {
@@ -31,7 +31,7 @@ namespace DocScanner.Main
                 {
                     Directory.CreateDirectory(value);
                 }
-                AppContext.Cur.Cfg.SetConfigParamValue("AppSetting", "TmpFileDir", value.ToString());
+                AppContext.GetInstance().Config.SetConfigParamValue("AppSetting", "TmpFileDir", value.ToString());
             }
         }
 
@@ -40,11 +40,11 @@ namespace DocScanner.Main
         {
             get
             {
-                return AppContext.Cur.Cfg.GetConfigParamValue("AppSetting", "SingleInstance").ToBool();
+                return AppContext.GetInstance().Config.GetConfigParamValue("AppSetting", "SingleInstance").ToBool();
             }
             set
             {
-                AppContext.Cur.Cfg.SetConfigParamValue("AppSetting", "SingleInstance", value.ToString());
+                AppContext.GetInstance().Config.SetConfigParamValue("AppSetting", "SingleInstance", value.ToString());
             }
         }
 
@@ -53,7 +53,7 @@ namespace DocScanner.Main
         {
             get
             {
-                return AppContext.Cur.Cfg.ConfigFileName;
+                return AppContext.GetInstance().Config.ConfigFileName;
             }
         }
 

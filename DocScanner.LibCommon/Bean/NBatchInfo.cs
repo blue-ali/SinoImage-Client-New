@@ -6,8 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using DocScanner.LibCommon;
-using DocScaner.Common;
 using DocScanner.Bean.pb;
+using DocScanner.LibCommon.Util;
 
 namespace DocScanner.Bean
 {
@@ -181,7 +181,7 @@ namespace DocScanner.Bean
 			set;
 		}
 
-		[Browsable(false)]
+        [Browsable(false)]
 		public NResultInfo ResultInfo
 		{
 			get;
@@ -221,7 +221,14 @@ namespace DocScanner.Bean
 			set;
 		}
 
-		public void SetCurrentTime()
+        [Browsable(false)]
+        public EBatchStatus Status
+        {
+            get;
+            set;
+        }
+
+        public void SetCurrentTime()
 		{
             //int createDate;
             //int createTime;
@@ -286,7 +293,7 @@ namespace DocScanner.Bean
 			}*/
 		}
 
-		public MsgBatchInfo ToPBMsg(bool includefiledata = true)
+		public MsgBatchInfo ToPBMsg(string transMode)
 		{
 			MsgBatchInfo.Builder builder = new MsgBatchInfo.Builder();
 			builder.Author1 = this.Author;
@@ -299,7 +306,7 @@ namespace DocScanner.Bean
 			builder.FileInfos9List.Clear();
 			foreach (NFileInfo current in this.FileInfos)
 			{
-				builder.FileInfos9List.Add(current.ToPBMsg(includefiledata));
+				builder.FileInfos9List.Add(current.ToPBMsg(true));
 			}
 			builder.OrgID10 = this.OrgID;
 			builder.BusiSysId11 = this.BusiSysId;
@@ -317,7 +324,68 @@ namespace DocScanner.Bean
 			return builder.BuildParsed();
 		}
 
-		public NBatchInfo()
+        public MsgBatchInfo ToPbMsgWithData()
+        {
+            MsgBatchInfo.Builder builder = new MsgBatchInfo.Builder();
+            builder.Author1 = this.Author;
+            builder.Version2 = this.Version;
+            builder.CreateTime4 = this.CreateTime;
+            builder.Remark5 = this.Remark;
+            builder.BatchNO6 = this.BatchNO;
+            builder.Title7 = this.Title;
+            builder.Operation8 = this.Operation;
+            builder.FileInfos9List.Clear();
+            foreach (NFileInfo current in this.FileInfos)
+            {
+                builder.FileInfos9List.Add(current.ToPBMsg(true));
+            }
+            builder.OrgID10 = this.OrgID;
+            builder.BusiSysId11 = this.BusiSysId;
+            builder.BusiTypeId12 = this.BusiTypeId;
+            builder.BarCode13 = this.BarCode;
+            builder.SourceIP14 = this.SourceIP;
+            builder.MachineID15 = this.MachineID;
+            builder.Password16 = this.Password;
+            builder.Status = this.Status;
+            //if (this.ResultInfo != null)
+            //{
+            //    builder.ResultInfo17 = this.ResultInfo.ToPBMsg();
+            //}
+            builder.Editable18 = this.Editable;
+            return builder.BuildParsed();
+        }
+
+        public MsgBatchInfo ToPbMsgWithoutData()
+        {
+            MsgBatchInfo.Builder builder = new MsgBatchInfo.Builder();
+            builder.Author1 = this.Author;
+            builder.Version2 = this.Version;
+            builder.CreateTime4 = this.CreateTime;
+            builder.Remark5 = this.Remark;
+            builder.BatchNO6 = this.BatchNO;
+            builder.Title7 = this.Title;
+            builder.Operation8 = this.Operation;
+            builder.OrgID10 = this.OrgID;
+            builder.BusiSysId11 = this.BusiSysId;
+            builder.BusiTypeId12 = this.BusiTypeId;
+            builder.BarCode13 = this.BarCode;
+            builder.SourceIP14 = this.SourceIP;
+            builder.MachineID15 = this.MachineID;
+            builder.Password16 = this.Password;
+            builder.Status = this.Status;
+            foreach(NFileInfo fileInfo in this.FileInfos)
+            {
+                builder.FileInfos9List.Add(fileInfo.ToPBMsg(false));
+            }
+            //if (this.ResultInfo != null)
+            //{
+            //    builder.ResultInfo17 = this.ResultInfo.ToPBMsg();
+            //}
+            builder.Editable18 = this.Editable;
+            return builder.BuildParsed();
+        }
+
+        public NBatchInfo()
 		{
 			this.Author = "NoneAuthor";
 			this.Version = 1;
@@ -336,6 +404,7 @@ namespace DocScanner.Bean
 			this.MachineID = "";
 			this.Password = "";
 			this.Editable = true;
+            this.Status = EBatchStatus.NEW;
 		}
 
 		public static NBatchInfo FromPBMsg(MsgBatchInfo input)
@@ -358,11 +427,6 @@ namespace DocScanner.Bean
 			nBatchInfo.SourceIP = input.SourceIP14;
 			nBatchInfo.MachineID = input.MachineID15;
 			nBatchInfo.Password = input.Password16;
-			bool flag = input.ResultInfo17 != null;
-			if (flag)
-			{
-				nBatchInfo.ResultInfo = NResultInfo.FromNetMsg(input.ResultInfo17);
-			}
 			nBatchInfo.Editable = input.Editable18;
 			nBatchInfo.ExShenheResult = input.ExShenheResult19;
 			nBatchInfo.ExShenheRemark = input.ExShenheRemark20;
@@ -382,9 +446,9 @@ namespace DocScanner.Bean
 			return NBatchInfo.FromPBMsg(input);
 		}
 
-		public void ToPBFile(string fname, bool includefiledata = true)
+		public void ToPBFile(string fname, string transMode)
 		{
-			MsgBatchInfo msgBatchInfo = this.ToPBMsg(includefiledata);
+			MsgBatchInfo msgBatchInfo = this.ToPBMsg(transMode);
 			File.WriteAllBytes(fname, msgBatchInfo.ToByteArray());
 		}
 

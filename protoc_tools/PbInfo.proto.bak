@@ -1,0 +1,258 @@
+
+syntax = "proto2";
+
+/*message ProtoBuff Definition 网络传输结构体定义*/
+
+
+
+/*package tutorial;
+option java_package = "com.protobuftest.protobuf"; (生成Java类时包名；C#类的命名空间)
+option java_outer_classname = "PersonProbuf"; (生成Java、C#类的类名)
+*/
+
+package DocScanner.Bean.pb;
+option java_package = "cn.net.sinodata.cm.pb";
+option java_outer_classname = "ProtoBufInfo";
+
+/*后面需要修改默认值,对于这个的opetype，最好的还是非常明确的确定都是哪些的操作，不要过多的进行合并*/
+enum EOperType
+{
+	eFROM_SERVER_NOTCHANGE=0;	/*从服务器下载下来的文件状态*/
+	eADD=1;	
+	eDEL=2;
+	eUPD=4;
+	
+	
+	eUPDNOTE=8;					/*只修改文件的批注信息，则客户端并不需要重新上传文件，服务器也可以精确的知道客户端修改了哪些内容*/
+	eUPDATEBASIC=16;				/*修改了文件的基本信息*/
+	eUPDATEFILE=32;				/*修改了文件内容，需要重新传文件*/
+	
+}
+
+/*传输模式*/
+
+enum EBatchStatus
+{
+/** 新批次*/
+	NEW=1;		
+	/** 处理中批次，断点续传模式在提交文件内容时设置 */
+	PROCESSING=2;	
+}
+
+
+/*权限设置*/
+enum EPrivilege
+{
+	eNone =0;
+	eView =1;
+	eUpdate =2;
+	eFull =4;
+}
+
+enum EResultStatus
+{
+	eSuccess=0;	
+	eFailed = 1;
+	eOnProgress = 2;/**在批次分文件传送时， **/
+}
+
+message MsgResultInfo
+{
+	required EResultStatus Status=1;
+	 
+	required string     Msg = 2;
+
+	optional string BatchNO =5;
+	optional  int32 CurFileIndex=6;
+	optional  string  CurFileName=7;
+	repeated string ProcessingFileIds = 8;	/* 已提交文件，用于断点续传模式 */
+	
+	optional MsgBatchInfo BatchInfo=9;
+}
+
+
+
+/*通用的文件定义，这个是文件内容的定义*/
+
+//message MsgRawData
+//{
+//	required string Author=1;
+//	required string Version = 2;
+//	required int32  CreateDate=3;
+//	required int32  CreateTime=4;
+//	optional  string  Remark = 5;  /*附注*/
+
+//	required string DataName = 8; /*在文件里这个是文件名*/
+//	required string RawDataMD5  = 10	;   
+//	required int32  RawDataLength = 12;
+//	required  bytes Data = 14;  /*在系统中FileName是会不断的变化的，但FileMD5是不变的*/
+	
+//}
+
+
+/*批注定义*/
+message MsgNoteInfo
+{
+	
+	required string Author1=1;
+	required int32 Version2 = 2;
+	//required int32  CreateDate3=3;
+	required string CreateTime4=4;
+	optional  string  Remark5 = 5;  /*附注*/
+
+
+	required string NoteName6 = 6;
+	required string NoteMsg7 = 7;
+	required string FileLink8 = 8;		/**/
+	required string FileMD5Link9 = 9;	/*如果修改了图片文件，则原来的批注都无效，否则容易出现批注位置错误的情况*/
+	required EOperType Operation10 = 10;
+	
+
+	required int32 RegionX11 = 11;
+	required int32 RegionY12 = 12;
+	required int32 RegionWidth13 = 13;
+	required int32 RegionHeight14 = 14;	
+	optional  bool Editable15 = 15;
+
+}
+
+
+
+message MsgFileInfo
+{
+	
+	required string Author1=1;
+	required int32  Version2 = 2;
+	//required int32  CreateDate3=3;
+	required string  CreateTime4=4;
+	optional  string  Remark5 = 5;  /*附注*/
+
+
+	required string FileName6 = 6; /*不包含文件路径*/
+	optional string FileURL7 = 7;  /*上传的时候，这个字段为空，下载的时候， 如果是分文件下载的方式，则服务器填充这个字段,由于fileurl可能不包含文件名的任何信息，因此这个字段保留*/
+	required string FileNO8 = 8;  /*文件序号*/
+	required string FileMD59 = 9;
+	required int32 FileSize10 = 10;
+	optional  bytes Data11 = 11;  /*在系统中FileName是会不断的变化的，但FileMD5是不变的*/
+	
+	required EOperType Operation12 = 12;
+
+	required string BatchNO13 = 13;
+	
+	required string Category14 = 14; /*分类，支持目录层次，以.作为层次分割点*/
+	
+	
+	repeated MsgNoteInfo Notes15= 15;
+
+	optional string exFaPiaoCode16	=	16;	/*文件业务类型*/
+	
+	optional  bool Editable18 = 18;
+	optional int32 exShenheResult19=19;	/*审核阶段，审核意见*/
+	optional string exShenheRemark20=20;	/*审核阶段，审核备注*/
+	optional string LocalPath21=21; /**/
+}
+/*查询批次*/
+message MsgQueryBatchInfo
+{
+	required string User1 = 1;
+	
+	required string Password2 =2; 
+	required string OrgID3 = 3;
+	required int32 QueryDate4 = 4;
+	required int32 QueryTime5 = 5;
+
+	required string BatchNO6 = 6;
+	required int32  Version7 = 7;
+
+	optional string SourceIP42 = 42 ;/*来源IP-邮政集团*/
+	optional string MachineID44 = 44; /*客户端ID*/
+}
+
+message MsgOptionQueryBatchs
+{
+	required string User1 = 1;
+	required string Password2 = 2;
+	//optional Depart
+}
+message MsgRspOptionQueryBatchs
+{
+	repeated string BatchNOs2 = 2;
+}
+
+message MsgBatchInfo
+{
+	
+	required string Author1=1;
+	required int32 Version2 = 2;
+	//required int32  CreateDate3=3;
+	required string  CreateTime4=4;
+	optional  string  Remark5 = 5;  /*附注*/
+
+	required string BatchNO6 = 6;
+	optional  string  Title7 = 7; /*额外信息，*/
+
+	
+	required EOperType Operation8 = 8;
+	repeated MsgFileInfo FileInfos9 = 9;
+
+	optional string OrgID10 = 10;
+	
+	optional string BusiSysId11 = 11;/*业务编号-邮政集团*/
+	optional string BusiTypeId12 = 12;/*业务类型-邮政集团*/
+	
+	optional string BarCode13 = 13 ;/*条形码-邮政集团*/
+	optional string SourceIP14 = 14 ;/*来源IP-邮政集团*/
+	optional string MachineID15 = 15; /*客户端ID*/
+	required string Password16 = 16; /*使用的帐号密码, 对于上传，是需要传送用户密码进行授权的*/
+	optional MsgResultInfo ResultInfo17 = 17; /*客户端请求批次,服务器可以在次字段段直接填写错误内容*/
+	optional  bool Editable18 = 18;
+	optional int32 exShenheResult19=19;	/*审核阶段，审核意见*/
+	optional string exShenheRemark20=20;	/*审核阶段，审核备注*/
+	required EBatchStatus status=21;
+	//optional ETransMode TransMode=21;
+}
+
+
+//message MsgResponsInfo
+//{
+//	optional MsgResultInfo ResultInfo = 1; /*服务器往客户端返回错误的信息,也采用probuff进行*/
+//}
+
+
+message MsgAccountInfo
+{
+	required string User1 = 1;
+	required string Password2 = 2;
+	required string OrgID3=3;
+}
+
+
+
+message MsgBatchHisQry
+{
+   required string User1 =1;
+   required string Password2 = 2;
+   required string BatchNO3 =3;
+
+}
+message MsgBatchHisRsp
+{
+	repeated MsgBatchInfo batchs1 =1;
+}
+
+
+/************查询服务器列表,注***********/
+message MsgServersListQry
+{}
+message MsgServersListRsp
+{
+repeated string serverlist1 =1;
+}
+/************查询服务器信息，主要用来查询服务器负载****************/
+message MsgServerInfoQry
+{
+}
+message MsgServerInfoRsp
+{
+   required int32 Burden1 =1;
+}

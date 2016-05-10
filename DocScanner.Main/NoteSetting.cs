@@ -28,7 +28,7 @@ namespace DocScanner.Main
         {
             get
             {
-                Color color = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("UISetting", "UINoteColor").ToColor();
+                Color color = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("UISetting", "UINoteColor").ToColor();
                 bool flag = color == Color.FromArgb(0, 0, 0, 0);
                 if (flag)
                 {
@@ -38,7 +38,7 @@ namespace DocScanner.Main
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("UISetting", "UINoteColor", value.ToArgb().ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UISetting", "UINoteColor", value.ToArgb().ToString());
             }
         }
 
@@ -47,7 +47,7 @@ namespace DocScanner.Main
         {
             get
             {
-                Color color = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("ImagePane", "SelectPenColor").ToColor();
+                Color color = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("ImagePane", "SelectPenColor").ToColor();
                 bool flag = color == Color.FromArgb(0, 0, 0, 0);
                 if (flag)
                 {
@@ -57,7 +57,7 @@ namespace DocScanner.Main
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("ImagePane", "SelectPenColor", value.ToArgb().ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("ImagePane", "SelectPenColor", value.ToArgb().ToString());
             }
         }
 
@@ -66,7 +66,7 @@ namespace DocScanner.Main
         {
             get
             {
-                float num = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("ImagePane", "NoteFontSize").ToFloat();
+                float num = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("ImagePane", "NoteFontSize").ToFloat();
                 bool flag = num == 0f;
                 if (flag)
                 {
@@ -76,7 +76,7 @@ namespace DocScanner.Main
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("ImagePane", "NoteFontSize", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("ImagePane", "NoteFontSize", value.ToString());
                 this._notefont = new Font("", value);
             }
         }

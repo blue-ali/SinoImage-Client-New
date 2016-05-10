@@ -40,22 +40,22 @@ namespace DocScanner.Main
 
         private void tspBtn_NewBatch_Click(object sender, EventArgs e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NewBatch", null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("NewBatch", null);
         }
 
         private void tspBtn_ClearBatchs_Click(object sender, EventArgs e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("ClearBatchs", null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("ClearBatchs", null);
         }
 
         private void tspBtn_Filter_Click(object sender, EventArgs e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("FilterImg", null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("FilterImg", null);
         }
 
         private void tspBtn_View_Click(object sender, EventArgs e)
         {
-            LibCommon.AppContext.Cur.GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("ChangeView", null);
+            LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("ChangeView", null);
         }
 
         protected override void Dispose(bool disposing)

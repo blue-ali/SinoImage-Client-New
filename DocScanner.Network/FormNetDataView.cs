@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
 	public class FormNetDataView : Form
 	{

@@ -1,4 +1,4 @@
-﻿using DocScaner.Network;
+﻿using DocScanner.Network;
 using DocScanner.Bean;
 using DocScanner.LibCommon;
 using System;
@@ -149,7 +149,7 @@ namespace DocScanner.Main
 					this.label3.Text = arg.Arg.Msg;
 					this.label3.ForeColor = Color.Red;
 					this.radWaitingBar1.EndWaiting();
-					LibCommon.AppContext.Cur.MS.LogError("下载失败" + arg.Arg.Msg);
+					LibCommon.AppContext.GetInstance().MS.LogError("下载失败" + arg.Arg.Msg);
 					this.SetUIStatus(true);
 				}
 				bool flag3 = arg.Arg.Status == ENetTransferStatus.OnProgress;
@@ -163,7 +163,7 @@ namespace DocScanner.Main
 					this.radWaitingBar1.WaitingIndicatorWidth = 0;
 					this.radWaitingBar1.EndWaiting();
 					this.label3.Text = "下载成功" + arg.Arg.Msg;
-					LibCommon.AppContext.Cur.MS.LogSuccess("下载成功");
+					LibCommon.AppContext.GetInstance().MS.LogSuccess("下载成功");
 					this._downloadgroup.Batchs.Add(this._transfer.GetDownloadBatchAysncResult());
 					this.SetUIStatus(true);
 				}
@@ -172,8 +172,7 @@ namespace DocScanner.Main
 
 		public void btn_Download_Click(object sender, EventArgs e)
 		{
-			bool flag = string.IsNullOrEmpty(this.textBox1.Text);
-			if (!flag)
+			if (!string.IsNullOrEmpty(this.textBox1.Text))
 			{
 				this._transfer = INetTransferFactory.GetNetTransfer();
 				this._transfer.OnNotify -= new EventHandler<TEventArg<NetTransferNotifyMsg>>(this.OnTransferNotify);

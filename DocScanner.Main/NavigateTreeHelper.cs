@@ -1,17 +1,12 @@
-﻿using DocScaner.Common;
-using DocScanner.Bean;
+﻿using DocScanner.Bean;
 using DocScanner.Bean.pb;
-using DocScanner.ImgUtils;
 using DocScanner.LibCommon;
-using DocScanner.Main;
-using Logos.DocScaner.Common;
+using DocScanner.LibCommon.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -19,26 +14,13 @@ namespace DocScanner.Main
 {
     public static class NavigateTreeHelper
     {
-        //      [CompilerGenerated]
-        //      [Serializable]
-        //      private sealed class <>c
-        //{
-        //	public static readonly NavigateTreeHelper.<>c<>9 = new NavigateTreeHelper.<>c();
-
-        //      public static Func<RadTreeNode, NFileInfo> <>9__2_0;
-
-        //	internal NFileInfo<CreateTmpNBatchInfo> b__2_0(RadTreeNode o)
-        //      {
-        //          return o.Tag as NFileInfo;
-        //      }
-        //}
 
         [Category("用户界面定义"), Description("树节点字体大小")]
         public static float Lev1NodeFontSize
         {
             get
             {
-                string configParamValue = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("LeftPaneSetting", "Lev1NodeFontSize");
+                string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "Lev1NodeFontSize");
                 if (string.IsNullOrEmpty(configParamValue))
                 {
                     return 14f;
@@ -47,7 +29,7 @@ namespace DocScanner.Main
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("LeftPaneSetting", "Lev1NodeFontSize", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "Lev1NodeFontSize", value.ToString());
             }
         }
 
@@ -56,7 +38,7 @@ namespace DocScanner.Main
         {
             get
             {
-                string configParamValue = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("LeftPaneSetting", "Lev1NodeFont");
+                string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "Lev1NodeFont");
                 if (string.IsNullOrEmpty(configParamValue))
                 {
                     return "宋体";
@@ -65,16 +47,15 @@ namespace DocScanner.Main
             }
             set
             {
-                LibCommon.AppContext.Cur.Cfg.SetConfigParamValue("LeftPaneSetting", "Lev1NodeFont", value.ToString());
+                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "Lev1NodeFont", value.ToString());
             }
         }
-
 
         private static int ThumbImgSize
         {
             get
             {
-                string configParamValue = LibCommon.AppContext.Cur.Cfg.GetConfigParamValue("LeftPaneSetting", "ThumbImgSize");
+                string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "ThumbImgSize");
                 bool flag = string.IsNullOrEmpty(configParamValue);
                 int result;
                 if (flag)
@@ -88,7 +69,6 @@ namespace DocScanner.Main
                 return result;
             }
         }
-
 
         public static RadTreeNode CreateBatchNode(RadTreeView tree, NBatchInfo batchInfo, RadContextMenu contextMenu)
         {
@@ -136,21 +116,6 @@ namespace DocScanner.Main
             return categoryNode;
         }
 
-        //public static void UpdateCategoryNodeTitle(this RadTreeView)
-        //{
-            //categoryNode.Tag = categoryInfo;
-            //NCategoryInfo categoryInfo = new NCategoryInfo();
-            //categoryInfo.CategoryName = categoryNode.Text;
-            //categoryNode.Tag = categoryInfo;
-            //categoryNode.Image = Properties.Resources.CatalogIcon.GetThumbnailImage(40, 40, null, IntPtr.Zero);
-            //categoryNode.ItemHeight = 50;
-            //categoryNode.Font = new Font(Lev1NodeFont, 12);
-            //categoryNode.ShowCheckBox = false;
-            //categoryNode.Selected = true;
-            //categoryNode.TextAlignment = ContentAlignment.MiddleCenter;
-            //categoryNode.ContextMenu = contextMenu;
-            //return categoryNode;
-        //}
 
         public static void UpdateBatchNodeTitle(this RadTreeView radTreeView, RadTreeNode node)
         {
@@ -186,7 +151,43 @@ namespace DocScanner.Main
             return list;
         }
 
-        public static RadTreeNode CreateFileNode(RadTreeNode parentNode, NFileInfo fileInfo, RadContextMenu contextMenu)
+        /// <summary>
+        /// 创建来自本地采集文件的节点，根据BatchInfo的LastNo生成FileNo
+        /// </summary>
+        /// <param name="parentNode"></param>
+        /// <param name="fileInfo"></param>
+        /// <param name="contextMenu"></param>
+        /// <param name="batchInfo"></param>
+        /// <returns></returns>
+        public static RadTreeNode CreateFileNodeFromLocal(RadTreeNode parentNode, NFileInfo fileInfo, RadContextMenu contextMenu, NBatchInfo batchInfo)
+        {
+            fileInfo.BatchNO = batchInfo.BatchNO;
+            batchInfo.LastNO++;
+            fileInfo.FileNO = batchInfo.LastNO.ToString();
+
+            RadTreeNode fileNode = parentNode.Nodes.Add(fileInfo.DisplayName);
+            fileNode.SetImageIcon(fileInfo.LocalPath, true);
+            //node2.Image = ImageHelper.LoadSizedImage(info.LocalPath, this.GetSetting().ThumbImgSize, this.GetSetting().ThumbImgSize);
+            fileNode.Tag = fileInfo;
+            fileNode.Selected = true;
+            fileNode.ToolTipText = fileInfo.ToUITipString();
+            fileNode.ContextMenu = contextMenu;
+            fileNode.ItemHeight = ThumbImgSize;
+            fileNode.Checked = true;
+            fileNode.TextAlignment = ContentAlignment.MiddleCenter;
+
+            return fileNode;
+        }
+
+        /// <summary>
+        /// 创建来自服务器文件的节点，根据FileNo更新BatchInfo的LastNo
+        /// </summary>
+        /// <param name="parentNode"></param>
+        /// <param name="fileInfo"></param>
+        /// <param name="contextMenu"></param>
+        /// <param name="batchInfo"></param>
+        /// <returns></returns>
+        public static RadTreeNode CreateFileNodeFromServer(RadTreeNode parentNode, NFileInfo fileInfo, RadContextMenu contextMenu, NBatchInfo batchInfo)
         {
             RadTreeNode fileNode = parentNode.Nodes.Add(fileInfo.DisplayName);
             fileNode.SetImageIcon(fileInfo.LocalPath, true);
@@ -198,17 +199,22 @@ namespace DocScanner.Main
             fileNode.ItemHeight = ThumbImgSize;
             fileNode.Checked = true;
             fileNode.TextAlignment = ContentAlignment.MiddleCenter;
-            //node.PropertyChanged += new PropertyChangedEventHandler(this.FileNode_PropertyChanged);
+
+            int fileNo = fileInfo.FileNO.ToInt();
+            if (batchInfo.LastNO < fileNo)
+            {
+                batchInfo.LastNO = fileNo;
+            }
             return fileNode;
         }
 
         public static int GetChildNodesCount(RadTreeNode node)
         {
+            int num = 0;
             if (((node == null) || (node.Nodes == null)) || (node.Nodes.Count == 0))
             {
-                return 0;
+                return num;
             }
-            int num = 0;
             foreach (RadTreeNode node2 in node.Nodes)
             {
                 if (node2.Tag is NCategoryInfo)
@@ -221,15 +227,6 @@ namespace DocScanner.Main
                 }
             }
             return num;
-        }
-
-        public static void CreateFileNodes(RadTreeNode parentNode, List<NFileInfo> fileInfos, RadContextMenu contextMenu)
-        {
-            foreach(NFileInfo fileInfo in fileInfos)
-            {
-                CreateFileNode(parentNode, fileInfo, contextMenu);
-            }
-            
         }
 
         private static void FileNode_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -269,7 +266,6 @@ namespace DocScanner.Main
                 BatchNO = (node.Tag as NBatchInfo).BatchNO,
                 Author = AbstractSetting<AccountSetting>.CurSetting.AccountName
             };
-            //info.FileInfos.AddRange(node.GetChildren().SelectNFileNode().Select<RadTreeNode, NFileInfo>(<> c.<> 9__2_0 ?? (<> c.<> 9__2_0 = new Func<RadTreeNode, NFileInfo>(<> c.<> 9.< CreateTmpNBatchInfo > b__2_0))));
             info.FileInfos.AddRange(node.GetChildren().SelectNFileNode().Select<RadTreeNode, NFileInfo>(o => o.Tag as NFileInfo));
             return info;
 
@@ -279,8 +275,7 @@ namespace DocScanner.Main
         {
             if (showimage)
             {
-                bool flag = ImgUtils.ImageHelper.IsImgExt(fname);
-                if (flag)
+                if (ImgUtils.ImageHelper.IsImgExt(fname))
                 {
                     node.Image = ImgUtils.ImageHelper.LoadSizedImage(fname, NavigateTreeHelper.ThumbImgSize, NavigateTreeHelper.ThumbImgSize, "");
                 }
@@ -301,16 +296,6 @@ namespace DocScanner.Main
         /// <param name="node">要删除的节点</param>
         public static void RemoveCategoryNode(this RadTreeNode node)
         {
-            /*foreach (RadTreeNode childNode in node.Nodes)
-            {
-                if(childNode.Tag is NFileInfo)
-                {
-                    RemovceFileNode(childNode);
-                }else if (childNode.Tag is NCategoryInfo)   //如果
-                {
-                    RemoveCategoryNode(childNode);
-                }
-            }*/
             //所属批次是从本地添加，不是来自服务器，可以直接删除分类节点
             if((node.GetBatchNode().Tag as NBatchInfo).Operation == EOperType.eADD)
             {
@@ -382,33 +367,6 @@ namespace DocScanner.Main
             {
                 RemovceFileNode(node);
             }
-            /*
-            if (!node.IsFromServer())   
-            {
-                if(node.Tag is NBatchInfo)
-                {
-                    node.Remove();
-                }
-                else if(node.Tag is NFileInfo)
-                {
-                    NBatchInfo batchInfo = node.GetBatchNode().Tag as NBatchInfo;
-                    batchInfo.FileInfos.Remove(node.Tag as NFileInfo);
-                    node.Remove();
-                }
-                else if(node.Tag is NCategoryInfo)
-                {
-                    //TODO 删除分类下所有文件
-                }
-            }
-            else if ((node.Tag as NFileInfo).Operation == EOperType.eADD)
-            {
-                node.Remove();
-            }
-            else
-            {
-                node.Visible = false;
-                (node.Tag as NFileInfo).Operation = EOperType.eDEL;
-            }*/
         }
         /// <summary>
         /// 根据FileInfo更新节点
@@ -417,24 +375,23 @@ namespace DocScanner.Main
         /// <param name="fileInfo"></param>
         public static RadTreeNode UpdateFileNode(this RadTreeNode node, NFileInfo fileInfo)
         {
-            //NFileInfo tag = selectedNode.Tag as NFileInfo;
-            //tag.LocalPath = FilePath;
-            //tag.FileName = FileHelper.GetFileName(FilePath);
             node.ToolTipText = fileInfo.ToUITipString();
             node.Text = fileInfo.DisplayName;
             node.SetImageIcon(fileInfo.LocalPath, true);
-            //if ((node.GetBatchNode().Tag as NBatchInfo).Operation != EOperType.eADD)
-            //{
-            //    fileInfo.Operation = EOperType.eUPD;
-            //}
             if((node.Tag as NFileInfo).Operation != EOperType.eADD)
             {
                 fileInfo.Operation = EOperType.eUPD;
             }
+            fileInfo.FileNO = (node.Tag as NFileInfo).FileNO;
             node.Tag = fileInfo;
             return node;
         }
 
+        /// <summary>
+        /// 更新文件节点的目录信息，提交批次时调用
+        /// </summary>
+        /// <param name="filenode"></param>
+        /// <returns></returns>
         public static string UpdateFileNodeCatInfo(this RadTreeNode filenode)
         {
             NFileInfo nFileInfo = filenode.Tag as NFileInfo;

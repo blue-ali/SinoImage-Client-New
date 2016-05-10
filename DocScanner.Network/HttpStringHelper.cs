@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
 	public static class HttpStringHelper
 	{

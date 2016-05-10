@@ -47,12 +47,11 @@ namespace DocScanner.Main
             }
             set
             {
-                bool flag = this._curfileinfo != value;
-                if (flag)
+                if (this._curfileinfo != value)
                 {
                     this._curfileinfo = value;
-                    string ext = (this._curfileinfo == null) ? null : this._curfileinfo.LocalPath;
-                    IUCView customView = ExtAssociation.GetCustomView(ext);
+                    string filePath = (this._curfileinfo == null) ? null : this._curfileinfo.LocalPath;
+                    IUCView customView = ExtAssociation.GetCustomView(filePath);
                     bool flag2 = customView != null;
                     if (flag2)
                     {

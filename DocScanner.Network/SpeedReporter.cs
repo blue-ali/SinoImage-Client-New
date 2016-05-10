@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
 	public class SpeedReporter : IDisposable
 	{

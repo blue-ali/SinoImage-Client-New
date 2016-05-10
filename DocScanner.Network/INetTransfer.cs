@@ -1,7 +1,7 @@
 using DocScanner.Bean;
 using System;
 
-namespace DocScaner.Network
+namespace DocScanner.Network
 {
     public interface INetTransfer : IDisposable
 	{
@@ -11,7 +11,7 @@ namespace DocScaner.Network
 
 		NBatchInfo GetDownloadBatchAysncResult();
 
-		NResultInfo UploadBatch(NBatchInfo info);
+		void UploadBatch(NBatchInfo info);
 
 		NResultInfo GetUploadBatchAsyncResult();
 
