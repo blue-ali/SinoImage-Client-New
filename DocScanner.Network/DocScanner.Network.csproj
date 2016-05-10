@@ -84,7 +84,8 @@
     <Compile Include="INetTransfer.cs" />
     <Compile Include="INetTransferFactory.cs" />
     <Compile Include="LocalFileTransfer.cs" />
-    <Compile Include="NetSetting.cs" />
+    <Compile Include="Settings\ETransMode.cs" />
+    <Compile Include="Settings\NetSetting.cs" />
     <Compile Include="NetTransferNotifyMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpeedReporter.cs" />

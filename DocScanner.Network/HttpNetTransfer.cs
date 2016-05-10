@@ -13,8 +13,6 @@ namespace DocScanner.Network
 	{
 		private NBatchInfo _downloadresult;
 
-		//private NResultInfo _uploadresult;
-
 		private NBatchHisRsp _batchhisrspresult;
 
 		public event EventHandler<TEventArg<NetTransferNotifyMsg>> OnNotify;
@@ -29,8 +27,6 @@ namespace DocScanner.Network
 
 		public NBatchInfo DownloadBatch(NQueryBatchInfo queryinfo)
 		{
-			//NBatchInfo nBatchInfo = new NBatchInfo();
-			//nBatchInfo.BatchNO = queryinfo.BatchNO;
 			NResultInfo resultInfo = new NResultInfo();
 			this._downloadresult = null;
 			string url = HttpUtil.GetHttpGetBatchURL(queryinfo.BatchNO);
@@ -43,16 +39,6 @@ namespace DocScanner.Network
 			}
 			catch (Exception ex)
 			{
-				//this.ReportMsg(ENetTransferStatus.Error, queryinfo.BatchNO, ex.Message, 0.0, 0.0);
-				//nBatchInfo.ResultInfo = new NResultInfo();
-				//nBatchInfo.ResultInfo.Status = EResultStatus.eFailed;
-				//nBatchInfo.ResultInfo.Msg = ex.Message;
-				//if (ex.Message == "Unable to connect to the remote server")
-				//{
-				//	nBatchInfo.ResultInfo.Msg = "远程服务器未启动";
-				//}
-				//nBatchInfo.ResultInfo = resultInfo;
-
                 this.ReportMsg(ENetTransferStatus.Error, queryinfo.BatchNO, ExceptionHelper.GetFirstException(ex).Message, 0.0, 0.0);
             }
 			return null;

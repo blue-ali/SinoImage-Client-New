@@ -1,5 +1,6 @@
 using DocScanner.Bean;
 using DocScanner.LibCommon;
+using DocScanner.Network.Settings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,15 +91,23 @@ namespace DocScanner.Network
 		}
 
         [Category("网络设置"), Description("传输模式")]
-        public string TransMode
+        public ETransMode TransMode
         {
             get
             {
-                return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "TransMode");
+                string configValue = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "TransMode");
+                if (string.IsNullOrEmpty(configValue))
+                {
+                    return ETransMode.FULL;
+                }else
+                {
+                    return (ETransMode)Enum.Parse(typeof(ETransMode), configValue);
+                }
+                //return AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "TransMode");
             }
             set
             {
-                AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "TransMode", value);
+                AppContext.GetInstance().Config.SetConfigParamValue("NetSetting", "TransMode", value.ToString());
             }
         }
 

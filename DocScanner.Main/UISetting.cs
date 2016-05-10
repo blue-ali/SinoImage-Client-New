@@ -24,8 +24,7 @@ namespace DocScanner.Main
             }
             set
             {
-                bool flag = value != this.Theme;
-                if (flag)
+                if (value != this.Theme)
                 {
                     LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UISetting", "CurTheme", value);
                     this.UpdateSkin();

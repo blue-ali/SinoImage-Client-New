@@ -10,10 +10,9 @@ namespace DocScanner.Bean
 			get
 			{
 				string configParamValue = AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "FileNodeTitleType");
-				bool flag = string.IsNullOrEmpty(configParamValue);
 				ENFileNodeTitleType result;
-				if (flag)
-				{
+				if (string.IsNullOrEmpty(configParamValue))
+                {
 					result = ENFileNodeTitleType.FileName;
 				}
 				else

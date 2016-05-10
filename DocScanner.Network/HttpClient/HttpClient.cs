@@ -95,7 +95,7 @@ namespace DocScanner.Network.Http
         //return !string.IsNullOrWhiteSpace(input) ? Regex.Match(input, @"http://\w*\.directupload\.net/images/\d*/\w*\.[a-z]{3}").Value : null;
 
         /// <summary>
-        /// 断点续传方式提交批次，上传可以，修改删除待考虑
+        /// 断点续传方式提交批次，通信两次，第一次提交批次和文件信息，第二次提交文件数据
         /// </summary>
         /// <param name="batchInfo"></param>
         /// <returns></returns>
@@ -129,27 +129,17 @@ namespace DocScanner.Network.Http
             resultInfo.EnsureResultSuccess();
         }
 
+        /// <summary>
+        /// 全批次上传，只通信一次，批次信息+批次数据
+        /// </summary>
+        /// <param name="batchInfo"></param>
         public static void FullUpload(NBatchInfo batchInfo)
         {
-            string url = HttpUtil.GetHttpBrokeUploadBatchURL();
+            string url = HttpUtil.GetHttpFullUploadBatchURL();
             byte[] batchBytes = batchInfo.ToPbMsgWithData().ToByteArray();
             //提交批次信息
             byte[] resultBytes = PostWithContent(url, batchBytes, batchInfo.BatchNO).Result;
             NResultInfo resultInfo = NResultInfo.FromNetMsg(MsgResultInfo.ParseFrom(resultBytes));
-            resultInfo.EnsureResultSuccess();
-            IList<string> processingFileIds = resultInfo.ProcessingFileIds;
-
-            batchInfo.FileInfos.Where(x => processingFileIds.Contains(x.FileNO));   //选出处理中的文件继续提交
-            //提交剩余文件
-            //TODO 剩余文件一次提交
-            foreach (NFileInfo fileInfo in batchInfo.FileInfos)
-            {
-                url = HttpUtil.GetHttpBrokeUploadFileURL();
-                batchBytes = fileInfo.ToPBMsg().ToByteArray();
-                resultBytes = PostWithContent(url, batchBytes, batchInfo.BatchNO).Result;
-                resultInfo = NResultInfo.FromNetMsg(MsgResultInfo.ParseFrom(resultBytes));
-                resultInfo.EnsureResultSuccess();
-            }
         }
 
         public static NBatchInfo GetBatch(string batchNo)

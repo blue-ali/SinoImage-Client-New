@@ -49,7 +49,7 @@ namespace DocScanner.Network
 
 		public static string GetHttpGetBatchURL(string batchNo)
         {
-            string url = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts") + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "GetBatchUrl") + "?batchNo=" + batchNo;
+            string url = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "HttpServerHosts") + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "GetBatchUrl") + "?batchNo=" + batchNo;
 			if (!url.StartsWith("http://"))
 			{
                 url = "http://" + url;
@@ -59,7 +59,7 @@ namespace DocScanner.Network
         
 		public static string GetHttpBrokeUploadBatchURL()
 		{
-            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "HttpServerHosts");
             string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "SubmitBrokeUrl");
 			if (!url.StartsWith("http://"))
 			{
@@ -70,7 +70,7 @@ namespace DocScanner.Network
 
         public static string GetHttpBrokeUploadFileURL()
         {
-            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "HttpServerHosts");
             string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "SubmitBrokeFileUrl");
             if (!url.StartsWith("http://"))
             {
@@ -81,7 +81,7 @@ namespace DocScanner.Network
 
         public static string GetHttpFinishBrokeBatchURL(string batchNo)
         {
-            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "HttpServerHosts");
             string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "FinishBrokeBatchUrl") + "?batchNo=" + batchNo;
             if (!url.StartsWith("http://"))
             {
@@ -90,9 +90,9 @@ namespace DocScanner.Network
             return url;
         }
 
-        public static string GetHttpFullUploadURL()
+        public static string GetHttpFullUploadBatchURL()
         {
-            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "ServerHosts");
+            string host = AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "HttpServerHosts");
             string url = host + AppContext.GetInstance().Config.GetConfigParamValue("NetSetting", "SubmitFullUrl");
             if (!url.StartsWith("http://"))
             {
