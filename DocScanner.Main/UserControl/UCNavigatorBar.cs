@@ -33,8 +33,20 @@ namespace DocScanner.Main
         private RadTreeView radTreeView1;
 
         // Events
-        //[field: CompilerGenerated, DebuggerBrowsable(0)]
         public event EventHandler<TEventArg<RadTreeNode>> OnItemSelectChanged;
+
+        public delegate void NodePropertyEventHandler(Object sender, NodePropertyEventArgs e);
+        public event NodePropertyEventHandler nodeProperty;
+
+        public class NodePropertyEventArgs: EventArgs
+        {
+            private RadTreeNode node;
+
+            public NodePropertyEventArgs(RadTreeNode node)
+            {
+                this.node = node;
+            }
+        }
 
         // Methods
         public UCNavigatorBar()

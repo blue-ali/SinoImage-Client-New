@@ -71,12 +71,13 @@
     <Compile Include="BubbleBarElement.cs" />
     <Compile Include="BubbleBarLayout.cs" />
     <Compile Include="BubbleBarMouseOverBehavior.cs" />
-    <Compile Include="BusinessSetting.cs" />
-    <Compile Include="AppSetting.cs" />
-    <Compile Include="AccountSetting.cs" />
+    <Compile Include="Settings\BusinessSetting.cs" />
+    <Compile Include="Settings\AppSetting.cs" />
+    <Compile Include="Settings\AccountSetting.cs" />
     <Compile Include="NBatchInfoGroup.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Settings\SummaryPropertiesSetting.cs" />
     <Compile Include="UserControl\UCPictureView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,8 +92,8 @@
     </Compile>
     <Compile Include="UploadedBatchLogger.cs" />
     <Compile Include="UploadedBatchInfo.cs" />
-    <Compile Include="UpdateSetting.cs" />
-    <Compile Include="UISetting.cs" />
+    <Compile Include="Settings\UpdateSetting.cs" />
+    <Compile Include="Settings\UISetting.cs" />
     <Compile Include="UCWorkPane.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -188,7 +189,7 @@
     <Compile Include="ShowRegionUserCMD.cs" />
     <Compile Include="ShowNodePropertyCMD.cs" />
     <Compile Include="ServerIniConfig.cs" />
-    <Compile Include="NoteSetting.cs" />
+    <Compile Include="Settings\NoteSetting.cs" />
     <Compile Include="NodeDef.cs" />
     <Compile Include="NavigateTreeHelper.cs" />
     <Compile Include="IQueryBatchNO.cs" />
@@ -200,7 +201,7 @@
     <Compile Include="InsuranceData.cs" />
     <Compile Include="GroupItems.cs" />
     <Compile Include="GroupItem.cs" />
-    <Compile Include="FunctionSetting.cs" />
+    <Compile Include="Settings\FunctionSetting.cs" />
     <Compile Include="Forms\FormWait.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,9 +238,9 @@
     </Compile>
     <Compile Include="ExtAssociation.cs" />
     <Compile Include="ExFunctionsRegister.cs" />
-    <Compile Include="EmailSetting.cs" />
+    <Compile Include="Settings\EmailSetting.cs" />
     <Compile Include="DurTimeJob.cs" />
-    <Compile Include="DebugSetting.cs" />
+    <Compile Include="Settings\DebugSetting.cs" />
     <Compile Include="CmdDispatcher.cs" />
     <Compile Include="UserControl\UCBench.cs">
       <SubType>UserControl</SubType>
@@ -274,7 +275,7 @@
     <EmbeddedResource Include="UserControl\UCPictureView.zh-CN.resx">
       <DependentUpon>UCPictureView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="AppConfig.ini" />
+    <None Include="Settings\AppConfig.ini" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -286,7 +287,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Settings\App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DocScaner.CodeUtils\DocScanner.CodeUtils.csproj">

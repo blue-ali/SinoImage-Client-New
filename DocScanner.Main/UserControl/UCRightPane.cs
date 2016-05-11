@@ -38,7 +38,7 @@ namespace DocScanner.Main
             tabPage.Text = this._uctoolbar.Title;
             tabPage.Controls.Add(this._uctoolbar);
             this._tabctrl.TabPages.Add(tabPage);
-            this._ucsum = new UCSummary();
+            this._ucsum = UCSummary.GetInstance();
             this._ucsum.Dock = DockStyle.Fill;
             TabPage tabPage2 = new TabPage();
             tabPage2.Text = this._ucsum.Title;
@@ -67,13 +67,7 @@ namespace DocScanner.Main
         public void OnNodeChanged(RadTreeNode node, bool InvokedSumUI)
         {
             this._ucsum.ShowNodeInfo(node, InvokedSumUI);
-            bool flag = node != null && node.Tag is NFileInfo && (node.Tag as NFileInfo).HasExShenheInfo();
-            if (flag)
-            {
-                this.ShowShenHepage();
-            }
-            bool flag2 = node != null && node.Tag is NBatchInfo && (node.Tag as NBatchInfo).HasExShenheInfo();
-            if (flag2)
+            if (node != null && node.Tag is NFileInfo && (node.Tag as NFileInfo).HasExShenheInfo())
             {
                 this.ShowShenHepage();
             }

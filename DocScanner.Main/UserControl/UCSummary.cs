@@ -1,53 +1,18 @@
 ﻿using DocScanner.Bean;
 using DocScanner.LibCommon;
+using DocScanner.Main.Setting;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
 namespace DocScanner.Main
 {
-    public class UCSummary : UserControl, IHasIPropertiesSetting
+    public class UCSummary : UserControl//, IHasIPropertiesSetting
     {
-        public class NestIPropertiesSetting : IPropertiesSetting
-        {
-            private UCSummary _summary;
-
-            [Browsable(false)]
-            public string Name
-            {
-                get
-                {
-                    return "界面设置-详细信息框";
-                }
-            }
-
-            public bool ProperGridVisialbe
-            {
-                get
-                {
-                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("RightPropertyPane", "ProperGridVisialbe").ToBool();
-                }
-                set
-                {
-                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("RightPropertyPane", "ProperGridVisialbe", value.ToString());
-                }
-            }
-
-            public NestIPropertiesSetting(UCSummary ucsummary)
-            {
-                this._summary = ucsummary;
-            }
-        }
 
         private RadTreeNode _selectedNode;
-
-        private UCSummary.NestIPropertiesSetting setting;
 
         private IContainer components = null;
 
@@ -63,6 +28,8 @@ namespace DocScanner.Main
 
         private Button btnReflash;
 
+        private readonly static UCSummary instance = new UCSummary();
+
         public string Title
         {
             get
@@ -71,12 +38,17 @@ namespace DocScanner.Main
             }
         }
 
-        public UCSummary()
+        private UCSummary()
         {
             this.InitializeComponent();
-            this.propertyGrid1.Visible = this.GetSetting().ProperGridVisialbe;
+            this.propertyGrid1.Visible = SummaryPropertiesSetting.GetInstance().ProperGridVisialbe;
             this.propertyGrid1.Enabled = AbstractSetting<FunctionSetting>.CurSetting.AllowRightPanePropertyGrid;
             this.btnReflash.Click += new EventHandler(this.Button1_Click);
+        }
+
+        public static UCSummary GetInstance()
+        {
+            return instance;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -87,8 +59,7 @@ namespace DocScanner.Main
         public void ShowNodeInfo(RadTreeNode node, bool InvockUI)
         {
             this._selectedNode = node;
-            bool flag = this._selectedNode != null;
-            if (flag)
+            if (this._selectedNode != null)
             {
                 this._selectedNode.UpdateNodeNInfo();
                 this.propertyGrid1.SelectedObject = this._selectedNode.Tag;
@@ -141,20 +112,10 @@ namespace DocScanner.Main
             }
         }
 
-        public UCSummary.NestIPropertiesSetting GetSetting()
-        {
-            bool flag = this.setting == null;
-            if (flag)
-            {
-                this.setting = new UCSummary.NestIPropertiesSetting(this);
-            }
-            return this.setting;
-        }
-
-        IPropertiesSetting IHasIPropertiesSetting.GetSetting()
-        {
-            return this.GetSetting();
-        }
+        //IPropertiesSetting IHasIPropertiesSetting.GetSetting()
+        //{
+        //    return this.GetSetting();
+        //}
 
         protected override void Dispose(bool disposing)
         {

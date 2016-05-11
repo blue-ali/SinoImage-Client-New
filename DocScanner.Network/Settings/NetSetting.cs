@@ -12,6 +12,19 @@ namespace DocScanner.Network
 {
     public class NetSetting : AbstractSetting<NetSetting>, IPropertiesSetting
 	{
+
+        private static readonly NetSetting instance = new NetSetting();
+
+        //private NetSetting()
+        //{
+
+        //}
+
+        public static NetSetting GetInstance()
+        {
+            return instance;
+        }
+
 		[Category("网络设置"), Description("传输直接包含文件数据")]
 		public bool IncludeFileData
 		{

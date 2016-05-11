@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using DocScanner.Main.Setting;
 
 namespace DocScanner.Main
 {
@@ -216,7 +217,7 @@ namespace DocScanner.Main
                 uCMultiObjPropertyInfo.AddObjs(setting.Name, setting);
             }
             uCMultiObjPropertyInfo.AddObjs(this._ucitemtoolbar.GetSetting().Name, this._ucitemtoolbar.GetSetting());
-            uCMultiObjPropertyInfo.AddObjs(this._ucrightpane.GetUCSummary().GetSetting().Name, this._ucrightpane.GetUCSummary().GetSetting());
+            uCMultiObjPropertyInfo.AddObjs(SummaryPropertiesSetting.GetInstance().Name, SummaryPropertiesSetting.GetInstance());
             uCMultiObjPropertyInfo.AddObjs(this._ucstatusbar.GetSetting().Name, this._ucstatusbar.GetSetting());
             tabPage2.Controls.Add(uCMultiObjPropertyInfo);
             tabPage2.Text = "界面参数设置";
@@ -229,7 +230,8 @@ namespace DocScanner.Main
             uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<AccountSetting>.CurSetting.Name, AbstractSetting<AccountSetting>.CurSetting);
             uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<AppSetting>.CurSetting.Name, AbstractSetting<AppSetting>.CurSetting);
             uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<DebugSetting>.CurSetting.Name, AbstractSetting<DebugSetting>.CurSetting);
-            uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<NetSetting>.CurSetting.Name, AbstractSetting<NetSetting>.CurSetting);
+            //uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<NetSetting>.CurSetting.Name, AbstractSetting<NetSetting>.CurSetting);
+            uCMultiObjPropertyInfo2.AddObjs(NetSetting.GetInstance().Name, NetSetting.GetInstance());
             bool showAdvanceSetting = AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting;
             if (showAdvanceSetting)
             {
