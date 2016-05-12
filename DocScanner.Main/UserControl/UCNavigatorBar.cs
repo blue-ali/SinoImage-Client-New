@@ -17,7 +17,7 @@ using Telerik.WinControls.UI;
 
 namespace DocScanner.Main
 {
-    public class UCNavigatorBar : UserControl, IHasIPropertiesSetting
+    public class UCNavigatorBar : UserControl
     {
         // Fields
         private IFileAcquirer _acq;
@@ -27,7 +27,6 @@ namespace DocScanner.Main
         private RadContextMenu _menudownloadedbatchnode = new RadContextMenu();
         private RadContextMenu _menuFileNode = new RadContextMenu();
         private RadContextMenu _menuFileNodenoDel = new RadContextMenu();
-        private NestIPropertiesSetting _setting;
         private bool _viewfileinfoicon = true;
         private IContainer components = null;
         private RadTreeView radTreeView1;
@@ -206,7 +205,7 @@ namespace DocScanner.Main
                 {
                     node.ContextMenu = this._menuFileNode;
                 }
-                node.ItemHeight = this.GetSetting().ThumbImgSize;
+                node.ItemHeight = UISetting.GetInstance().ThumbImgSize;
                 node.Checked = true;
                 node.TextAlignment = ContentAlignment.MiddleCenter;
                 node.PropertyChanged += new PropertyChangedEventHandler(this.FileNode_PropertyChanged);
@@ -499,16 +498,6 @@ namespace DocScanner.Main
             return group;
         }
 
-
-        public NestIPropertiesSetting GetSetting()
-        {
-            if (this._setting == null)
-            {
-                this._setting = new NestIPropertiesSetting(this);
-            }
-            return this._setting;
-        }
-
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -769,7 +758,7 @@ namespace DocScanner.Main
         {
             NFileInfo fileInfo = new NFileInfo();
             fileInfo.SetDate(DateTime.Now);
-            fileInfo.Author = AbstractSetting<AccountSetting>.CurSetting.AccountName;
+            fileInfo.Author = AccountSetting.GetInstance().AccountName;
             fileInfo.LocalPath = FilePath;
             fileInfo.FileName = FileHelper.GetFileName(FilePath);
             fileInfo.Operation = EOperType.eADD;
@@ -861,7 +850,7 @@ namespace DocScanner.Main
                 node.AllowDrop = false;
                 node.Checked = true;
                 node.Checked = true;
-                node.ItemHeight = this.GetSetting().BatchNodeHeight;
+                node.ItemHeight = UISetting.GetInstance().BatchNodeHeight;
                 node.Font = new Font(this.Font.Name, NavigateTreeHelper.Lev1NodeFontSize);
                 node.ContextMenu = this._menudefaultbatchnode;
                 node.PropertyChanged += new PropertyChangedEventHandler(this.BatchNode_PropertyChanged);
@@ -885,7 +874,7 @@ namespace DocScanner.Main
             {
                 node.ContextMenu = this._menuFileNode;
             }
-            node.ItemHeight = this.GetSetting().ThumbImgSize;
+            node.ItemHeight = UISetting.GetInstance().ThumbImgSize;
             node.Checked = true;
             node.TextAlignment = ContentAlignment.MiddleCenter;
             node.PropertyChanged += new PropertyChangedEventHandler(this.FileNode_PropertyChanged);
@@ -900,7 +889,7 @@ namespace DocScanner.Main
             };
             item.Click += new EventHandler(this.FileNode_Property_Click);
             this._menudefaultbatchnode.Items.Add(item);
-            if (this.GetSetting().AllowDelMenu)
+            if (UISetting.GetInstance().AllowDelMenu)
             {
                 RadMenuItem item6 = new RadMenuItem
                 {
@@ -1059,11 +1048,6 @@ namespace DocScanner.Main
             }
         }
 
-        IPropertiesSetting IHasIPropertiesSetting.GetSetting()
-        {
-            return this.GetSetting();
-        }
-
         private void UCNavigatorBar_Load(object sender, EventArgs e)
         {
             //this.components = new Container();
@@ -1129,7 +1113,8 @@ namespace DocScanner.Main
                 {
                     Group = group
                 };
-                if ((batchs.ShowDialog() == DialogResult.OK) && !AbstractSetting<FunctionSetting>.CurSetting.KeepSuccessedUploadNodeInTree)
+                if ((batchs.ShowDialog() == DialogResult.OK) && !FunctionSetting.GetInstance().KeepSuccessedUploadNodeInTree)
+               // if ((batchs.ShowDialog() == DialogResult.OK) && !FunctionSetting.KeepSuccessedUploadNodeInTree)
                 {
                     List<string> uploadSuccessedbatchs = batchs.UploadSuccessedbatchs;
                     for (int i = this.radTreeView1.Nodes.Count - 1; i >= 0; i--)
@@ -1160,122 +1145,6 @@ namespace DocScanner.Main
 
         // Nested Types
 
-    }
-
-    public class NestIPropertiesSetting : IPropertiesSetting
-    {
-        // Fields
-        private UCNavigatorBar _bar;
-
-        // Methods
-        public NestIPropertiesSetting(UCNavigatorBar bar)
-        {
-            this._bar = bar;
-        }
-
-        // Properties
-        [Category("用户界面定义"), Description("允许自定义层次子节点")]
-        public bool AllowCreateCategory
-        {
-            get
-            {
-                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "AllowCreateCategory").ToBool();
-            }
-            set
-            {
-                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "AllowCreateCategory", value.ToString());
-            }
-        }
-
-        [Category("用户界面定义"), Description("允许移除菜单")]
-        public bool AllowDelMenu
-        {
-            get
-            {
-                return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "AllowDelMenu").ToBool();
-            }
-            set
-            {
-                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "AllowDelMenu", value.ToString());
-            }
-        }
-
-        [Category("用户界面定义"), Description("批次号节点高度")]
-        public int BatchNodeHeight
-        {
-            get
-            {
-                string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "BatchNodeHeight");
-                if (string.IsNullOrEmpty(configParamValue))
-                {
-                    return 0x20;
-                }
-                return int.Parse(configParamValue);
-            }
-            set
-            {
-                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "BatchNodeHeight", value.ToString());
-            }
-        }
-
-        [Category("用户界面定义"), Description("文件节点标题类型")]
-        public ENFileNodeTitleType FileNodeTitleType
-        {
-            get
-            {
-                return NodeTitleTypeSetting.FileNodeTitleType;
-            }
-            set
-            {
-                NodeTitleTypeSetting.FileNodeTitleType = value;
-            }
-        }
-
-        /*
-        [Category("用户界面定义"), Description("节点字体大小")]
-        public float Lev1NodeFontSize
-        {
-            get
-            {
-                string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "Lev1NodeFontSize");
-                if (string.IsNullOrEmpty(configParamValue))
-                {
-                    return 14f;
-                }
-                return float.Parse(configParamValue);
-            }
-            set
-            {
-                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "Lev1NodeFontSize", value.ToString());
-            }
-        }*/
-
-        [Browsable(false)]
-        public string Name
-        {
-            get
-            {
-                return "界面设置-左边文件管理导航栏";
-            }
-        }
-
-        [Category("用户界面定义"), Description("缩略图尺寸")]
-        public int ThumbImgSize
-        {
-            get
-            {
-                string configParamValue = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("LeftPaneSetting", "ThumbImgSize");
-                if (string.IsNullOrEmpty(configParamValue))
-                {
-                    return 0x60;
-                }
-                return int.Parse(configParamValue);
-            }
-            set
-            {
-                LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("LeftPaneSetting", "ThumbImgSize", value.ToString());
-            }
-        }
     }
 
     public enum ScanOpe

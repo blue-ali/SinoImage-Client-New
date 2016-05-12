@@ -15,10 +15,10 @@ namespace DocScanner.Common
             batch.UpadateAllDate(DateTime.Now);
             batch.SourceIP = NetHelper.GetHostIP4Address();
             batch.MachineID = NetHelper.GetFirstMacAddress();
-            batch.TellerNO = AbstractSetting<AccountSetting>.CurSetting.AccountName;
-            batch.OrgID = AbstractSetting<AccountSetting>.CurSetting.AccountOrgID;
-            batch.BusiSysId = AbstractSetting<BusinessSetting>.CurSetting.bustype;
-            batch.BusiTypeId = AbstractSetting<BusinessSetting>.CurSetting.busno;
+            batch.TellerNO = AccountSetting.GetInstance().AccountName;
+            batch.OrgID = AccountSetting.GetInstance().AccountOrgID;
+            batch.BusiSysId = BusinessSetting.GetInstance().bustype;
+            batch.BusiTypeId = BusinessSetting.GetInstance().busno;
         }
 
         public static void SetupFileInfo(this NFileInfo finfo)  

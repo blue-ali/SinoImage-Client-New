@@ -35,14 +35,14 @@ namespace DocScanner.Main
         public UCAccountSetting()
         {
             this.InitializeComponent();
-            this.textBoxOrgID.Text = AbstractSetting<AccountSetting>.CurSetting.AccountOrgID;
-            this.textBoxAccount.Text = AbstractSetting<AccountSetting>.CurSetting.AccountName;
+            this.textBoxOrgID.Text = AccountSetting.GetInstance().AccountOrgID;
+            this.textBoxAccount.Text = AccountSetting.GetInstance().AccountName;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            AbstractSetting<AccountSetting>.CurSetting.AccountOrgID = this.textBoxOrgID.Text;
-            AbstractSetting<AccountSetting>.CurSetting.AccountName = this.textBoxAccount.Text;
+            AccountSetting.GetInstance().AccountOrgID = this.textBoxOrgID.Text;
+            AccountSetting.GetInstance().AccountName = this.textBoxAccount.Text;
             (base.Parent as Form).Close();
         }
 

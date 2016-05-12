@@ -58,9 +58,8 @@ namespace DocScanner.Main
 
 		public static RadTreeNode CreateRadTreeFromTemplate(RadTreeView tree, BatchTemplatedef bat, string rootnodetext)
 		{
-			bool flag = bat == null;
 			RadTreeNode result;
-			if (flag)
+			if (bat == null)
 			{
 				RadTreeNode radTreeNode = tree.Nodes.Add(rootnodetext);
 				tree.Refresh();
@@ -77,8 +76,7 @@ namespace DocScanner.Main
 				while (linkedList.Count > 0)
 				{
 					NodeDef value = linkedList.First.Value;
-					bool flag2 = value.Children != null && value.Children.Count > 0;
-					if (flag2)
+					if (value.Children != null && value.Children.Count > 0)
 					{
 						RadTreeNode radTreeNode3 = value.Tag as RadTreeNode;
 						foreach (NodeDef current in value.Children)

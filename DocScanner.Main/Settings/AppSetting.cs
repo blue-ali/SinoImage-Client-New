@@ -6,10 +6,20 @@ using System.ComponentModel;
 
 namespace DocScanner.Main
 {
-    public class AppSetting : AbstractSetting<AppSetting>, IPropertiesSetting
+    public class AppSetting : IPropertiesSetting
     {
+
+        private static readonly AppSetting instance = new AppSetting();
+
+        private AppSetting() { }
+
+        public static AppSetting GetInstance()
+        {
+            return instance;
+        }
+
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -70,9 +80,5 @@ namespace DocScanner.Main
             }
         }
 
-        public override bool Equals(AppSetting other)
-        {
-            return false;
-        }
     }
 }

@@ -18,87 +18,10 @@ using Telerik.WinControls.UI;
 
 namespace DocScanner.Main
 {
-    public class UCTopMenuBubbleBar : UserControl, IHasIPropertiesSetting
+    public class UCTopMenuBubbleBar : UserControl
     {
-        public class NestSetting : IPropertiesSetting
-        {
-            private UCTopMenuBubbleBar _bar;
-
-            [Browsable(false)]
-            public string Name
-            {
-                get
-                {
-                    return "界面设置-顶部工具栏";
-                }
-            }
-
-            [Category("用户UI设置"), DisplayName("是否显示按钮文字")]
-            public bool ShowButtonText
-            {
-                get
-                {
-                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "ShowButtonText").ToBool();
-                }
-                set
-                {
-                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "ShowButtonText", value.ToString());
-                }
-            }
-
-            [Category("用户UI设置"), DisplayName("背景色,如不存在背景图片，则此效果出现")]
-            public Color BarBackColor
-            {
-                get
-                {
-                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "BarBackColor").ToColor();
-                }
-                set
-                {
-                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "BarBackColor", value.ToArgb().ToString());
-                }
-            }
-
-            [Category("用户UI设置"), DisplayName("背景图片"), Editor(typeof(FileNameEditor), typeof(UITypeEditor)), EditorBrowsable(EditorBrowsableState.Never), DebuggerHidden]
-            public string BarBackImage
-            {
-                get
-                {
-                    return LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "BarBackImage");
-                }
-                set
-                {
-                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "BarBackImage", value.ToString());
-                }
-            }
-
-            [Category("用户UI设置"), DisplayName("按钮大小")]
-            public int ButtonSize
-            {
-                get
-                {
-                    int num = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("topPane", "ButtonSize").ToInt();
-                    return (num == 0) ? 96 : num;
-                }
-                set
-                {
-                    bool flag = value != this.ButtonSize;
-                    if (flag)
-                    {
-                        LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("topPane", "ButtonSize", value.ToString());
-                    }
-                }
-            }
-
-            public NestSetting(UCTopMenuBubbleBar bar)
-            {
-                this._bar = bar;
-            }
-        }
 
         private BubbleBar _bubbleBar1;
-
-        private UCTopMenuBubbleBar.NestSetting _setting;
 
         private IContainer components = null;
 
@@ -119,11 +42,9 @@ namespace DocScanner.Main
 
         private void UCTopMenuBubbleBar_MouseClick(object sender, MouseEventArgs e)
         {
-            bool flag = !AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting;
-            if (!flag)
+            if (AppSetting.GetInstance().ShowAdvanceSetting)
             {
-                bool flag2 = e.Button == MouseButtons.Right;
-                if (flag2)
+                if (e.Button == MouseButtons.Right)
                 {
                     ContextMenu contextMenu = new ContextMenu();
                     MenuItem menuItem = new MenuItem();
@@ -193,14 +114,14 @@ namespace DocScanner.Main
                             bool flag4 = File.Exists(text);
                             if (flag4)
                             {
-                                radButtonElement.Image = DocScanner.ImgUtils.ImageHelper.LoadSizedImage(text, this.GetSetting().ButtonSize, this.GetSetting().ButtonSize, "");
+                                radButtonElement.Image = DocScanner.ImgUtils.ImageHelper.LoadSizedImage(text, UISetting.GetInstance().ButtonSize, UISetting.GetInstance().ButtonSize, "");
                             }
                             radButtonElement.Name = current.name;
                             radButtonElement.Padding = new Padding(2, 2, 2, 8);
                             radButtonElement.ScaleTransform = new SizeF(0.65f, 0.65f);
                             radButtonElement.ShowBorder = false;
                             radButtonElement.ToolTipText = current.tip;
-                            radButtonElement.Text = (this.GetSetting().ShowButtonText ? current.text : "");
+                            radButtonElement.Text = (UISetting.GetInstance().ShowButtonText ? current.text : "");
                             radButtonElement.TextAlignment = ContentAlignment.BottomCenter;
                             radButtonElement.Tag = current.action;
                             radButtonElement.MouseDown += new MouseEventHandler(this.radButtonElement_MouseDown);
@@ -208,7 +129,7 @@ namespace DocScanner.Main
                             this._bubbleBar1.Items.Add(radButtonElement);
                         }
                     }
-                    string barBackImage = this.GetSetting().BarBackImage;
+                    string barBackImage = UISetting.GetInstance().BarBackImage;
                     bool flag5 = File.Exists(barBackImage);
                     if (flag5)
                     {
@@ -216,7 +137,7 @@ namespace DocScanner.Main
                     }
                     else
                     {
-                        this._bubbleBar1.Element.FillWithColor(this.GetSetting().BarBackColor);
+                        this._bubbleBar1.Element.FillWithColor(UISetting.GetInstance().BarBackColor);
                     }
                     ((ISupportInitialize)this._bubbleBar1).EndInit();
                     base.Controls.Add(this._bubbleBar1);
@@ -236,21 +157,6 @@ namespace DocScanner.Main
                     this.OnActionClick(this, new TEventArg<string>(input));
                 }
             }
-        }
-
-        public UCTopMenuBubbleBar.NestSetting GetSetting()
-        {
-            bool flag = this._setting == null;
-            if (flag)
-            {
-                this._setting = new UCTopMenuBubbleBar.NestSetting(this);
-            }
-            return this._setting;
-        }
-
-        IPropertiesSetting IHasIPropertiesSetting.GetSetting()
-        {
-            return this.GetSetting();
         }
 
         protected override void Dispose(bool disposing)

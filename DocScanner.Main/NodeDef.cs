@@ -40,8 +40,7 @@ namespace DocScanner.Main
 
         public void AddChild(NodeDef node)
         {
-            bool flag = this._children == null;
-            if (flag)
+            if (this._children == null)
             {
                 this._children = new List<NodeDef>();
             }

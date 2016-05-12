@@ -214,12 +214,10 @@ namespace DocScanner.Main
             }
             set
             {
-                bool flag = this._ServerSettingIniPath != value;
-                if (flag)
+                if (this._ServerSettingIniPath != value)
                 {
                     this._servercfg = IniConfigSetting.CreateNew();
-                    bool flag2 = File.Exists(value);
-                    if (flag2)
+                    if (File.Exists(value))
                     {
                         this._servercfg.ConfigFileName = value;
                     }

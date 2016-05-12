@@ -58,14 +58,13 @@ namespace DocScanner.Main
         {
             get
             {
-                return AbstractSetting<AppSetting>.CurSetting.TmpFileDir;
+                return AppSetting.GetInstance().TmpFileDir;
             }
             set
             {
-                bool flag = !string.IsNullOrEmpty(value) && Directory.Exists(value);
-                if (flag)
+                if (!string.IsNullOrEmpty(value) && Directory.Exists(value))
                 {
-                    AbstractSetting<AppSetting>.CurSetting.TmpFileDir = value;
+                    AppSetting.GetInstance().TmpFileDir = value;
                 }
             }
         }

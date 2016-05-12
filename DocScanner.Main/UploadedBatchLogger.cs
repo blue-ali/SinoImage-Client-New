@@ -40,8 +40,7 @@ namespace DocScanner.Main
 
         public static void Add_New(UploadedBatchInfo newBatchNos)
         {
-            bool flag = !AbstractSetting<FunctionSetting>.CurSetting.AllowLogUploaded;
-            if (!flag)
+            if (FunctionSetting.GetInstance().AllowLogUploaded)
             {
                 UploadedBatchLogger localUploaded = UploadedBatchLogger.GetLocalUploaded();
                 bool flag2 = localUploaded.BatchNos.Find((UploadedBatchInfo o) => o.BatchNo == newBatchNos.BatchNo) == null;
@@ -62,7 +61,7 @@ namespace DocScanner.Main
 
         public static void Del_Old(string batchno)
         {
-            if (AbstractSetting<FunctionSetting>.CurSetting.AllowLogUploaded)
+            if (FunctionSetting.GetInstance().AllowLogUploaded)
             {
                 UploadedBatchLogger localUploaded = UploadedBatchLogger.GetLocalUploaded();
                 foreach (UploadedBatchInfo info in localUploaded.BatchNos)

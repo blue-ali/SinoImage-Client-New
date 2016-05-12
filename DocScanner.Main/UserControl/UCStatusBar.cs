@@ -95,9 +95,9 @@ namespace DocScanner.Main
             this.radButtonElementL.Click += new EventHandler(this.radButtonElementL_Click);
             this.radButtonElementR.Click += new EventHandler(this.radButtonElementR_Click);
             this.OnActionClick += new EventHandler<TEventArg<string>>(this.UCStatusBar_OnActionClick);
-            this.radLabelElement2.DataBindings.Add("Text", AbstractSetting<AccountSetting>.CurSetting, "AccountOrgID").ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
-            this.radLabelElement3.DataBindings.Add("Text", AbstractSetting<AccountSetting>.CurSetting, "AccountName").ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
-            this.radLabelElement4.DataBindings.Add("Text", AbstractSetting<UpdateSetting>.CurSetting, "AppVersion").ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
+            this.radLabelElement2.DataBindings.Add("Text", AccountSetting.GetInstance(), "AccountOrgID").ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
+            this.radLabelElement3.DataBindings.Add("Text", AccountSetting.GetInstance(), "AccountName").ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
+            this.radLabelElement4.DataBindings.Add("Text", UpdateSetting.GetInstance(), "AppVersion").ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
             this.radLabelElement2.Click += new EventHandler(this.RadLabelElementUserInfo_Click);
             this.radLabelElement3.Click += new EventHandler(this.RadLabelElementUserInfo_Click);
         }

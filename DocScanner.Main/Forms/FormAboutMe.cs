@@ -193,11 +193,11 @@ namespace DocScanner.Main
             bool flag = this.i % 3 == 0;
             if (flag)
             {
-                AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting = true;
+                AppSetting.GetInstance().ShowAdvanceSetting = true;
             }
             else
             {
-                AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting = false;
+                AppSetting.GetInstance().ShowAdvanceSetting = false;
             }
         }
 

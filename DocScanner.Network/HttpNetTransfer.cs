@@ -9,7 +9,7 @@ using System.Net;
 
 namespace DocScanner.Network
 {
-    internal class HttpNetTransfer : INetTransfer, IDisposable
+    internal class HttpNetTransfer : INetTransfer
 	{
 		private NBatchInfo _downloadresult;
 

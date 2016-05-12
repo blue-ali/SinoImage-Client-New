@@ -264,7 +264,7 @@ namespace DocScanner.Main
             NBatchInfo info = new NBatchInfo
             {
                 BatchNO = (node.Tag as NBatchInfo).BatchNO,
-                Author = AbstractSetting<AccountSetting>.CurSetting.AccountName
+                Author = AccountSetting.GetInstance().AccountName
             };
             info.FileInfos.AddRange(node.GetChildren().SelectNFileNode().Select<RadTreeNode, NFileInfo>(o => o.Tag as NFileInfo));
             return info;

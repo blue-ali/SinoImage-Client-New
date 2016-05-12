@@ -9,8 +9,18 @@ using System.Threading.Tasks;
 
 namespace DocScanner.Main
 {
-    public class DebugSetting : AbstractSetting<DebugSetting>, IPropertiesSetting
+    public class DebugSetting : IPropertiesSetting
     {
+
+        private static readonly DebugSetting instance = new DebugSetting();
+
+        private DebugSetting() { }
+
+        public static DebugSetting GetInstance()
+        {
+            return instance;
+        }
+
         [Category("调试设置"), Description("是否异常完全抛出")]
         public static bool ExceptionThrowable
         {
@@ -37,7 +47,7 @@ namespace DocScanner.Main
         }
 
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -45,9 +55,5 @@ namespace DocScanner.Main
             }
         }
 
-        public override bool Equals(DebugSetting other)
-        {
-            return false;
-        }
     }
 }

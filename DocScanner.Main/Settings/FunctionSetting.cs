@@ -9,10 +9,20 @@ using System.Threading.Tasks;
 
 namespace DocScanner.Main
 {
-    public class FunctionSetting : AbstractSetting<FunctionSetting>, IPropertiesSetting
+    public class FunctionSetting : IPropertiesSetting
     {
+
+        private static readonly FunctionSetting instance = new FunctionSetting();
+
+        private FunctionSetting() { }
+
+        public static FunctionSetting GetInstance()
+        {
+            return instance;
+        }
+
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -123,9 +133,5 @@ namespace DocScanner.Main
             }
         }
 
-        public override bool Equals(FunctionSetting other)
-        {
-            return false;
-        }
     }
 }

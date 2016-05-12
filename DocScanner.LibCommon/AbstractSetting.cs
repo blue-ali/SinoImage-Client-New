@@ -13,9 +13,6 @@ namespace DocScanner.LibCommon
         private static T _cur;
 
         // Methods
-        protected AbstractSetting()
-        {
-        }
 
         private bool Equal(object right)
         {

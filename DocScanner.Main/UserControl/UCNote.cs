@@ -61,7 +61,7 @@ namespace DocScanner.Main
         {
             get
             {
-                return AbstractSetting<FunctionSetting>.CurSetting.AllowOCR;
+                return FunctionSetting.GetInstance().AllowOCR;
             }
         }
 

@@ -5,18 +5,23 @@ using System.ComponentModel;
 
 namespace DocScanner.Main
 {
-    public class AccountSetting : AbstractSetting<AccountSetting>, IPropertiesSetting
+    public class AccountSetting : IPropertiesSetting
     {
-        private string _curorgid;
+        private static readonly AccountSetting instance = new AccountSetting();
 
-        private string _curuser;
+        private string _currentOrgId;
 
-        public const string bindAccountName = "AccountName";
+        private string _currentUser;
 
-        public const string bindAccountOrgID = "AccountOrgID";
+        private AccountSetting() { }
+
+        public static AccountSetting GetInstance()
+        {
+            return instance;
+        }
 
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -29,20 +34,18 @@ namespace DocScanner.Main
         {
             get
             {
-                bool flag = string.IsNullOrEmpty(this._curuser);
-                if (flag)
+                if (string.IsNullOrEmpty(this._currentUser))
                 {
-                    this._curuser = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AccountSetting", "AccountName");
+                    this._currentUser = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue(AppContext.AccountTitle, AppContext.AccountName);
                 }
-                return this._curuser;
+                return this._currentUser;
             }
             set
             {
-                bool flag = value != this._curuser;
-                if (flag)
+                if (value != this._currentUser)
                 {
-                    this._curuser = value;
-                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AccountSetting", "AccountName", this._curuser);
+                    this._currentUser = value;
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AccountSetting", "AccountName", this._currentUser);
                 }
             }
         }
@@ -52,32 +55,21 @@ namespace DocScanner.Main
         {
             get
             {
-                bool flag = string.IsNullOrEmpty(this._curorgid);
-                if (flag)
+                if (string.IsNullOrEmpty(this._currentOrgId))
                 {
-                    this._curorgid = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AccountSetting", "AccountOrgID");
+                    this._currentOrgId = LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("AccountSetting", "AccountOrgID");
                 }
-                return this._curorgid;
+                return this._currentOrgId;
             }
             set
             {
-                bool flag = value != this._curorgid;
-                if (flag)
+                if (value != this._currentOrgId)
                 {
-                    this._curorgid = value;
-                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AccountSetting", "AccountOrgID", this._curorgid);
+                    this._currentOrgId = value;
+                    LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("AccountSetting", "AccountOrgID", this._currentOrgId);
                 }
             }
         }
 
-        public object MyClone()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Equals(AccountSetting other)
-        {
-            return false;
-        }
     }
 }

@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 [ComVisible(true), ProgId("TigEraDocProcessor"), Guid("17E03D90-5299-474b-A5F0-9CCC0BB094F3")]
-public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
+public class UCBench : UserControl, IObjectSafety
 {
     // Fields
     private bool _fSafeForInitializing = true;
@@ -30,7 +30,6 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
     private const int INTERFACESAFE_FOR_UNTRUSTED_DATA = 2;
     internal Panel MiddlePane;
     private const int S_OK = 0;
-    private NestIPropertiesSetting setting;
     private TabControl tabControlLeft;
     internal TableLayoutPanel tableLayoutPanel1;
     private TabPage tabPage3;
@@ -75,9 +74,9 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
 
     private void AfterUILoad(object sender, EventArgs e)
     {
-        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(UCBench), this);
-        DocScanner.LibCommon.AppContext.GetInstance().MS.OnMessage += (senderx, arg) => this.ucbottomStatusBar1.OnMessage(senderx, arg);
-        CmdDispatcher val = DocScanner.LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher));
+        AppContext.GetInstance().SetVal(typeof(UCBench), this);
+        AppContext.GetInstance().MS.OnMessage += (senderx, arg) => this.ucbottomStatusBar1.OnMessage(senderx, arg);
+        CmdDispatcher val = AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher));
         val.SetDispatchObj(this.ucCenterview);
         val.SetDispatchObj(this.ucLeftPane.GetBar());
         val.SetDispatchObj(this.ucTopMenuBubbleBar1);
@@ -91,10 +90,10 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
 
     private void BeforeUILoad(object sender, EventArgs e)
     {
-        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(CmdDispatcher), new CmdDispatcher());
-        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(AppSetting), AbstractSetting<AppSetting>.CurSetting);
-        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(NoteSetting), AbstractSetting<NoteSetting>.CurSetting);
-        DocScanner.LibCommon.AppContext.GetInstance().SetVal(typeof(SharpAcquirerFactory), new SharpAcquirerFactory());
+        AppContext.GetInstance().SetVal(typeof(CmdDispatcher), new CmdDispatcher());
+        AppContext.GetInstance().SetVal(typeof(AppSetting), AppSetting.GetInstance());
+        AppContext.GetInstance().SetVal(typeof(NoteSetting), AbstractSetting<NoteSetting>.CurSetting);
+        AppContext.GetInstance().SetVal(typeof(SharpAcquirerFactory), new SharpAcquirerFactory());
     }
 
     protected override void Dispose(bool disposing)
@@ -144,23 +143,14 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
         return num;
     }
 
-    public NestIPropertiesSetting GetSetting()
-    {
-        if (this.setting == null)
-        {
-            this.setting = new NestIPropertiesSetting(this);
-        }
-        return this.setting;
-    }
-
     public static bool HasNewVer(string webver)
     {
         if (!string.IsNullOrEmpty(webver))
         {
             webver = webver.Replace(",", ".");
-            if (string.Compare(AbstractSetting<UpdateSetting>.CurSetting.AppVersion, webver) < 0)
+            if (string.Compare(UpdateSetting.GetInstance().AppVersion, webver) < 0)
             {
-                MessageBox.Show("服务器有新版本" + webver + "新下载" + Environment.NewLine + "本地版本" + AbstractSetting<UpdateSetting>.CurSetting.AppVersion, "更新提示", MessageBoxButtons.OK);
+                MessageBox.Show("服务器有新版本" + webver + "新下载" + Environment.NewLine + "本地版本" + UpdateSetting.GetInstance().AppVersion, "更新提示", MessageBoxButtons.OK);
                 return true;
             }
         }
@@ -308,14 +298,14 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
         {
             return false;
         }
-        AbstractSetting<AccountSetting>.CurSetting.AccountName = parser.GetKey("currentuser");
-        AbstractSetting<BusinessSetting>.CurSetting.bustype = parser.GetKey("bustype");
-        AbstractSetting<BusinessSetting>.CurSetting.busno = parser.GetKey("busno");
-        AbstractSetting<AccountSetting>.CurSetting.AccountOrgID = parser.GetKey("unitno");
+        AccountSetting.GetInstance().AccountName = parser.GetKey("currentuser");
+        BusinessSetting.GetInstance().bustype = parser.GetKey("bustype");
+        BusinessSetting.GetInstance().busno = parser.GetKey("busno");
+        AccountSetting.GetInstance().AccountOrgID = parser.GetKey("unitno");
         if (parser.GetKey("mode") == "update")
         {
             string key = parser.GetKey("barno");
-            DocScanner.LibCommon.AppContext.GetInstance().GetVal<UCBench>(typeof(UCBench)).QueryMode(key.ToUpper());
+            AppContext.GetInstance().GetVal<UCBench>(typeof(UCBench)).QueryMode(key.ToUpper());
         }
         return true;
     }
@@ -376,69 +366,11 @@ public class UCBench : UserControl, IObjectSafety, IHasIPropertiesSetting
         Help.ShowHelpIndex(this, url);
     }
 
-    IPropertiesSetting IHasIPropertiesSetting.GetSetting()
-    {
-        return this.GetSetting();
-    }
-
     private void UCBench_HandleDestroyed(object sender, EventArgs e)
     {
-        //DocScanner.LibCommon.AppContext.GetInstance().Dispose();
+        //AppContext.GetInstance().Dispose();
     }
 
-    // Nested Types
-    public class NestIPropertiesSetting : IPropertiesSetting
-    {
-        // Fields
-        private UCBench _bench;
-
-        // Methods
-        public NestIPropertiesSetting(UCBench bench)
-        {
-            this._bench = bench;
-        }
-
-        // Properties
-        [Browsable(false)]
-        public string Name
-        {
-            get
-            {
-                return "界面设置-主界面";
-            }
-        }
-
-        [Browsable(false), Category("主窗口设置"), DisplayName("右边工具栏宽度")]
-        public float RightPaneWidth
-        {
-            get
-            {
-                int num = DocScanner.LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("UCBench", "RightPaneWidth").ToInt();
-                if (num == 0)
-                {
-                    num = 0x110;
-                }
-                return (float)num;
-            }
-            set
-            {
-                DocScanner.LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UCBench", "RightPaneWidth", value.ToString());
-            }
-        }
-
-        [Category("主窗口设置"), DisplayName("顶部工具栏高度")]
-        public float TopPaneHeight
-        {
-            get
-            {
-                return (float)DocScanner.LibCommon.AppContext.GetInstance().Config.GetConfigParamValue("UCBench", "TopPaneHeight").ToInt();
-            }
-            set
-            {
-                DocScanner.LibCommon.AppContext.GetInstance().Config.SetConfigParamValue("UCBench", "TopPaneHeight", value.ToString());
-            }
-        }
-    }
 }
 
 

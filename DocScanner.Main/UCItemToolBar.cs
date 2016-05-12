@@ -175,7 +175,7 @@ namespace DocScanner.Main
 
         private void UCItemToolBar_MouseClick(object sender, MouseEventArgs e)
         {
-            if (AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting && (e.Button == MouseButtons.Right))
+            if (AppSetting.GetInstance().ShowAdvanceSetting && (e.Button == MouseButtons.Right))
             {
                 ContextMenu menu = new ContextMenu();
                 MenuItem item = new MenuItem

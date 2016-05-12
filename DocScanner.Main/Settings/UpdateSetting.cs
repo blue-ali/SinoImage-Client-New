@@ -10,9 +10,17 @@ using System.Threading.Tasks;
 
 namespace DocScanner.Main
 {
-    public class UpdateSetting : AbstractSetting<UpdateSetting>, IPropertiesSetting
+    public class UpdateSetting : IPropertiesSetting
     {
         public const string bindAppVersion = "AppVersion";
+        private static readonly UpdateSetting instance = new UpdateSetting();
+
+        private UpdateSetting() { }
+
+        public static UpdateSetting GetInstance()
+        {
+            return instance;
+        }
 
         [Category("升级设置"), Description("程序版本")]
         public string AppVersion
@@ -24,7 +32,7 @@ namespace DocScanner.Main
         }
 
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -58,9 +66,5 @@ namespace DocScanner.Main
             }
         }
 
-        public override bool Equals(UpdateSetting other)
-        {
-            return true;
-        }
     }
 }

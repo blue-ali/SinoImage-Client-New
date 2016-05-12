@@ -207,10 +207,10 @@ namespace DocScanner.Main
             TabPage tabPage2 = new TabPage();
             tabControl.TabPages.Add(tabPage2);
             UCMultiObjPropertyInfo uCMultiObjPropertyInfo = new UCMultiObjPropertyInfo();
-            uCMultiObjPropertyInfo.AddObjs(AbstractSetting<UISetting>.CurSetting.Name, AbstractSetting<UISetting>.CurSetting);
-            uCMultiObjPropertyInfo.AddObjs(this._ucbench.GetSetting().Name, this._ucbench.GetSetting());
-            uCMultiObjPropertyInfo.AddObjs(this._uctopmenububblebar.GetSetting().Name, this._uctopmenububblebar.GetSetting());
-            uCMultiObjPropertyInfo.AddObjs(this._ucnavigatorbar.GetSetting().Name, this._ucnavigatorbar.GetSetting());
+            uCMultiObjPropertyInfo.AddObjs(UISetting.GetInstance().Name, UISetting.GetInstance());
+            //uCMultiObjPropertyInfo.AddObjs(this._ucbench.GetSetting().Name, this._ucbench.GetSetting());
+            //uCMultiObjPropertyInfo.AddObjs(UISetting.GetInstance().Name, UISetting.GetInstance());
+            //uCMultiObjPropertyInfo.AddObjs(this._ucnavigatorbar.GetSetting().Name, this._ucnavigatorbar.GetSetting());
             if (this._uccenterview.Realview != null && this._uccenterview.Realview is UCPictureView)
             {
                 UCPictureView.NestSetting setting = (this._uccenterview.Realview as UCPictureView).GetSetting();
@@ -225,24 +225,24 @@ namespace DocScanner.Main
             TabPage tabPage3 = new TabPage();
             tabControl.TabPages.Add(tabPage3);
             UCMultiObjPropertyInfo uCMultiObjPropertyInfo2 = new UCMultiObjPropertyInfo();
-            uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<UpdateSetting>.CurSetting.Name, AbstractSetting<UpdateSetting>.CurSetting);
-            uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<EmailSetting>.CurSetting.Name, AbstractSetting<EmailSetting>.CurSetting);
-            uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<AccountSetting>.CurSetting.Name, AbstractSetting<AccountSetting>.CurSetting);
-            uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<AppSetting>.CurSetting.Name, AbstractSetting<AppSetting>.CurSetting);
-            uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<DebugSetting>.CurSetting.Name, AbstractSetting<DebugSetting>.CurSetting);
+            uCMultiObjPropertyInfo2.AddObjs(UpdateSetting.GetInstance().Name, UpdateSetting.GetInstance());
+            uCMultiObjPropertyInfo2.AddObjs(EmailSetting.GetInstance().Name, EmailSetting.GetInstance());
+            uCMultiObjPropertyInfo2.AddObjs(AccountSetting.GetInstance().Name, AccountSetting.GetInstance());
+            uCMultiObjPropertyInfo2.AddObjs(AppSetting.GetInstance().Name, AppSetting.GetInstance());
+            uCMultiObjPropertyInfo2.AddObjs(DebugSetting.GetInstance().Name, DebugSetting.GetInstance());
             //uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<NetSetting>.CurSetting.Name, AbstractSetting<NetSetting>.CurSetting);
             uCMultiObjPropertyInfo2.AddObjs(NetSetting.GetInstance().Name, NetSetting.GetInstance());
-            bool showAdvanceSetting = AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting;
+            bool showAdvanceSetting = AppSetting.GetInstance().ShowAdvanceSetting;
+                uCMultiObjPropertyInfo2.AddObjs(FunctionSetting.GetInstance().Name, FunctionSetting.GetInstance());
             if (showAdvanceSetting)
             {
                 uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<ServerIniConfig>.CurSetting.Name, AbstractSetting<ServerIniConfig>.CurSetting);
-                uCMultiObjPropertyInfo2.AddObjs(AbstractSetting<FunctionSetting>.CurSetting.Name, AbstractSetting<FunctionSetting>.CurSetting);
                 uCMultiObjPropertyInfo2.AddObjs(FormAboutMe.Setting.Name, FormAboutMe.Setting);
             }
             tabPage3.Controls.Add(uCMultiObjPropertyInfo2);
             tabPage3.Text = "系统参数参数设置";
             uCMultiObjPropertyInfo2.Dock = DockStyle.Fill;
-            bool showAdvanceSetting2 = AbstractSetting<AppSetting>.CurSetting.ShowAdvanceSetting;
+            bool showAdvanceSetting2 = AppSetting.GetInstance().ShowAdvanceSetting;
             if (showAdvanceSetting2)
             {
                 TabPage tabPage4 = new TabPage();

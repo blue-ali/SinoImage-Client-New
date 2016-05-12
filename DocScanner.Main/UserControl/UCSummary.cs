@@ -42,7 +42,7 @@ namespace DocScanner.Main
         {
             this.InitializeComponent();
             this.propertyGrid1.Visible = SummaryPropertiesSetting.GetInstance().ProperGridVisialbe;
-            this.propertyGrid1.Enabled = AbstractSetting<FunctionSetting>.CurSetting.AllowRightPanePropertyGrid;
+            this.propertyGrid1.Enabled = FunctionSetting.GetInstance().AllowRightPanePropertyGrid;
             this.btnReflash.Click += new EventHandler(this.Button1_Click);
         }
 

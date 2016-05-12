@@ -10,10 +10,19 @@ using System.Threading.Tasks;
 
 namespace DocScanner.Main
 {
-    public class EmailSetting : AbstractSetting<EmailSetting>, IPropertiesSetting
+    public class EmailSetting : IPropertiesSetting
     {
+        private static readonly EmailSetting instance = new EmailSetting();
+
+        private EmailSetting() { }
+
+        public static EmailSetting GetInstance()
+        {
+            return instance;
+        }
+
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -105,9 +114,5 @@ namespace DocScanner.Main
             return EncryptUtils.Base64Decrypt(configParamValue);
         }
 
-        public override bool Equals(EmailSetting other)
-        {
-            return false;
-        }
     }
 }

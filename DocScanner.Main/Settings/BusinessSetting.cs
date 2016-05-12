@@ -9,11 +9,20 @@ using System.Threading.Tasks;
 
 namespace DocScanner.Main
 {
-    public class BusinessSetting : AbstractSetting<BusinessSetting>, IPropertiesSetting
+    public class BusinessSetting : IPropertiesSetting
     {
+        private static readonly BusinessSetting instance = new BusinessSetting();
+
         private string _busno = "";
 
         private string _bustype = "";
+
+        private BusinessSetting() { }
+
+        public static BusinessSetting GetInstance()
+        {
+            return instance;
+        }
 
         [Browsable(false)]
         public string busno
@@ -29,7 +38,7 @@ namespace DocScanner.Main
         }
 
         [Browsable(false)]
-        public override string Name
+        public string Name
         {
             get
             {
@@ -50,9 +59,5 @@ namespace DocScanner.Main
             }
         }
 
-        public override bool Equals(BusinessSetting other)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

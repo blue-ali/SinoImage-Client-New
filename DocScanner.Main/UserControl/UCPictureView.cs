@@ -633,7 +633,7 @@ namespace DocScanner.Main.UC
                         MenuItem menuItem2 = new MenuItem("框选查看");
                         menuItem2.Click += new EventHandler(this.menuClipView_Click);
                         contextMenu.MenuItems.Add(menuItem2);
-                        bool allowMasaic = AbstractSetting<FunctionSetting>.CurSetting.AllowMasaic;
+                        bool allowMasaic = FunctionSetting.GetInstance().AllowMasaic;
                         if (allowMasaic)
                         {
                             MenuItem menuItem3 = new MenuItem("马赛克");

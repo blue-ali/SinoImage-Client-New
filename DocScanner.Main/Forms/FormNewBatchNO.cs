@@ -74,7 +74,7 @@ namespace DocScanner.Main
 
     private void setuptemplateui()
     {
-        bool allowTempalte = AbstractSetting<FunctionSetting>.CurSetting.AllowTempalte;
+        bool allowTempalte = FunctionSetting.GetInstance().AllowTempalte;
         this.label2.Visible = allowTempalte;
         this.comboBoxTemplate.Visible = allowTempalte;
         this.btnTempalteEdit.Visible = allowTempalte;

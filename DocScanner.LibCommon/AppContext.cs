@@ -17,7 +17,12 @@ namespace DocScanner.LibCommon
         [ThreadStatic]
         private static readonly AppContext instanc = new AppContext();
         private ConcurrentDictionary<object, object> _data = new ConcurrentDictionary<object, object>();
-        private bool _disposed;
+
+        public const string AccountTitle = "AccountSetting";
+        public const string AccountName = "AccountName";
+        public const string AccountOrgID = "AccountOrgID";
+
+        //private bool _disposed;
 
         // Methods
         private AppContext()
