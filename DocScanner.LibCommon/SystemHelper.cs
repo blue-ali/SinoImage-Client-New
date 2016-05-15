@@ -62,8 +62,7 @@ namespace DocScanner.LibCommon
 
         public static string GetAssemblesDirectory()
         {
-            bool flag = SystemHelper._appdirectory == null;
-            if (flag)
+            if (SystemHelper._appdirectory == null)
             {
                 SystemHelper.SetAssemblesDirectory(typeof(SystemHelper));
             }

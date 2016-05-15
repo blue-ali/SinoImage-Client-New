@@ -60,8 +60,8 @@ namespace DocScanner.Main
             bool flag = this.listView1.SelectedItems.Count > 0;
             if (flag)
             {
-                BatchTemplatedef batchTemplatedef = this.listView1.SelectedItems[0].Tag as BatchTemplatedef;
-                bool flag2 = batchTemplatedef != null;
+                BatchTemplateDef BatchTemplateDef = this.listView1.SelectedItems[0].Tag as BatchTemplateDef;
+                bool flag2 = BatchTemplateDef != null;
                 if (flag2)
                 {
                     LibCommon.AppContext.GetInstance().GetVal<CmdDispatcher>(typeof(CmdDispatcher)).ProcessCMD("", null);

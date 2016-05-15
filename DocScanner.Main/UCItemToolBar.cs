@@ -65,6 +65,7 @@ namespace DocScanner.Main
                     if (item.visable)
                     {
                         RadPanelBarGroupElement element = new RadPanelBarGroupElement();
+                        //RadPageViewElement element = RadPageViewElement.
                         if (this.GetSetting().ShowGroupTtile)
                         {
                             element.Caption = item.name;

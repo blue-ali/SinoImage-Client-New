@@ -13,6 +13,8 @@ namespace DocScanner.Main
 {
     public class UCRightPane : UserControl
     {
+        private static readonly UCRightPane instance = new UCRightPane();
+
         private TabPage _pageshenhe;
 
         private TabControl _tabctrl;
@@ -25,7 +27,7 @@ namespace DocScanner.Main
 
         private IContainer components = null;
 
-        public UCRightPane()
+        private UCRightPane()
         {
             this.InitializeComponent();
             base.SuspendLayout();
@@ -46,6 +48,11 @@ namespace DocScanner.Main
             this._tabctrl.TabPages.Add(tabPage2);
             this._tabctrl.MouseClick += new MouseEventHandler(this._tabctrl_MouseClick);
             base.ResumeLayout();
+        }
+
+        public static UCRightPane GetIntstance()
+        {
+            return instance;
         }
 
         private void _tabctrl_MouseClick(object sender, MouseEventArgs e)

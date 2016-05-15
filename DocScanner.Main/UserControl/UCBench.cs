@@ -171,8 +171,8 @@ public class UCBench : UserControl, IObjectSafety
         this._splitterLeft = new Splitter();
         this.tabControlLeft = new TabControl();
         this.tabPage3 = new TabPage();
-        this.ucCenterview = new UCCenterView();
-        this.ucRightPane = new UCRightPane();
+        this.ucCenterview = UCCenterView.GetInstance();
+        this.ucRightPane = UCRightPane.GetIntstance();
         this.ucLeftPane = new UCLeftPane();
         this.ucbottomStatusBar1 = new UCStatusBar();
         this.ucTopMenuBubbleBar1 = new UCTopMenuBubbleBar();
@@ -324,7 +324,7 @@ public class UCBench : UserControl, IObjectSafety
         container.ShowDialog();
         ctrl.DownloadGroup.Update2NoneMode();
         NBatchInfoGroup group = ctrl.DownloadGroup.MyClone();
-        this.ucLeftPane.GetBar().BatchToTreeView(group);
+        this.ucLeftPane.GetBar().GetNavigateTree().FromBatch(group);
         return true;
     }
 

@@ -26,6 +26,8 @@ namespace DocScanner.Main
 
         private UCItemToolBar _ucitemtoolbar;
 
+        private NavigateTree navigateTree;
+
         private UCBench _ucbench;
 
         private UCRightPane _ucrightpane;
@@ -45,7 +47,8 @@ namespace DocScanner.Main
         public void SetDispatchObj(UCNavigatorBar bar)
         {
             this._ucnavigatorbar = bar;
-            this._ucnavigatorbar.OnItemSelectChanged += this._ucnavigatorbar_OnItemSelectChanged;
+            this.navigateTree = bar.GetNavigateTree();
+            //this._ucnavigatorbar.OnItemSelectChanged += this._ucnavigatorbar_OnItemSelectChanged;
         }
 
         public void SetDispatchObj(UCTopMenuBubbleBar bar)
@@ -78,18 +81,6 @@ namespace DocScanner.Main
             this._ucrightpane = bar;
         }
 
-        private void _ucnavigatorbar_OnItemSelectChanged(object sender, TEventArg<RadTreeNode> e)
-        {
-            NFileInfo curFileInfo = null;
-            bool flag = e == null || e.Arg == null || e.Arg.Tag == null;
-            if (!flag)
-            {
-                curFileInfo = (e.Arg.Tag as NFileInfo);
-            }
-            this._uccenterview.CurFileInfo = curFileInfo;
-            this._ucrightpane.OnNodeChanged(e.Arg, false);
-        }
-
         public UCCenterView GetUCCenterView()
         {
             return this._uccenterview;
@@ -115,17 +106,17 @@ namespace DocScanner.Main
             {
                 this._initedcmds = true;
                 this._stringCMDs["ScanBatchDoc"] = new Action<object>(this._ucnavigatorbar.ScanBatchDoc);
-                this._stringCMDs["NavigateFirstItem"] = new Action<object>(this._ucnavigatorbar.NavigateFirstItem);
-                this._stringCMDs["NavigateLastItem"] = new Action<object>(this._ucnavigatorbar.NavigateLastItem);
-                this._stringCMDs["NavigateNextItem"] = new Action<object>(this._ucnavigatorbar.NavigateNextItem);
-                this._stringCMDs["NavigatePrevItem"] = new Action<object>(this._ucnavigatorbar.NavigatePrevItem);
+                this._stringCMDs["NavigateFirstItem"] = new Action<object>(this.navigateTree.NavigateFirstItem);
+                this._stringCMDs["NavigateLastItem"] = new Action<object>(this.navigateTree.NavigateLastItem);
+                this._stringCMDs["NavigateNextItem"] = new Action<object>(this.navigateTree.NavigateNextItem);
+                this._stringCMDs["NavigatePrevItem"] = new Action<object>(this.navigateTree.NavigatePrevItem);
                 this._stringCMDs["LeftPaneShift"] = new Action<object>(this._ucbench.LeftPaneShift);
-                this._stringCMDs["ChangeView"] = new Action<object>(this._ucnavigatorbar.ChangeView);
-                this._stringCMDs["UpdateThumbNail"] = new Action<object>(this._ucnavigatorbar.UpdateThumbNail);
+                //this._stringCMDs["ChangeView"] = new Action<object>(this.navigateTree.ChangeView);
+                //this._stringCMDs["UpdateThumbNail"] = new Action<object>(this.navigateTree.UpdateThumbNail);
                 this._stringCMDs["DownloadBatch"] = new Action<object>(this._ucnavigatorbar.DownloadBatch);
                 this._stringCMDs["UploadBatch"] = new Action<object>(this._ucnavigatorbar.UploadBatch);
                 this._stringCMDs["NewBatch"] = new Action<object>(this._ucnavigatorbar.DoNewBatch);
-                this._stringCMDs["ClearBatchs"] = new Action<object>(this._ucnavigatorbar.DoClearBatchs);
+                this._stringCMDs["ClearBatchs"] = new Action<object>(this.navigateTree.DoClearBatchs);
                 this._stringCMDs["FilterImg"] = new Action<object>(this._ucnavigatorbar.DoFilterImg);
                 this._stringCMDs["SetAppParams"] = new Action<object>(this.ShowAppParams);
                 this._stringCMDs["SetAppStartParams"] = new Action<object>(this.ShowSysSetting);
@@ -140,7 +131,7 @@ namespace DocScanner.Main
                 this._stringCMDs["test1"] = new Action<object>(UCMenuBarDesign.ShowSetting);
                 this._stringCMDs["test2"] = new Action<object>(this._ucnavigatorbar.TestFromFileToTree);
                 this._stringCMDs["WorkPane"] = new Action<object>(this._uccenterview.ShowWorkPane);
-                this._stringCMDs["SelectNode"] = new Action<object>(this._ucnavigatorbar.DoSelectNode);
+                //this._stringCMDs["SelectNode"] = new Action<object>(this._ucnavigatorbar.DoSelectNode);
             }
             this._centerviewcmds = new string[]
             {

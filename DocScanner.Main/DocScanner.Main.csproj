@@ -63,14 +63,19 @@
   <ItemGroup>
     <Compile Include="BatchExt.cs" />
     <Compile Include="BatchNoMaker.cs" />
-    <Compile Include="BatchTemplatedef.cs" />
-    <Compile Include="BatchTemplateMgr.cs" />
+    <Compile Include="BatchTemplate\BatchTemplateDef.cs" />
+    <Compile Include="BatchTemplate\BatchTemplateMgr.cs" />
+    <Compile Include="BatchTemplate\BatchTemplateTree.cs" />
+    <Compile Include="BatchTemplate\TedtTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BubbleBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="BubbleBarElement.cs" />
     <Compile Include="BubbleBarLayout.cs" />
     <Compile Include="BubbleBarMouseOverBehavior.cs" />
+    <Compile Include="Navigator\NavigateTreeHelper.cs" />
     <Compile Include="Settings\BusinessSetting.cs" />
     <Compile Include="Settings\AppSetting.cs" />
     <Compile Include="Settings\AccountSetting.cs" />
@@ -133,7 +138,7 @@
     <Compile Include="UserControl\UCMenuBarDesign.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\UCNavigatorBar.cs">
+    <Compile Include="Navigator\UCNavigatorBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\UCLocalQueryBatchNO.cs">
@@ -169,7 +174,7 @@
     <Compile Include="UserControl\UCCategory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\UCBatchTemplateEdit.cs">
+    <Compile Include="BatchTemplate\UCBatchTemplateEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\UCBatchTempalteName.cs">
@@ -190,8 +195,8 @@
     <Compile Include="ShowNodePropertyCMD.cs" />
     <Compile Include="ServerIniConfig.cs" />
     <Compile Include="Settings\NoteSetting.cs" />
-    <Compile Include="NodeDef.cs" />
-    <Compile Include="NavigateTreeHelper.cs" />
+    <Compile Include="BatchTemplate\TemplateNode.cs" />
+    <Compile Include="Navigator\NavigateTree.cs" />
     <Compile Include="IQueryBatchNO.cs" />
     <Compile Include="IOleContainer.cs" />
     <Compile Include="IOleClientSite.cs" />
@@ -253,6 +258,10 @@
     <Compile Include="TestFormMain.Designer.cs">
       <DependentUpon>TestFormMain.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BatchTemplate\UCBatchTemplateEdit.resx">
+      <DependentUpon>UCBatchTemplateEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -266,7 +275,7 @@
     <EmbeddedResource Include="UserControl\UCLeftPane.resx">
       <DependentUpon>UCLeftPane.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\UCNavigatorBar.resx">
+    <EmbeddedResource Include="Navigator\UCNavigatorBar.resx">
       <DependentUpon>UCNavigatorBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\UCPictureView.resx">
@@ -274,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\UCPictureView.zh-CN.resx">
       <DependentUpon>UCPictureView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\UCRightPane.resx">
+      <DependentUpon>UCRightPane.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Settings\AppConfig.ini" />
     <None Include="Properties\Settings.settings">

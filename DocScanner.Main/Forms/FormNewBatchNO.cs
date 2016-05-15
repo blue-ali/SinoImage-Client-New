@@ -43,11 +43,11 @@ namespace DocScanner.Main
         }
     }
 
-    internal BatchTemplatedef SelectedBatchtemplate
+    internal BatchTemplateDef SelectedBatchtemplate
     {
         get
         {
-            BatchTemplatedef result;
+            BatchTemplateDef result;
             if (!string.IsNullOrEmpty(this.comboBoxTemplate.Text))
             {
                 result = BatchTemplateMgr.GetTempalte(this.comboBoxTemplate.Text);
@@ -81,7 +81,9 @@ namespace DocScanner.Main
         this.comboBoxTemplate.Items.Clear();
             if (allowTempalte)
             {
-                this.comboBoxTemplate.Items.AddRange(BatchTemplateMgr.GetTemplates().Select<BatchTemplatedef, string>(o => o.Name).ToArray<string>());
+                string[] list = BatchTemplateMgr.GetTemplates().Select<BatchTemplateDef, string>(o => o.Name).ToArray<string>();
+                this.comboBoxTemplate.Items.AddRange(list);
+
             }
 
         }

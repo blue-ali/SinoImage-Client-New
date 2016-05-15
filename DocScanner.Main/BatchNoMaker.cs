@@ -12,7 +12,7 @@ namespace DocScanner.Main
         // Fields
         [ThreadStatic]
         private static BatchNoMaker _cur;
-        private BatchTemplatedef _selectedtempalte;
+        private BatchTemplateDef _selectedtempalte;
 
         // Methods
         public string FromInputDialog(string param = "")
@@ -40,7 +40,7 @@ namespace DocScanner.Main
             }
         }
 
-        public BatchTemplatedef SelectedTemplate
+        public BatchTemplateDef SelectedTemplate
         {
             get
             {

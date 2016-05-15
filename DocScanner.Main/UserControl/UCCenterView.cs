@@ -13,6 +13,8 @@ namespace DocScanner.Main
 {
     public class UCCenterView : UserControl
     {
+        private static readonly UCCenterView instance = new UCCenterView();
+
         private NFileInfo _curfileinfo;
 
         private IUCView _curview;
@@ -26,6 +28,11 @@ namespace DocScanner.Main
         private Button btnCloseWorkPane;
 
         private Splitter splitter1;
+
+        public static UCCenterView GetInstance()
+        {
+            return instance;
+        }
 
         public bool ShowedWorkPane
         {
@@ -75,7 +82,7 @@ namespace DocScanner.Main
             }
         }
 
-        public UCCenterView()
+        private UCCenterView()
         {
             this.InitializeComponent();
             this.splitter1.SplitterMoved += delegate (object sender, SplitterEventArgs e)

@@ -75,7 +75,7 @@ namespace DocScanner.Main
             this.tspBtn_ClearBatchs = new System.Windows.Forms.ToolStripButton();
             this.tspBtn_View = new System.Windows.Forms.ToolStripButton();
             this.tspBtn_Filter = new System.Windows.Forms.ToolStripButton();
-            this.ucNavigatorBar1 = new DocScanner.Main.UCNavigatorBar();
+            this.ucNavigatorBar1 = UCNavigatorBar.GetInstance();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,12 +135,12 @@ namespace DocScanner.Main
             // 
             // ucNavigatorBar1
             // 
-            this.ucNavigatorBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucNavigatorBar1.Location = new System.Drawing.Point(0, 27);
-            this.ucNavigatorBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ucNavigatorBar1.Name = "ucNavigatorBar1";
-            this.ucNavigatorBar1.Size = new System.Drawing.Size(235, 495);
-            this.ucNavigatorBar1.TabIndex = 1;
+            //this.ucNavigatorBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.ucNavigatorBar1.Location = new System.Drawing.Point(0, 27);
+            //this.ucNavigatorBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            //this.ucNavigatorBar1.Name = "ucNavigatorBar1";
+            //this.ucNavigatorBar1.Size = new System.Drawing.Size(235, 495);
+            //this.ucNavigatorBar1.TabIndex = 1;
             // 
             // UCLeftPane
             // 
