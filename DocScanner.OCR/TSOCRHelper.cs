@@ -37,7 +37,7 @@ namespace DocScaner.OCR.Tesseract
             //TesseractEngine tesseractEngine = new TesseractEngine("C:\\workspace\\space_imageclient\\SinoImage-Client\\DocScanner.Main\\bin\\Debug\\Tesseract\\tessdata", "eng", EngineMode.Default);
             //bitmap = new Bitmap("f:\\testimage\\number.jpg");
             //Rect region = new Rect(rect.X, rect.Y, rect.Width, rect.Height);
-            string datapath = SystemHelper.GetAssemblesDirectory() + "Tesseract\\tessdata";
+            string datapath = SystemHelper.GetAssemblesDirectory() + "tessdata";
             TesseractEngine tesseractEngine = new TesseractEngine(datapath, language.ToString(), EngineMode.Default);
             page = tesseractEngine.Process(bitmap);
             //Page page = tesseractEngine.Process(bitmap, Rect.FromCoords(rect.X, rect.Y, rect.Width, rect.Height));
